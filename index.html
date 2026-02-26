@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" style="scroll-behavior: smooth;">
+<html lang="es" style="scroll-behavior:smooth;">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,45 +19,59 @@
 
   <style>
     :root{
-      --bg:#f7fbfb;
-      --bg2:#eef7f7;
-      --panel:rgba(10,18,18,.06);
-      --panel2:rgba(10,18,18,.09);
-      --line:rgba(10,18,18,.12);
-      --text:rgba(10,18,18,.92);
-      --muted:rgba(10,18,18,.62);
-      --muted2:rgba(10,18,18,.48);
-      --accent:#2bb673;
-      --accent2:#2d7cff;
-      --shadow:0 18px 60px rgba(0,0,0,.10);
-      --shadow2:0 10px 30px rgba(0,0,0,.08);
+      /* pastel clinica */
+      --bg:#fbfaf6;            /* cremita */
+      --bg2:#f3f7f4;
+      --text:#101716;
+      --muted:rgba(16,23,22,.66);
+      --muted2:rgba(16,23,22,.50);
+
+      --mint:#7fdcc4;          /* verde agua */
+      --mint2:#52caa9;
+      --sky:#8bbcff;           /* azul suave */
+      --line:rgba(16,23,22,.10);
+
+      /* crystal */
+      --glass: rgba(255,255,255,.58);
+      --glass2: rgba(255,255,255,.44);
+      --blur: 14px;
+
+      --shadow: 0 18px 60px rgba(16,23,22,.10);
+      --shadow2: 0 12px 34px rgba(16,23,22,.08);
+
       --r:18px;
       --r2:26px;
-      --max:1120px;
-      --blur:14px;
+      --max: 1140px;
+      --pad: 18px;
 
       --waSize:56px;
       --waGap:18px;
 
-      --heroMaxH: 280px;
-      --secGap: 20px;
-      --secGap2: 26px;
-
       --ease: cubic-bezier(.2,.9,.2,1);
       --dur: 650ms;
+
+      --icon: var(--mint2);
+      --iconSoft: rgba(82,202,169,.80);
     }
 
+    /* tema oscuro suave (no negro) */
     [data-theme="dark"]{
-      --bg:#071215;
-      --bg2:#07181c;
-      --panel:rgba(255,255,255,.06);
-      --panel2:rgba(255,255,255,.10);
-      --line:rgba(255,255,255,.14);
+      --bg:#0f1717;
+      --bg2:#121d1d;
       --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.70);
       --muted2:rgba(255,255,255,.56);
-      --shadow:0 18px 60px rgba(0,0,0,.45);
-      --shadow2:0 10px 30px rgba(0,0,0,.30);
+
+      --line:rgba(255,255,255,.14);
+
+      --glass: rgba(255,255,255,.08);
+      --glass2: rgba(255,255,255,.06);
+
+      --shadow: 0 18px 60px rgba(0,0,0,.40);
+      --shadow2: 0 12px 34px rgba(0,0,0,.28);
+
+      --icon: rgba(127,220,196,.92);
+      --iconSoft: rgba(127,220,196,.78);
     }
 
     *{ box-sizing:border-box; }
@@ -67,38 +81,20 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(900px 600px at 18% 10%, rgba(45,124,255,.10), transparent 60%),
-        radial-gradient(900px 600px at 82% 14%, rgba(43,182,115,.10), transparent 60%),
+        radial-gradient(900px 600px at 18% 8%, rgba(127,220,196,.18), transparent 60%),
+        radial-gradient(900px 600px at 82% 12%, rgba(139,188,255,.14), transparent 60%),
         linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
     }
-
     a{ color:inherit; text-decoration:none; }
-    .wrap{ width:100%; max-width: var(--max); margin:0 auto; padding: 0 18px; }
+    .wrap{ width:100%; max-width: var(--max); margin:0 auto; padding: 0 var(--pad); }
 
-    /* overlay */
-    .overlay{
-      pointer-events:none;
-      position:fixed; inset:0;
-      background:
-        radial-gradient(1200px 800px at 50% 120%, rgba(0,0,0,.02), transparent 60%),
-        radial-gradient(1200px 800px at 50% 0%, rgba(255,255,255,.25), transparent 55%);
-      opacity:.70;
-      z-index: 1;
-    }
-    [data-theme="dark"] .overlay{
-      background:
-        radial-gradient(1200px 800px at 50% 120%, rgba(255,255,255,.06), transparent 60%),
-        radial-gradient(1200px 800px at 50% 0%, rgba(255,255,255,.05), transparent 55%);
-      opacity:.35;
-    }
-
-    /* suave noise */
+    /* grano minimo */
     .noise{
       pointer-events:none;
       position:fixed; inset:0;
-      opacity:.055;
-      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="220" height="220" filter="url(%23n)" opacity=".65"/></svg>');
+      opacity:.045;
+      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" stitchTiles="stitch"/></filter><rect width="220" height="220" filter="url(%23n)" opacity=".55"/></svg>');
       mix-blend-mode: overlay;
       z-index: 1;
     }
@@ -109,12 +105,11 @@
       z-index: 50;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      background: rgba(247,251,251,.76);
+      background: rgba(251,250,246,.76);
       border-bottom: 1px solid var(--line);
     }
     [data-theme="dark"] header{
-      background: rgba(7,18,21,.55);
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(15,23,23,.62);
     }
 
     .nav{
@@ -124,19 +119,17 @@
       gap: 12px;
       padding: 14px 0;
     }
-
     .brand{
       display:flex;
       align-items:center;
       gap: 12px;
       min-width: 0;
     }
-
     .logoMark{
       width: 44px; height: 44px;
       border-radius: 14px;
       border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.60), rgba(255,255,255,.18));
+      background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.28));
       box-shadow: var(--shadow2);
       overflow:hidden;
       flex: 0 0 auto;
@@ -176,26 +169,6 @@
       flex: 0 0 auto;
     }
 
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.60);
-      box-shadow: 0 12px 30px rgba(0,0,0,.08);
-      font-size: 13px;
-      color: var(--muted);
-      user-select:none;
-      white-space:nowrap;
-    }
-    [data-theme="dark"] .chip{
-      background: rgba(255,255,255,.06);
-      box-shadow: 0 12px 30px rgba(0,0,0,.24);
-    }
-    .chip strong{ color: var(--text); font-weight: 900; }
-
     .btn{
       display:inline-flex;
       align-items:center;
@@ -205,45 +178,31 @@
       border-radius: 14px;
       padding: 12px 14px;
       background: rgba(255,255,255,.70);
-      box-shadow: 0 18px 45px rgba(0,0,0,.10);
+      box-shadow: var(--shadow2);
       color: var(--text);
       font-weight: 900;
       letter-spacing: .2px;
       cursor:pointer;
-      transition: all .2s ease;
+      transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
       white-space:nowrap;
     }
-    [data-theme="dark"] .btn{
-      background: rgba(255,255,255,.08);
-      box-shadow: 0 18px 45px rgba(0,0,0,.25);
-    }
-    .btn:hover{ transform: translateY(-2px); }
+    [data-theme="dark"] .btn{ background: rgba(255,255,255,.08); }
+    .btn:hover{ transform: translateY(-1px); }
     .btn:active{ transform: translateY(0px); }
 
     .btnPrimary{
-      border-color: rgba(43,182,115,.40);
+      border-color: rgba(127,220,196,.55);
       background:
-        radial-gradient(600px 220px at 20% 20%, rgba(43,182,115,.18), transparent 55%),
-        radial-gradient(500px 220px at 85% 40%, rgba(45,124,255,.10), transparent 58%),
+        radial-gradient(600px 220px at 15% 20%, rgba(127,220,196,.22), transparent 55%),
+        radial-gradient(500px 220px at 85% 50%, rgba(139,188,255,.14), transparent 58%),
         rgba(255,255,255,.78);
     }
     [data-theme="dark"] .btnPrimary{
       background:
-        radial-gradient(600px 220px at 20% 20%, rgba(43,182,115,.22), transparent 55%),
-        radial-gradient(500px 220px at 85% 40%, rgba(45,124,255,.14), transparent 58%),
+        radial-gradient(600px 220px at 15% 20%, rgba(127,220,196,.18), transparent 55%),
+        radial-gradient(500px 220px at 85% 50%, rgba(139,188,255,.12), transparent 58%),
         rgba(255,255,255,.08);
     }
-    /* Glow effect para botones primarios */
-    .btnPrimary:hover {
-      box-shadow: 0 10px 25px rgba(43, 182, 115, 0.35);
-    }
-
-    .btnGhost{
-      background: transparent;
-      box-shadow:none;
-    }
-
-    .icon{ width: 18px; height: 18px; opacity:.9; flex: 0 0 auto; }
 
     .toggle{
       width: 46px; height: 42px;
@@ -254,57 +213,71 @@
       place-items:center;
       cursor:pointer;
       transition: transform .15s ease;
-      box-shadow: 0 12px 30px rgba(0,0,0,.08);
+      box-shadow: var(--shadow2);
     }
-    [data-theme="dark"] .toggle{
-      background: rgba(255,255,255,.06);
-      box-shadow: 0 12px 30px rgba(0,0,0,.24);
-    }
-    .toggle:hover{ transform: translateY(-2px); }
+    [data-theme="dark"] .toggle{ background: rgba(255,255,255,.06); }
+    .toggle:hover{ transform: translateY(-1px); }
     .toggle svg{ width: 18px; height: 18px; opacity:.9; }
 
     main{ padding: 18px 0 80px; position:relative; z-index: 2; }
 
-    .card{
+    .glass{
       border: 1px solid var(--line);
       border-radius: var(--r2);
-      background: rgba(255,255,255,.62);
+      background: var(--glass);
       box-shadow: var(--shadow);
       backdrop-filter: blur(var(--blur));
       -webkit-backdrop-filter: blur(var(--blur));
       overflow:hidden;
     }
-    [data-theme="dark"] .card{ background: rgba(255,255,255,.06); }
 
-    .hero{ padding: 14px 0 10px; }
+    /* reveal */
+    .reveal{
+      opacity: 0;
+      transform: translate3d(0, 14px, 0);
+      filter: blur(2px);
+      transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), filter var(--dur) var(--ease);
+      will-change: transform, opacity, filter;
+    }
+    .reveal[data-reveal="left"]{ transform: translate3d(-18px, 10px, 0); }
+    .reveal[data-reveal="right"]{ transform: translate3d(18px, 10px, 0); }
+    .reveal[data-reveal="up"]{ transform: translate3d(0, 18px, 0); }
+    .reveal.in{ opacity: 1; transform: translate3d(0,0,0); filter: blur(0px); }
 
+    .stagger > *{
+      opacity: 0;
+      transform: translate3d(0, 12px, 0);
+      filter: blur(2px);
+      transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), filter var(--dur) var(--ease);
+    }
+    .stagger.in > *{ opacity: 1; transform: translate3d(0,0,0); filter: blur(0px); }
+    .stagger.in > *:nth-child(1){ transition-delay: 0ms; }
+    .stagger.in > *:nth-child(2){ transition-delay: 70ms; }
+    .stagger.in > *:nth-child(3){ transition-delay: 140ms; }
+    .stagger.in > *:nth-child(4){ transition-delay: 210ms; }
+    .stagger.in > *:nth-child(5){ transition-delay: 280ms; }
+    .stagger.in > *:nth-child(6){ transition-delay: 350ms; }
+    .stagger.in > *:nth-child(7){ transition-delay: 420ms; }
+    .stagger.in > *:nth-child(8){ transition-delay: 490ms; }
+
+    @media (prefers-reduced-motion: reduce){
+      .reveal, .stagger > *{ transition:none !important; transform:none !important; filter:none !important; opacity:1 !important; }
+    }
+
+    /* icons (rellenos, prolijos) */
+    .iWrap{ display:inline-flex; align-items:center; justify-content:center; }
+    .iFill{ width: 20px; height: 20px; display:block; color: var(--icon); }
+    .iMini{ width: 18px; height: 18px; display:block; color: var(--iconSoft); }
+    .iPill{ width: 16px; height: 16px; display:block; color: var(--iconSoft); }
+
+    /* hero */
     .heroGrid{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1.1fr .9fr;
       gap: 14px;
       align-items: stretch;
     }
-
     .heroCard{ padding: 22px; }
-
-    .heroBanner{
-      border-radius: 20px;
-      border: 1px solid var(--line);
-      overflow:hidden;
-      background: rgba(255,255,255,.35);
-      max-height: var(--heroMaxH);
-      box-shadow: 0 22px 60px rgba(0,0,0,.10);
-    }
-    [data-theme="dark"] .heroBanner{ background: rgba(255,255,255,.03); box-shadow: 0 22px 60px rgba(0,0,0,.28); }
-    .heroBanner img{
-      width:100%;
-      height: 100%;
-      max-height: var(--heroMaxH);
-      object-fit: cover;
-      display:block;
-      transform: scale(1.02);
-    }
-
     .badge{
       display:inline-flex;
       align-items:center;
@@ -312,73 +285,66 @@
       padding: 9px 12px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,.58);
+      background: var(--glass2);
       color: var(--muted);
       font-size: 13px;
       width: fit-content;
     }
-    [data-theme="dark"] .badge{ background: rgba(255,255,255,.06); }
     .badge .dot{
-      width: 10px; height: 10px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, var(--accent2), rgba(255,255,255,.15));
-      box-shadow: 0 0 0 6px rgba(45,124,255,.10);
+      width: 10px; height: 10px; border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, var(--mint), rgba(255,255,255,.15));
+      box-shadow: 0 0 0 6px rgba(127,220,196,.14);
     }
-
-    /* Degradado en el H1 para mayor UX moderna */
-    h1 { 
-      margin: 12px 0 10px; 
-      font-size: 40px; 
-      line-height: 1.04; 
-      letter-spacing: -0.7px; 
-      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0px 4px 15px rgba(43, 182, 115, 0.15);
-    }
-    [data-theme="dark"] h1 {
-      background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    
-    .sub{ margin: 0 0 12px; color: var(--muted); font-size: 15px; line-height: 1.7; max-width: 72ch; }
-
+    h1{ margin: 12px 0 10px; font-size: clamp(30px, 4.2vw, 46px); line-height: 1.04; letter-spacing: -0.7px; }
+    .sub{ margin: 0 0 12px; color: var(--muted); font-size: 15px; line-height: 1.75; max-width: 72ch; }
     .ctaRow{ display:flex; flex-wrap: wrap; gap: 10px; align-items:center; margin-top: 12px; }
 
-    .miniRow{
-      display:flex; flex-wrap:wrap; gap: 10px;
-      margin-top: 12px;
-      color: var(--muted2);
-      font-size: 13px;
-      line-height:1.45;
+    .heroMedia{
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
     }
-    .miniRow span{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px dashed var(--line);
-      background: rgba(255,255,255,.45);
-    }
-    [data-theme="dark"] .miniRow span{ background: rgba(255,255,255,.03); }
-
-    .sideCard{ padding: 18px; display:flex; flex-direction:column; gap: 12px; }
-
-    .kpi{ display:grid; gap: 10px; }
-    .kpiItem{
+    .heroImg{
+      border-radius: 22px;
       border: 1px solid var(--line);
-      border-radius: var(--r);
-      padding: 12px;
-      background: rgba(255,255,255,.45);
+      background: var(--glass2);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
     }
-    [data-theme="dark"] .kpiItem{ background: rgba(255,255,255,.03); }
-    .kpiItem .label{ color: var(--muted); font-size: 12px; letter-spacing:.2px; margin-bottom: 6px; }
-    .kpiItem .value{ font-weight: 900; letter-spacing: .2px; font-size: 14px; line-height: 1.35; }
-    .kpiItem a{ text-decoration: underline; text-underline-offset: 3px; }
+    .heroImg img{
+      width:100%;
+      height: 320px;
+      object-fit: cover;
+      display:block;
+    }
 
-    section{ margin-top: var(--secGap2); }
+    .quick{
+      display:grid;
+      gap: 10px;
+      margin-top: 2px;
+    }
+    .qi{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--glass2);
+      padding: 12px 12px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    .qiLeft{
+      display:flex;
+      align-items:flex-start;
+      gap: 10px;
+      min-width:0;
+    }
+    .qi .k{ color: var(--muted); font-size: 13px; padding-top: 1px; }
+    .qi .v{ font-weight: 900; text-align:right; font-size: 13px; line-height: 1.35; }
+    .qi .v a{ text-decoration: underline; text-underline-offset: 3px; }
+
+    section{ margin-top: 22px; }
     .sectionTitle{
       display:flex;
       align-items:flex-end;
@@ -389,110 +355,29 @@
     .sectionTitle h2{ margin:0; font-size: 18px; letter-spacing: .2px; }
     .sectionTitle p{ margin:0; font-size: 13px; color: var(--muted); }
 
-    /* bento */
-    .bento{
-      display:grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 12px;
-    }
-    .bentoCard{
-      border-radius: var(--r2);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.48);
-      box-shadow: 0 18px 50px rgba(0,0,0,.08);
-      overflow:hidden;
-      padding: 20px;
-    }
-    [data-theme="dark"] .bentoCard{
-      background: rgba(255,255,255,.03);
-      box-shadow: 0 18px 50px rgba(0,0,0,.24);
-    }
-    .bentoTitle{
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap: 12px;
-    }
-    .bentoTitle h3{
-      margin:0;
-      font-size: 16px;
-      letter-spacing:.2px;
-      font-weight: 900;
-    }
-    .tag{
-      font-size: 12px;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.35);
-      padding: 7px 10px;
-      border-radius: 999px;
-      white-space:nowrap;
-    }
-    [data-theme="dark"] .tag{ background: rgba(255,255,255,.03); }
-    .bentoP{
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.75;
-      max-width: 80ch;
-    }
-
-    /* destacados y cards */
-    .featuredGrid{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 12px;
-    }
-    .feat{
-      border: 1px solid var(--line);
-      border-radius: 20px;
-      background: rgba(255,255,255,.52);
-      padding: 16px;
-      display:flex;
-      flex-direction:column;
-      gap: 8px;
-      min-height: 120px;
-      position:relative;
-      overflow:hidden;
-      transition: transform .18s ease;
-    }
-    [data-theme="dark"] .feat{ background: rgba(255,255,255,.04); }
-    .feat:hover{ transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-    .feat:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(420px 220px at 20% 15%, rgba(45,124,255,.12), transparent 55%),
-        radial-gradient(420px 220px at 85% 70%, rgba(43,182,115,.12), transparent 55%);
-      opacity:.9;
-      pointer-events:none;
-    }
-    [data-theme="dark"] .feat:before{ opacity:.55; }
-    .feat > *{ position:relative; z-index:1; }
-    .feat .t{ font-weight: 900; letter-spacing:.2px; }
-    .feat .p{ margin:0; color: var(--muted); font-size: 12.8px; line-height: 1.55; }
-
-    /* CARRUSEL */
+    /* carrusel destacados */
     .carousel{
       border: 1px solid var(--line);
       border-radius: var(--r2);
-      background: rgba(255,255,255,.50);
+      background: var(--glass);
       box-shadow: var(--shadow2);
       overflow:hidden;
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
     }
-    [data-theme="dark"] .carousel{ background: rgba(255,255,255,.03); }
     .carHead{
       padding: 14px 16px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap: 12px;
-      border-bottom: 1px solid rgba(0,0,0,.05);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.20);
     }
-    [data-theme="dark"] .carHead{ border-bottom-color: rgba(255,255,255,.08); }
+    [data-theme="dark"] .carHead{ background: rgba(255,255,255,.03); }
     .carHead .ttl{ font-weight: 900; letter-spacing:.2px; }
     .carHead .hint{ color: var(--muted); font-size: 12.5px; }
+
     .carTrack{
       display:flex;
       gap: 12px;
@@ -505,6 +390,7 @@
     }
     .carTrack:active{ cursor: grabbing; }
     .carTrack::-webkit-scrollbar{ display:none; }
+
     .carItem{
       flex: 0 0 auto;
       width: min(360px, 86vw);
@@ -512,32 +398,31 @@
       border: 1px solid var(--line);
       border-radius: 22px;
       overflow:hidden;
-      background: rgba(255,255,255,.62);
-      box-shadow: 0 18px 55px rgba(0,0,0,.08);
+      background: var(--glass2);
+      box-shadow: var(--shadow2);
       position:relative;
     }
-    [data-theme="dark"] .carItem{ background: rgba(255,255,255,.05); box-shadow: 0 18px 55px rgba(0,0,0,.24); }
     .carMedia{
       height: 170px;
       background:
-        radial-gradient(800px 220px at 20% 30%, rgba(45,124,255,.18), transparent 55%),
-        radial-gradient(800px 220px at 80% 70%, rgba(43,182,115,.18), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.25), rgba(255,255,255,.08));
+        radial-gradient(800px 240px at 20% 30%, rgba(127,220,196,.22), transparent 55%),
+        radial-gradient(800px 240px at 80% 70%, rgba(139,188,255,.16), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.25), rgba(255,255,255,.06));
       display:grid;
       place-items:center;
     }
     [data-theme="dark"] .carMedia{
       background:
-        radial-gradient(800px 220px at 20% 30%, rgba(45,124,255,.22), transparent 55%),
-        radial-gradient(800px 220px at 80% 70%, rgba(43,182,115,.22), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+        radial-gradient(800px 240px at 20% 30%, rgba(127,220,196,.18), transparent 55%),
+        radial-gradient(800px 240px at 80% 70%, rgba(139,188,255,.12), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
     }
-    .carMedia svg{ width: 84px; height: 84px; opacity:.95; }
+    .carMedia svg{ width: 82px; height: 82px; opacity:.92; }
     .carBody{ padding: 14px 14px 16px; }
     .carBody .t{ font-weight: 900; letter-spacing:.2px; }
-    .carBody .p{ margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .carBody .p{ margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
 
-    /* filtros y busqueda */
+    /* filtros + search */
     .filters{
       display:flex;
       flex-wrap:wrap;
@@ -554,16 +439,15 @@
       font-weight: 900;
       font-size: 13px;
       cursor:pointer;
-      transition: all .2s ease;
+      transition: transform .15s ease;
       user-select:none;
       white-space:nowrap;
     }
     [data-theme="dark"] .filterBtn{ background: rgba(255,255,255,.06); }
-    .filterBtn:hover{ transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .filterBtn:hover{ transform: translateY(-1px); }
     .filterBtn.active{
-      border-color: rgba(43,182,115,.55);
-      background: rgba(43,182,115,.1);
-      box-shadow: 0 12px 26px rgba(43,182,115,.15);
+      border-color: rgba(127,220,196,.70);
+      box-shadow: 0 12px 26px rgba(127,220,196,.10);
     }
 
     .searchRow{
@@ -582,9 +466,7 @@
       background: rgba(255,255,255,.70);
       color: var(--text);
       outline:none;
-      transition: border-color 0.2s ease;
     }
-    .search:focus { border-color: var(--accent); }
     [data-theme="dark"] .search{ background: rgba(255,255,255,.06); }
     .search::placeholder{ color: var(--muted); }
 
@@ -597,15 +479,15 @@
     }
     .catCard{
       border: 1px solid var(--line);
-      border-radius: 20px;
-      background: rgba(255,255,255,.58);
+      border-radius: 22px;
+      background: var(--glass2);
       padding: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+      box-shadow: var(--shadow2);
       display:flex;
       flex-direction:column;
       gap: 8px;
       cursor:pointer;
-      transition: transform .2s ease, box-shadow .2s ease;
+      transition: transform .15s ease;
       position:relative;
       overflow:hidden;
     }
@@ -613,32 +495,50 @@
       content:"";
       position:absolute; inset:-2px;
       background:
-        radial-gradient(420px 220px at 20% 10%, rgba(45,124,255,.10), transparent 60%),
-        radial-gradient(420px 220px at 85% 80%, rgba(43,182,115,.10), transparent 60%);
-      opacity:.85;
+        radial-gradient(420px 240px at 18% 10%, rgba(127,220,196,.18), transparent 60%),
+        radial-gradient(420px 240px at 88% 90%, rgba(139,188,255,.12), transparent 60%);
+      opacity:.9;
       pointer-events:none;
     }
-    [data-theme="dark"] .catCard{ background: rgba(255,255,255,.04); box-shadow: 0 10px 30px rgba(0,0,0,.20); }
     [data-theme="dark"] .catCard:before{ opacity:.55; }
     .catCard > *{ position:relative; z-index:1; }
-    .catCard:hover{ transform: translateY(-4px); box-shadow: 0 15px 35px rgba(0,0,0,.1); }
+    .catCard:hover{ transform: translateY(-2px); }
     .catCard .h{
-      display:flex; align-items:center; justify-content:space-between; gap: 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    .catCard .nameRow{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      min-width:0;
     }
     .catCard .name{ font-weight: 900; }
-    .catCard .count{ font-size: 12px; color: var(--muted); border: 1px solid var(--line); background: rgba(255,255,255,.35); padding: 6px 10px; border-radius: 999px; }
+    .catCard .count{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.35);
+      padding: 6px 10px;
+      border-radius: 999px;
+      white-space:nowrap;
+    }
     [data-theme="dark"] .catCard .count{ background: rgba(255,255,255,.03); }
-    .catCard .desc{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+    .catCard .desc{ margin:0; color: var(--muted); font-size: 13px; line-height: 1.75; }
 
     /* accordion */
     .accordionWrap{ margin-top: 12px; display:grid; gap: 12px; }
     details.acc{
       border: 1px solid var(--line);
-      border-radius: 20px;
-      background: rgba(255,255,255,.55);
+      border-radius: 22px;
+      background: var(--glass);
       overflow:hidden;
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
+      box-shadow: var(--shadow2);
     }
-    [data-theme="dark"] details.acc{ background: rgba(255,255,255,.03); }
     summary.accSum{
       cursor:pointer;
       list-style:none;
@@ -651,6 +551,11 @@
     }
     summary.accSum::-webkit-details-marker{ display:none; }
     .accMeta{ display:flex; gap: 8px; align-items:center; flex-wrap:wrap; }
+    .accMeta .lead{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+    }
     .accMeta .pill{
       font-size: 12px;
       color: var(--muted);
@@ -659,6 +564,9 @@
       padding: 7px 10px;
       border-radius: 999px;
       white-space:nowrap;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
     }
     [data-theme="dark"] .accMeta .pill{ background: rgba(255,255,255,.03); }
     .chev{ width: 18px; height: 18px; opacity:.8; transition: transform .15s ease; }
@@ -673,17 +581,16 @@
     }
     .svcItem{
       border: 1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(255,255,255,.40);
+      border-radius: 16px;
+      background: var(--glass2);
       padding: 10px 10px;
       font-size: 13px;
       color: var(--text);
       display:flex;
       align-items:flex-start;
       gap: 8px;
-      line-height: 1.45;
+      line-height: 1.5;
     }
-    [data-theme="dark"] .svcItem{ background: rgba(255,255,255,.03); }
     .svcItem .b{
       width: 18px; height: 18px;
       border-radius: 8px;
@@ -702,41 +609,43 @@
       align-items:center;
       justify-content:space-between;
     }
-    .accCTA .hint{ color: var(--muted); font-size: 12.5px; line-height:1.55; }
+    .accCTA .hint{ color: var(--muted); font-size: 12.5px; line-height:1.6; }
 
-    /* especialistas */
+    /* profesionales */
     .specialists{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
       gap: 12px;
       align-items: stretch;
     }
+    .pane{ padding: 18px; }
+    .paneTitle{
+      display:flex; align-items:flex-start; justify-content:space-between; gap: 12px;
+      margin-bottom: 10px;
+    }
+    .paneTitle h3{ margin:0; font-size: 16px; letter-spacing:.2px; font-weight: 900; }
+    .tag{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.35);
+      padding: 7px 10px;
+      border-radius: 999px;
+      white-space:nowrap;
+    }
+    [data-theme="dark"] .tag{ background: rgba(255,255,255,.03); }
+
     .specList{ display:grid; gap: 10px; margin-top: 10px; }
     .specItem{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap: 12px;
-      padding: 12px;
+      padding: 12px 12px;
       border: 1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(255,255,255,.40);
-      transition: transform .2s ease;
+      border-radius: 16px;
+      background: var(--glass2);
     }
-    .specItem:hover { transform: translateX(4px); background: rgba(255,255,255,.6); }
-    [data-theme="dark"] .specItem{ background: rgba(255,255,255,.03); }
-    [data-theme="dark"] .specItem:hover{ background: rgba(255,255,255,.08); }
-    .specItem .avatar {
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      background: rgba(43,182,115,.15);
-      display: grid; place-items:center;
-      color: var(--accent);
-      flex: 0 0 auto;
-    }
-    [data-theme="dark"] .specItem .avatar { background: rgba(43,182,115,.2); }
-    .specItem .avatar svg { width: 20px; height: 20px; }
-    .specItem .info { display:flex; flex-direction:column; gap: 2px; }
     .specItem .name{ font-weight: 900; letter-spacing:.2px; font-size: 13px; line-height:1.2; }
     .specItem .role{ color: var(--muted); font-size: 12px; white-space:nowrap; }
 
@@ -744,14 +653,13 @@
     .prepagas{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 12px; }
     .pp{
       border: 1px solid var(--line);
-      background: rgba(255,255,255,.40);
+      background: var(--glass2);
       border-radius: 999px;
       padding: 10px 12px;
       font-weight: 900;
       font-size: 13px;
       color: var(--text);
     }
-    [data-theme="dark"] .pp{ background: rgba(255,255,255,.03); }
 
     /* FAQ */
     .faq{
@@ -761,11 +669,13 @@
     }
     details.fq{
       border: 1px solid var(--line);
-      border-radius: 20px;
-      background: rgba(255,255,255,.40);
+      border-radius: 22px;
+      background: var(--glass);
       overflow:hidden;
+      box-shadow: var(--shadow2);
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
     }
-    [data-theme="dark"] details.fq{ background: rgba(255,255,255,.03); }
     summary.fqSum{
       cursor:pointer;
       list-style:none;
@@ -781,7 +691,7 @@
       padding: 0 14px 14px;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.75;
+      line-height: 1.8;
     }
 
     /* contacto + mapa */
@@ -799,55 +709,44 @@
       gap: 12px;
       padding: 12px 12px;
       border: 1px solid var(--line);
-      border-radius: 14px;
-      background: rgba(255,255,255,.40);
+      border-radius: 16px;
+      background: var(--glass2);
     }
-    [data-theme="dark"] .li{ background: rgba(255,255,255,.03); }
     .li .k{ color: var(--muted); font-size: 13px; min-width: 92px; padding-top: 2px; }
     .li .v{ font-weight: 900; text-align:right; font-size: 13px; line-height: 1.35; }
     .li .v a{ text-decoration: underline; text-underline-offset: 3px; }
 
     .mapCard{
       border: 1px solid var(--line);
-      border-radius: 20px;
+      border-radius: 22px;
       overflow:hidden;
-      background: rgba(255,255,255,.40);
+      background: var(--glass);
+      box-shadow: var(--shadow2);
       display:flex;
       flex-direction:column;
-      min-height: 340px;
+      min-height: 360px;
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
     }
-    [data-theme="dark"] .mapCard{ background: rgba(255,255,255,.03); }
-    .mapImg{ width:100%; height: 100%; object-fit: cover; display:block; flex:1; }
+    .mapFrame{
+      width:100%;
+      height: 320px;
+      border:0;
+      display:block;
+    }
+    .mapImg{ width:100%; height: 320px; object-fit: cover; display:block; }
     .mapBar{
       padding: 12px;
-      border-top: 1px solid rgba(0,0,0,.05);
+      border-top: 1px solid var(--line);
       display:flex;
       gap: 10px;
       align-items:center;
       justify-content:space-between;
       flex-wrap:wrap;
+      background: rgba(255,255,255,.20);
     }
-    [data-theme="dark"] .mapBar{ border-top-color: rgba(255,255,255,.08); }
-    .mapBar .hint{ color: var(--muted); font-size: 12.5px; }
-
-    /* CTA final */
-    .finalCta{
-      padding: 20px;
-      border-radius: var(--r2);
-      border: 1px solid rgba(43,182,115,.30);
-      background:
-        radial-gradient(900px 400px at 15% 15%, rgba(43,182,115,.10), transparent 55%),
-        radial-gradient(700px 340px at 85% 10%, rgba(45,124,255,.08), transparent 60%),
-        rgba(255,255,255,.55);
-      box-shadow: 0 22px 70px rgba(0,0,0,.10);
-    }
-    [data-theme="dark"] .finalCta{
-      background:
-        radial-gradient(900px 400px at 15% 15%, rgba(43,182,115,.18), transparent 55%),
-        radial-gradient(700px 340px at 85% 10%, rgba(45,124,255,.12), transparent 60%),
-        rgba(255,255,255,.05);
-      box-shadow: 0 22px 70px rgba(0,0,0,.28);
-    }
+    [data-theme="dark"] .mapBar{ background: rgba(255,255,255,.03); }
+    .mapBar .hint{ color: var(--muted); font-size: 12.5px; line-height:1.45; }
 
     footer{
       margin-top: 18px;
@@ -865,12 +764,7 @@
     }
     .footRow a{ text-decoration: underline; text-underline-offset: 3px; }
 
-    /* WhatsApp flotante animado */
-    @keyframes pulseWa {
-      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
-      70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-    }
+    /* WhatsApp flotante (sin pulse) */
     .waFloat{
       position: fixed;
       right: var(--waGap);
@@ -883,19 +777,16 @@
       background: rgba(255,255,255,.76);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 18px 45px rgba(0,0,0,.12);
+      box-shadow: var(--shadow2);
       display:grid;
       place-items:center;
       overflow:hidden;
       transition: transform .15s ease;
-      animation: pulseWa 2.5s infinite;
     }
     [data-theme="dark"] .waFloat{
-      background: rgba(0,0,0,.18);
-      border-color: rgba(255,255,255,.16);
-      box-shadow: 0 18px 45px rgba(0,0,0,.30);
+      background: rgba(255,255,255,.08);
     }
-    .waFloat:hover{ transform: translateY(-4px); animation: none; }
+    .waFloat:hover{ transform: translateY(-2px); }
     .waSvg{ width: 34px; height: 34px; display:block; }
     .spacerForFloat{ height: calc(var(--waSize) + (var(--waGap) * 2)); }
 
@@ -915,86 +806,36 @@
       background: rgba(255,255,255,.82);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 18px 45px rgba(0,0,0,.12);
+      box-shadow: var(--shadow2);
       padding: 10px;
     }
     [data-theme="dark"] .stickyCta{
-      background: rgba(7,18,21,.72);
-      box-shadow: 0 18px 45px rgba(0,0,0,.35);
+      background: rgba(255,255,255,.10);
     }
-    .stickyCta .mini{ color: var(--muted); font-size: 12px; line-height: 1.3; }
+    .stickyCta .mini{ color: var(--muted); font-size: 12px; line-height: 1.35; }
     .stickyCta .act{ display:flex; gap:10px; }
     .stickyCta .act .btn{ padding: 10px 12px; border-radius: 14px; }
 
-    /* REVEALS (vida: laterales + stagger) */
-    .reveal{
-      opacity: 0;
-      transform: translate3d(0, 14px, 0);
-      filter: blur(2px);
-      transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), filter var(--dur) var(--ease);
-      will-change: transform, opacity, filter;
-    }
-    .reveal[data-reveal="left"]{ transform: translate3d(-18px, 10px, 0); }
-    .reveal[data-reveal="right"]{ transform: translate3d(18px, 10px, 0); }
-    .reveal[data-reveal="up"]{ transform: translate3d(0, 18px, 0); }
-    .reveal.in{
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      filter: blur(0px);
-    }
-    .stagger > *{
-      opacity: 0;
-      transform: translate3d(0, 14px, 0);
-      filter: blur(2px);
-      transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), filter var(--dur) var(--ease);
-    }
-    .stagger.in > *{
-      opacity: 1;
-      transform: translate3d(0,0,0);
-      filter: blur(0px);
-    }
-    .stagger.in > *:nth-child(1){ transition-delay: 0ms; }
-    .stagger.in > *:nth-child(2){ transition-delay: 70ms; }
-    .stagger.in > *:nth-child(3){ transition-delay: 140ms; }
-    .stagger.in > *:nth-child(4){ transition-delay: 210ms; }
-    .stagger.in > *:nth-child(5){ transition-delay: 280ms; }
-    .stagger.in > *:nth-child(6){ transition-delay: 350ms; }
-    .stagger.in > *:nth-child(7){ transition-delay: 420ms; }
-    .stagger.in > *:nth-child(8){ transition-delay: 490ms; }
-
-    @media (prefers-reduced-motion: reduce){
-      .reveal, .stagger > *{ transition: none !important; transform:none !important; filter:none !important; opacity:1 !important; }
-      .waFloat { animation: none !important; }
-    }
-
     @media (max-width: 980px){
       .heroGrid{ grid-template-columns: 1fr; }
-      h1{ font-size: 34px; }
-      .bento{ grid-template-columns: 1fr; }
-      .featuredGrid{ grid-template-columns: repeat(2, 1fr); }
+      .heroImg img{ height: 260px; }
       .catGrid{ grid-template-columns: repeat(2, 1fr); }
       .svcList{ grid-template-columns: 1fr; }
       .specialists{ grid-template-columns: 1fr; }
       .faq{ grid-template-columns: 1fr; }
       .contactGrid{ grid-template-columns: 1fr; }
-      .mapCard{ min-height: 260px; }
       .stickyCta{ display:flex; }
-      :root{ --heroMaxH: 230px; }
     }
     @media (max-width: 420px){
-      h1{ font-size: 30px; }
-      .btn{ width: 100%; justify-content:center; }
-      .chip{ display:none; }
-      .logoMark{ width: 40px; height: 40px; }
-      .featuredGrid{ grid-template-columns: 1fr; }
+      .btn{ width: 100%; }
+      .toggle{ width: 44px; }
       .catGrid{ grid-template-columns: 1fr; }
-      :root{ --heroMaxH: 200px; }
+      .logoMark{ width: 40px; height: 40px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="overlay" aria-hidden="true"></div>
   <div class="noise" aria-hidden="true"></div>
 
   <header>
@@ -1011,8 +852,6 @@
         </div>
 
         <div class="navRight">
-          <span class="chip"><strong>Horarios</strong> confirmar por WhatsApp</span>
-
           <button class="toggle" id="themeToggle" aria-label="Cambiar tema">
             <svg id="themeIcon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M12 3v2.2M12 18.8V21M4.2 12H3M21 12h-1.2M6 6l-1.6-1.6M19.6 19.6 18 18M18 6l1.6-1.6M4.4 19.6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -1020,6 +859,7 @@
             </svg>
           </button>
 
+          <a class="btn" href="#ubicacion">Ubicación</a>
           <a class="btn btnPrimary" id="btnNavWA" href="#" rel="noopener">Pedir turno</a>
         </div>
       </div>
@@ -1027,243 +867,112 @@
   </header>
 
   <main>
-    <div class="wrap hero">
+    <div class="wrap">
+      <!-- HERO -->
       <div class="heroGrid">
-        <div class="card heroCard reveal" data-reveal="left">
-          <div class="badge"><span class="dot" aria-hidden="true"></span>Centro de Estética, Kinesiología, Medicina y Terapias Holísticas</div>
+        <div class="glass heroCard reveal" data-reveal="left">
+          <div class="badge"><span class="dot" aria-hidden="true"></span>Estética · Kinesiología · Medicina · Terapias holísticas</div>
 
-          <h1>Clínica ordenada, atención profesional</h1>
-          <p class="sub">
-            Coordiná tu turno por WhatsApp y te confirmamos disponibilidad <strong>según especialidad</strong>.
-            También podés llamar o escribir por email.
-          </p>
+          <h1>KINeST Salud y Bienestar</h1>
+          <p class="sub">Bella Vista. Turnos por WhatsApp, teléfono o email.</p>
 
           <div class="ctaRow stagger" data-stagger>
-            <a class="btn btnPrimary" id="btnHeroWA" href="#" rel="noopener">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
-                <path fill="#fff" d="M12.07 21.35h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.22-3.68.96.98-3.58-.24-.37a9.9 9.9 0 1 1 8.38 4.6Zm5.77-7.44c-.31-.16-1.86-.92-2.15-1.02-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61 0 1.54 1.13 3.03 1.29 3.24.16.21 2.23 3.41 5.4 4.79.75.32 1.33.51 1.79.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
-              </svg>
-              Reservar por WhatsApp
-            </a>
-            <a class="btn" href="tel:40075744">Llamar 4007-5744</a>
-            <a class="btn btnGhost" href="#especialidades">Ver especialidades</a>
+            <a class="btn btnPrimary" id="btnHeroWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
+            <a class="btn" href="#especialidades">Ver especialidades</a>
+            <a class="btn" href="tel:40075744">Llamar</a>
           </div>
 
-          <div class="miniRow stagger" data-stagger>
-            <span><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-5.3 7-11a7 7 0 1 0-14 0c0 5.7 7 11 7 11Z" stroke="currentColor" stroke-width="2"/><path d="M12 12.2a2.2 2.2 0 1 0 0-4.4 2.2 2.2 0 0 0 0 4.4Z" stroke="currentColor" stroke-width="2"/></svg>Av. San Martín 1392, Bella Vista</span>
-            <span><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>centrokinest_bellavista@hotmail.com</span>
-          </div>
+          <div class="quick stagger" data-stagger style="margin-top:14px;">
+            <div class="qi">
+              <div class="qiLeft">
+                <span class="iWrap" aria-hidden="true" id="icoQuickWA"></span>
+                <div class="k">WhatsApp</div>
+              </div>
+              <div class="v"><a id="waTextLink" href="#" rel="noopener">11-6567-1472</a></div>
+            </div>
 
-          <div style="margin-top:14px;">
-            <div class="heroBanner">
-              <img src="https://iili.io/qfamgEP.png" alt="KINeST Salud y Bienestar" />
+            <div class="qi">
+              <div class="qiLeft">
+                <span class="iWrap" aria-hidden="true" id="icoQuickTel"></span>
+                <div class="k">Teléfonos</div>
+              </div>
+              <div class="v"><a href="tel:40075744">4007-5744</a> · <a href="tel:48964254">4896-4254</a></div>
+            </div>
+
+            <div class="qi">
+              <div class="qiLeft">
+                <span class="iWrap" aria-hidden="true" id="icoQuickMap"></span>
+                <div class="k">Dirección</div>
+              </div>
+              <div class="v"><a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Av. San Martín 1392</a></div>
+            </div>
+
+            <div class="qi">
+              <div class="qiLeft">
+                <span class="iWrap" aria-hidden="true" id="icoQuickMail"></span>
+                <div class="k">Email</div>
+              </div>
+              <div class="v"><a href="mailto:centrokinest_bellavista@hotmail.com">centrokinest_bellavista@hotmail.com</a></div>
             </div>
           </div>
         </div>
 
-        <div class="card sideCard reveal" data-reveal="right">
-          <div class="kpi stagger" data-stagger>
-            <div class="kpiItem">
-              <div class="label">WhatsApp / Turnos</div>
-              <div class="value"><a id="waTextLink" href="#" rel="noopener">11-6567-1472</a></div>
-            </div>
-            <div class="kpiItem">
-              <div class="label">Teléfonos</div>
-              <div class="value"><a href="tel:40075744">4007-5744</a> · <a href="tel:48964254">4896-4254</a></div>
-            </div>
-            <div class="kpiItem">
-              <div class="label">Instagram</div>
-              <div class="value"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div>
-            </div>
-            <div class="kpiItem">
-              <div class="label">Horarios</div>
-              <div class="value">Confirmar por WhatsApp</div>
-            </div>
+        <div class="glass heroMedia reveal" data-reveal="right">
+          <div class="heroImg">
+            <img src="https://iili.io/qfamgEP.png" alt="KINeST Salud y Bienestar" />
           </div>
-
-          <div class="bentoCard" style="padding:16px;">
-            <div class="bentoTitle">
-              <h3 style="font-size:14px;">Confirmación rápida</h3>
-              <span class="tag">Disponibilidad real</span>
+          <div class="ctaRow">
+            <a class="btn btnPrimary" id="btnSideWA" href="#" rel="noopener" style="width:100%;">Pedir turno por WhatsApp</a>
+          </div>
+          <div class="qi">
+            <div class="qiLeft">
+              <span class="iWrap" aria-hidden="true" id="icoQuickIG"></span>
+              <div class="k">Instagram</div>
             </div>
-            <p class="bentoP" style="margin-top:8px;">Escribinos por WhatsApp y te confirmamos turnos según especialidad.</p>
-            <div class="ctaRow" style="margin-top:10px;">
-              <a class="btn btnPrimary" id="btnSideWA" href="#" rel="noopener" style="width:100%;">Reservar por WhatsApp</a>
-            </div>
+            <div class="v"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div>
           </div>
         </div>
       </div>
 
+      <!-- DESTACADOS (CARRUSEL) -->
       <section class="reveal" data-reveal="up">
         <div class="sectionTitle">
           <h2>Destacados</h2>
-          <p>Lo más consultado</p>
-        </div>
-
-        <div class="featuredGrid stagger" data-stagger>
-          <div class="feat"><div class="t">Dermapen</div><p class="p">Tratamiento facial.</p></div>
-          <div class="feat"><div class="t">Peeling (químico / premium)</div><p class="p">Tratamientos faciales.</p></div>
-          <div class="feat"><div class="t">Drenaje linfático manual</div><p class="p">Drenaje / circulación.</p></div>
-          <div class="feat"><div class="t">Presoterapia</div><p class="p">Botas de drenaje linfático.</p></div>
-          <div class="feat"><div class="t">Criolipólisis</div><p class="p">Tratamientos corporales.</p></div>
-          <div class="feat"><div class="t">Radiofrecuencia</div><p class="p">Tratamientos corporales.</p></div>
-          <div class="feat"><div class="t">Ozonoterapia</div><p class="p">Medicina biológica.</p></div>
-          <div class="feat"><div class="t">Sueroterapia</div><p class="p">Medicina biológica.</p></div>
-        </div>
-
-        <div class="ctaRow" style="margin-top:12px;">
-          <a class="btn btnPrimary" id="btnFeaturedWA" href="#" rel="noopener">Consultar por WhatsApp</a>
-          <a class="btn" href="#especialidades">Ver todas las categorías</a>
-        </div>
-      </section>
-
-      <section class="reveal" data-reveal="up">
-        <div class="sectionTitle">
-          <h2>Áreas del centro</h2>
           <p>Deslizá para ver más</p>
         </div>
 
         <div class="carousel">
           <div class="carHead">
             <div>
-              <div class="ttl">Experiencia Kinest</div>
-              <div class="hint">Carrusel con auto-scroll (se pausa al interactuar)</div>
+              <div class="ttl">Tratamientos</div>
+              <div class="hint">Auto-scroll suave (se pausa al interactuar)</div>
             </div>
-            <a class="btn btnPrimary" id="btnCarWA" href="#" rel="noopener" style="padding:10px 12px;border-radius:14px;">Pedir turno</a>
+            <a class="btn btnPrimary" id="btnCarWA" href="#" rel="noopener" style="padding:10px 12px;border-radius:14px;">Consultar</a>
           </div>
 
-          <div class="carTrack" id="carTrack" aria-label="Carrusel de áreas">
-            <article class="carItem">
-              <div class="carMedia" aria-hidden="true">
-                <svg viewBox="0 0 64 64" fill="none">
-                  <path d="M14 34c6 10 17 16 30 16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                  <path d="M50 30c-6-10-17-16-30-16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                  <path d="M22 18h20" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                  <path d="M22 46h20" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div class="carBody">
-                <div class="t">Estética facial</div>
-                <p class="p">Limpieza, peeling, dermapen y tratamientos de cuidado de la piel.</p>
-              </div>
-            </article>
-
-            <article class="carItem">
-              <div class="carMedia" aria-hidden="true">
-                <svg viewBox="0 0 64 64" fill="none">
-                  <path d="M20 40c8 6 16 6 24 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                  <path d="M18 24c5-6 23-6 28 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                  <path d="M32 18v28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div class="carBody">
-                <div class="t">Corporal</div>
-                <p class="p">Tratamientos corporales, radiofrecuencia, criolipólisis y más.</p>
-              </div>
-            </article>
-
-            <article class="carItem">
-              <div class="carMedia" aria-hidden="true">
-                <svg viewBox="0 0 64 64" fill="none">
-                  <path d="M18 34h28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                  <path d="M32 18v28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                  <path d="M22 48c6 2 14 2 20 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div class="carBody">
-                <div class="t">Medicina biológica</div>
-                <p class="p">Sueroterapia, ozonoterapia y abordajes por especialidad.</p>
-              </div>
-            </article>
-
-            <article class="carItem">
-              <div class="carMedia" aria-hidden="true">
-                <svg viewBox="0 0 64 64" fill="none">
-                  <path d="M20 22c8-6 16-6 24 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                  <path d="M18 42c5 6 23 6 28 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                  <path d="M26 20c0 14 12 14 12 28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                </svg>
-              </div>
-              <div class="carBody">
-                <div class="t">Masajes</div>
-                <p class="p">Relajante, deportivo, descontracturante, piedras calientes y pindas.</p>
-              </div>
-            </article>
+          <div class="carTrack" id="carTrack" aria-label="Carrusel de destacados">
+            <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M18 32c8-12 20-12 28 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M22 42c6 4 14 4 20 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Dermapen</div><p class="p">Tratamiento facial.</p></div></article>
+            <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M20 40c8 6 16 6 24 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M18 24c5-6 23-6 28 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Peeling</div><p class="p">Tratamientos faciales.</p></div></article>
+            <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M16 34c10 10 22 10 32 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M20 24h24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Drenaje linfático</div><p class="p">Drenaje / circulación.</p></div></article>
+            <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M18 30h28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M24 20v24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M40 20v24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Presoterapia</div><p class="p">Botas de drenaje linfático.</p></div></article>
+            <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M22 44c10 4 20 0 20-10 0-8-10-10-20-14" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M22 20c8-4 18-2 22 6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Criolipólisis</div><p class="p">Tratamientos corporales.</p></div></article>
+            <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M20 22c12-8 24 0 24 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M20 42c12 8 24 0 24 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Radiofrecuencia</div><p class="p">Tratamientos corporales.</p></div></article>
+            <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M32 16v32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M18 28h28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M22 40h24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Ozonoterapia</div><p class="p">Medicina biológica.</p></div></article>
+            <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M22 18h20" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M18 28h28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M22 46h20" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Sueroterapia</div><p class="p">Medicina biológica.</p></div></article>
           </div>
+        </div>
+
+        <div class="ctaRow" style="margin-top:12px;">
+          <a class="btn btnPrimary" id="btnFeaturedWA" href="#" rel="noopener">Consultar por WhatsApp</a>
+          <a class="btn" href="#especialidades">Ver categorías</a>
         </div>
       </section>
 
-      <section class="reveal" data-reveal="up">
-        <div class="sectionTitle">
-          <h2>Quiénes somos</h2>
-          <p>Enfoque integral</p>
-        </div>
-
-        <div class="bento">
-          <div class="bentoCard reveal" data-reveal="left">
-            <div class="bentoTitle">
-              <h3>Atención profesional y humana</h3>
-              <span class="tag">Centro Kinest</span>
-            </div>
-            <p class="bentoP">
-              Trabajamos con un enfoque integral y un proceso ordenado: coordinamos por WhatsApp, confirmamos disponibilidad por especialidad
-              y te orientamos para que sepas qué corresponde en tu caso.
-            </p>
-            <div class="ctaRow" style="margin-top:12px;">
-              <a class="btn btnPrimary" id="btnAboutWA" href="#" rel="noopener">Consultar disponibilidad</a>
-              <a class="btn" href="#contacto">Cómo llegar</a>
-            </div>
-          </div>
-
-          <div class="bentoCard reveal" data-reveal="right">
-            <div class="bentoTitle">
-              <h3>Horarios</h3>
-              <span class="tag">Confirmar por WhatsApp</span>
-            </div>
-            <p class="bentoP">
-              Para evitar errores, los horarios se confirman por WhatsApp según la especialidad y disponibilidad del día.
-            </p>
-            <div class="ctaRow" style="margin-top:12px;">
-              <a class="btn btnPrimary" id="btnHoursWA" href="#" rel="noopener" style="width:100%;">Confirmar horarios</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="reveal" data-reveal="up">
-        <div class="sectionTitle">
-          <h2>Tu primera visita</h2>
-          <p>Un proceso simple y transparente</p>
-        </div>
-
-        <div class="catGrid stagger" data-stagger style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-          
-          <div class="catCard" style="text-align: center; padding: 24px 16px;">
-            <div style="font-size: 32px; font-weight: 900; color: var(--accent); margin-bottom: 8px;">1</div>
-            <div class="name" style="font-size: 16px;">Contacto Inicial</div>
-            <p class="desc" style="margin-top: 8px;">Nos escribís por WhatsApp contándonos qué necesitas o qué zona te gustaría tratar.</p>
-          </div>
-
-          <div class="catCard" style="text-align: center; padding: 24px 16px;">
-            <div style="font-size: 32px; font-weight: 900; color: var(--accent); margin-bottom: 8px;">2</div>
-            <div class="name" style="font-size: 16px;">Asesoramiento</div>
-            <p class="desc" style="margin-top: 8px;">Te orientamos sobre el profesional adecuado y buscamos el mejor turno disponible.</p>
-          </div>
-
-          <div class="catCard" style="text-align: center; padding: 24px 16px;">
-            <div style="font-size: 32px; font-weight: 900; color: var(--accent); margin-bottom: 8px;">3</div>
-            <div class="name" style="font-size: 16px;">Atención en Clínica</div>
-            <p class="desc" style="margin-top: 8px;">Te recibimos en Bella Vista con un diagnóstico preciso y tecnología de primer nivel.</p>
-          </div>
-
-        </div>
-      </section>
-
+      <!-- ESPECIALIDADES -->
       <section id="especialidades" class="reveal" data-reveal="up">
         <div class="sectionTitle">
           <h2>Especialidades</h2>
-          <p>Elegí una categoría</p>
+          <p>Categorías + búsqueda</p>
         </div>
 
         <div class="filters" id="filters">
@@ -1281,7 +990,7 @@
         </div>
 
         <div class="searchRow">
-          <input class="search" id="search" type="search" placeholder="Buscar (ej: dermapen, ozonoterapia...)" />
+          <input class="search" id="search" type="search" placeholder="Buscar (ej: dermapen, ozonoterapia, criolipólisis...)" />
           <a class="btn btnPrimary" id="btnServicesWA" href="#" rel="noopener">Consultar por WhatsApp</a>
         </div>
 
@@ -1289,6 +998,7 @@
         <div class="accordionWrap" id="accordionWrap"></div>
       </section>
 
+      <!-- PROFESIONALES -->
       <section class="reveal" data-reveal="up">
         <div class="sectionTitle">
           <h2>Profesionales</h2>
@@ -1296,137 +1006,48 @@
         </div>
 
         <div class="specialists">
-          <div class="bentoCard reveal" data-reveal="left">
-            <div class="bentoTitle">
+          <div class="glass pane reveal" data-reveal="left">
+            <div class="paneTitle">
               <h3>Traumatología</h3>
               <span class="tag">Equipo</span>
             </div>
             <div class="specList stagger" data-stagger>
-              <div class="specItem">
-                <div style="display:flex; align-items:center; gap: 12px;">
-                  <div class="avatar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                  </div>
-                  <div class="info">
-                    <div class="name">Dra. Nora Bengochea</div><div class="role">Traumatología</div>
-                  </div>
-                </div>
-              </div>
-              <div class="specItem">
-                <div style="display:flex; align-items:center; gap: 12px;">
-                  <div class="avatar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                  </div>
-                  <div class="info">
-                    <div class="name">Dr. Roberto Pérez</div><div class="role">Traumatología</div>
-                  </div>
-                </div>
-              </div>
-              <div class="specItem">
-                <div style="display:flex; align-items:center; gap: 12px;">
-                  <div class="avatar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                  </div>
-                  <div class="info">
-                    <div class="name">Dr. Juan Cabral</div><div class="role">Traumatología</div>
-                  </div>
-                </div>
-              </div>
-              <div class="specItem">
-                <div style="display:flex; align-items:center; gap: 12px;">
-                  <div class="avatar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                  </div>
-                  <div class="info">
-                    <div class="name">Dr. Guillermo Flynn</div><div class="role">Traumatología</div>
-                  </div>
-                </div>
-              </div>
+              <div class="specItem"><div class="name">Dra. Nora Bengochea</div><div class="role">Traumatología</div></div>
+              <div class="specItem"><div class="name">Dr. Roberto Pérez</div><div class="role">Traumatología</div></div>
+              <div class="specItem"><div class="name">Dr. Juan Cabral</div><div class="role">Traumatología</div></div>
+              <div class="specItem"><div class="name">Dr. Guillermo Flynn</div><div class="role">Traumatología</div></div>
             </div>
             <div class="ctaRow" style="margin-top:12px;">
               <a class="btn btnPrimary" id="btnSpecWA" href="#" rel="noopener">Consultar turnos</a>
             </div>
           </div>
 
-          <div class="bentoCard reveal" data-reveal="right">
-            <div class="bentoTitle">
+          <div class="glass pane reveal" data-reveal="right">
+            <div class="paneTitle">
               <h3>Otras especialidades</h3>
               <span class="tag">Profesionales</span>
             </div>
             <div class="specList stagger" data-stagger>
-              <div class="specItem">
-                <div style="display:flex; align-items:center; gap: 12px;">
-                  <div class="avatar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                  </div>
-                  <div class="info">
-                    <div class="name">Dra. Roxana González</div><div class="role">Neurología</div>
-                  </div>
-                </div>
-              </div>
-              <div class="specItem">
-                <div style="display:flex; align-items:center; gap: 12px;">
-                  <div class="avatar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                  </div>
-                  <div class="info">
-                    <div class="name">Dr. Gonzalo Gallarino</div><div class="role">Medicina biológica / Ozonoterapia</div>
-                  </div>
-                </div>
-              </div>
-              <div class="specItem">
-                <div style="display:flex; align-items:center; gap: 12px;">
-                  <div class="avatar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                  </div>
-                  <div class="info">
-                    <div class="name">Dra. Adriana Fiore</div><div class="role">Endocrinología</div>
-                  </div>
-                </div>
-              </div>
-              <div class="specItem">
-                <div style="display:flex; align-items:center; gap: 12px;">
-                  <div class="avatar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                  </div>
-                  <div class="info">
-                    <div class="name">Lic. Javier Mouzaffar</div><div class="role">Quiropraxia</div>
-                  </div>
-                </div>
-              </div>
-              <div class="specItem">
-                <div style="display:flex; align-items:center; gap: 12px;">
-                  <div class="avatar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                  </div>
-                  <div class="info">
-                    <div class="name">Dr. Fabio Adlerstein</div><div class="role">Flebología</div>
-                  </div>
-                </div>
-              </div>
-              <div class="specItem">
-                <div style="display:flex; align-items:center; gap: 12px;">
-                  <div class="avatar">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                  </div>
-                  <div class="info">
-                    <div class="name">Lic. María Fernández</div><div class="role">Nutrición</div>
-                  </div>
-                </div>
-              </div>
+              <div class="specItem"><div class="name">Dra. Roxana González</div><div class="role">Neurología</div></div>
+              <div class="specItem"><div class="name">Dr. Gonzalo Gallarino</div><div class="role">Medicina biológica / Ozonoterapia / Sueroterapia</div></div>
+              <div class="specItem"><div class="name">Dra. Adriana Fiore</div><div class="role">Endocrinología</div></div>
+              <div class="specItem"><div class="name">Lic. Javier Mouzaffar</div><div class="role">Quiropraxia</div></div>
+              <div class="specItem"><div class="name">Dr. Fabio Adlerstein</div><div class="role">Flebología</div></div>
+              <div class="specItem"><div class="name">Lic. María del Cielo Fernández</div><div class="role">Nutrición</div></div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- COBERTURAS -->
       <section class="reveal" data-reveal="up">
         <div class="sectionTitle">
           <h2>Obras sociales / prepagas</h2>
           <p>Consultar cobertura por WhatsApp</p>
         </div>
 
-        <div class="bentoCard">
-          <div class="bentoTitle">
+        <div class="glass pane">
+          <div class="paneTitle">
             <h3>Principales</h3>
             <span class="tag">Cobertura</span>
           </div>
@@ -1438,42 +1059,13 @@
             <span class="pp">Galeno</span>
             <span class="pp">Omint</span>
           </div>
-          <p class="bentoP">Para confirmar cobertura según especialidad, escribinos por WhatsApp.</p>
           <div class="ctaRow" style="margin-top:12px;">
             <a class="btn btnPrimary" id="btnCoverageWA" href="#" rel="noopener">Consultar cobertura</a>
           </div>
         </div>
       </section>
 
-      <section class="reveal" data-reveal="up">
-        <div class="sectionTitle">
-          <h2>Experiencias Kinest</h2>
-          <p>Lo que dicen nuestros pacientes</p>
-        </div>
-
-        <div class="featuredGrid stagger" data-stagger style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-          
-          <div class="feat" style="gap: 12px; min-height: auto;">
-            <div style="color: #FFB800; font-size: 14px;">⭐⭐⭐⭐⭐</div>
-            <p class="p" style="font-style: italic;">"Excelente la atención de los profesionales. Fui por un tema postural y en pocas sesiones noté la diferencia. Las instalaciones son impecables."</p>
-            <div class="t" style="font-size: 13px; color: var(--accent);">— Mariana L.</div>
-          </div>
-
-          <div class="feat" style="gap: 12px; min-height: auto;">
-            <div style="color: #FFB800; font-size: 14px;">⭐⭐⭐⭐⭐</div>
-            <p class="p" style="font-style: italic;">"Me hice el tratamiento facial con Dermapen y estoy fascinada. Me explicaron cada paso y me sentí súper cuidada. Muy recomendables."</p>
-            <div class="t" style="font-size: 13px; color: var(--accent);">— Sofía R.</div>
-          </div>
-
-          <div class="feat" style="gap: 12px; min-height: auto;">
-            <div style="color: #FFB800; font-size: 14px;">⭐⭐⭐⭐⭐</div>
-            <p class="p" style="font-style: italic;">"Destaco la calidez humana desde que pedís el turno por WhatsApp hasta que te atiende el médico. Es mi centro de confianza en Bella Vista."</p>
-            <div class="t" style="font-size: 13px; color: var(--accent);">— Javier M.</div>
-          </div>
-
-        </div>
-      </section>
-
+      <!-- FAQ -->
       <section class="reveal" data-reveal="up">
         <div class="sectionTitle">
           <h2>Preguntas frecuentes</h2>
@@ -1492,14 +1084,14 @@
             <summary class="fqSum">¿Horarios?
               <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </summary>
-            <div class="ans">Los horarios se confirman por WhatsApp, ya que varían según especialidad y disponibilidad del día.</div>
+            <div class="ans">Los horarios se confirman por WhatsApp, ya que varían según especialidad y disponibilidad.</div>
           </details>
 
           <details class="fq">
             <summary class="fqSum">¿Dónde están ubicados?
               <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </summary>
-            <div class="ans">Av. San Martín 1392, Bella Vista, Buenos Aires (1661). Abajo tenés el mapa estático y un botón para abrir Google Maps.</div>
+            <div class="ans">Av. San Martín 1392, Bella Vista (1661). Abajo tenés mapa interactivo y botón a Google Maps.</div>
           </details>
 
           <details class="fq">
@@ -1511,38 +1103,16 @@
         </div>
       </section>
 
-      <section class="reveal" data-reveal="up">
+      <!-- UBICACION -->
+      <section id="ubicacion" class="reveal" data-reveal="up">
         <div class="sectionTitle">
-          <h2>Reservá tu turno</h2>
-          <p>Confirmación por WhatsApp</p>
-        </div>
-
-        <div class="finalCta">
-          <div class="bentoTitle">
-            <h3>Coordiná por WhatsApp o llamanos</h3>
-            <span class="tag">Centro Kinest</span>
-          </div>
-          <p class="bentoP">Escribinos por WhatsApp y te confirmamos disponibilidad según especialidad.</p>
-          <div class="ctaRow" style="margin-top:14px;">
-            <a class="btn btnPrimary" id="btnFinalWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
-            <a class="btn" href="tel:40075744">4007-5744</a>
-            <a class="btn" href="tel:48964254">4896-4254</a>
-          </div>
-        </div>
-      </section>
-
-      <section id="contacto" class="reveal" data-reveal="up">
-        <div class="sectionTitle">
-          <h2>Contacto y ubicación</h2>
-          <p>Mapa estático (Instagram-friendly)</p>
+          <h2>Ubicación</h2>
+          <p>Mapa interactivo + alternativa</p>
         </div>
 
         <div class="contactGrid">
-          <div class="bentoCard reveal" data-reveal="left">
-            <div class="badge" style="margin-bottom:10px;">
-              <span class="dot" aria-hidden="true"></span>
-              Centro Kinest · Bella Vista
-            </div>
+          <div class="glass pane reveal" data-reveal="left">
+            <div class="badge"><span class="dot" aria-hidden="true"></span>Centro Kinest · Bella Vista</div>
 
             <div class="list stagger" data-stagger>
               <div class="li"><div class="k">WhatsApp</div><div class="v"><a id="waContactLink" href="#" rel="noopener">11-6567-1472</a></div></div>
@@ -1553,7 +1123,7 @@
                 <div class="k">Dirección</div>
                 <div class="v">
                   <a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">
-                    Av. San Martín 1392, Bella Vista (1661)
+                    Av. San Martín 1392 (1661)
                   </a>
                 </div>
               </div>
@@ -1569,9 +1139,19 @@
           </div>
 
           <div class="mapCard reveal" data-reveal="right">
-            <img class="mapImg" src="https://iili.io/qf0ljTP.png" alt="Mapa / Ubicación Centro Kinest" loading="lazy" />
+            <iframe
+              class="mapFrame"
+              id="mapFrame"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661&output=embed"
+              title="Mapa Centro Kinest"
+            ></iframe>
+
+            <img class="mapImg" id="mapFallback" src="https://iili.io/qf0ljTP.png" alt="Mapa / Ubicación Centro Kinest" loading="lazy" style="display:none;" />
+
             <div class="mapBar">
-              <div class="hint">Si Instagram no muestra el mapa interactivo, esta imagen ayuda a ubicarte.</div>
+              <div class="hint">Si el mapa interactivo no carga, se muestra una imagen alternativa.</div>
               <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Abrir en Google Maps</a>
             </div>
           </div>
@@ -1587,7 +1167,7 @@
           <div>
             <a href="#especialidades">Especialidades</a>
             <span style="margin:0 8px;">|</span>
-            <a href="#contacto">Contacto</a>
+            <a href="#ubicacion">Ubicación</a>
           </div>
         </div>
 
@@ -1596,10 +1176,10 @@
           <div><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">Instagram</a></div>
         </div>
       </footer>
-
     </div>
   </main>
 
+  <!-- WhatsApp flotante -->
   <a class="waFloat" id="waFloat" href="#" rel="noopener" aria-label="Pedir turno por WhatsApp">
     <svg class="waSvg" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
@@ -1607,6 +1187,7 @@
     </svg>
   </a>
 
+  <!-- Sticky CTA mobile -->
   <div class="stickyCta" aria-label="Acción rápida">
     <div class="mini">Turnos por WhatsApp<br/>Confirmación por especialidad</div>
     <div class="act">
@@ -1623,16 +1204,50 @@
       const waHref = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(WA_TEXT);
 
       const waIds = [
-        "btnNavWA","btnHeroWA","btnSideWA","btnAboutWA","btnHoursWA","btnFeaturedWA",
-        "btnServicesWA","btnSpecWA","btnCoverageWA","btnFinalWA","btnBottomWA",
-        "btnStickyWA","waFloat","waTextLink","waContactLink","btnCarWA"
+        "btnNavWA","btnHeroWA","btnSideWA","btnFeaturedWA","btnServicesWA","btnSpecWA",
+        "btnCoverageWA","btnBottomWA","btnStickyWA","waFloat","waTextLink",
+        "waContactLink","btnCarWA"
       ];
       waIds.forEach(id => {
         const el = document.getElementById(id);
         if(el) el.setAttribute("href", waHref);
       });
 
-      // theme toggle
+      // SVG ICONS (rellenos, misma familia)
+      const ICONS = {
+        estetica_facial: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a6.5 6.5 0 0 0-6.5 6.5c0 2.2 1.1 4.1 2.8 5.3-.5 1.2-1.7 2.2-2.9 2.9a1 1 0 0 0 .5 1.9h12.2a1 1 0 0 0 .5-1.9c-1.2-.7-2.4-1.7-2.9-2.9A6.48 6.48 0 0 0 18.5 8.5A6.5 6.5 0 0 0 12 2Zm2.1 8.2-.9.2.5.8a.8.8 0 0 1-.2 1.1l-.7.5.7.5a.8.8 0 0 1 .2 1.1l-.5.8.9.2a.8.8 0 0 1 .6.9l-.2.9.9-.2a.8.8 0 0 1 .9.6l.2.9.8-.5a.8.8 0 0 1 1.1.2l.5.7.5-.7a.8.8 0 0 1 1.1-.2l.8.5.2-.9a.8.8 0 0 1 .9-.6l.9.2-.2-.9a.8.8 0 0 1 .6-.9l.9-.2-.5-.8a.8.8 0 0 1 .2-1.1l.7-.5-.7-.5a.8.8 0 0 1-.2-1.1l.5-.8-.9-.2a.8.8 0 0 1-.6-.9l.2-.9-.9.2a.8.8 0 0 1-.9-.6l-.2-.9-.8.5a.8.8 0 0 1-1.1-.2l-.5-.7-.5.7a.8.8 0 0 1-1.1.2l-.8-.5-.2.9a.8.8 0 0 1-.9.6l-.9-.2.2.9a.8.8 0 0 1-.6.9Z"/></svg>`,
+        corporal: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2c2 0 3.5 1.6 3.5 3.5S14 9 12 9 8.5 7.4 8.5 5.5 10 2 12 2Zm-5 8.2c.8-1 2.2-1.7 5-1.7s4.2.7 5 1.7c.4.5.6 1.1.6 1.8V20a2 2 0 0 1-2 2h-1.8a1 1 0 0 1-1-1v-4.2h-1.6V21a1 1 0 0 1-1 1H8.4a2 2 0 0 1-2-2v-8a2.7 2.7 0 0 1 .6-1.8Z"/></svg>`,
+        pestanas_cejas: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 5c5.6 0 10 5.2 10 7s-4.4 7-10 7S2 13.8 2 12s4.4-7 10-7Zm0 3.2A3.8 3.8 0 1 0 12 16a3.8 3.8 0 0 0 0-7.6Zm0 2.1a1.7 1.7 0 1 1 0 3.4 1.7 1.7 0 0 1 0-3.4Z"/></svg>`,
+        drenaje: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2s5 6 5 10a5 5 0 0 1-10 0c0-4 5-10 5-10Zm-8 18c1.5-1.3 3.6-2 6-2h4c2.4 0 4.5.7 6 2a1 1 0 0 1-.7 1.8H4.7A1 1 0 0 1 4 20Z"/></svg>`,
+        mesoterapia: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 7a1 1 0 0 0-1-1h-3.2l-.7-.7a1 1 0 0 0-1.4 0l-.7.7H9a1 1 0 1 0 0 2h.2l3 3-6.9 6.9a2.5 2.5 0 0 0 3.5 3.5l6.9-6.9 3 3v.2a1 1 0 1 0 2 0v-4.3l.7-.7a1 1 0 0 0 0-1.4l-.7-.7V7Zm-6.4 5.1-5.6 5.6a.5.5 0 0 1-.7-.7l5.6-5.6 0 0 .7.7Z"/></svg>`,
+        bioestimulacion: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2l1.2 4.3L17.5 5 16 9l4 1.5-4 1.5 1.5 4-4.3-1.2L12 22l-1.2-4.3L6.5 19 8 15l-4-1.5L8 12 6.5 8.5l4.3 1.2L12 2Z"/></svg>`,
+        masajes: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 22a3 3 0 0 1-3-3v-2.7c0-1.1.6-2.1 1.5-2.6l2.7-1.5c.5-.3 1.1-.4 1.7-.4h2.6V8.2c0-1 .8-1.8 1.8-1.8s1.8.8 1.8 1.8v3.3h.6c1.8 0 3.3 1.5 3.3 3.3V19a3 3 0 0 1-3 3H7Zm2-12.6c-.9 0-1.6-.7-1.6-1.6V5.3c0-.9.7-1.6 1.6-1.6S10.6 4.4 10.6 5.3v2.5c0 .9-.7 1.6-1.6 1.6Z"/></svg>`,
+        aparatologia: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13 2a1 1 0 0 1 1 1v7h4a1 1 0 0 1 .8 1.6l-8 10A1 1 0 0 1 9 21v-7H5a1 1 0 0 1-.8-1.6l8-10A1 1 0 0 1 13 2Z"/></svg>`,
+        kinesiologia: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.5 4A3.5 3.5 0 1 1 4 7.5 3.5 3.5 0 0 1 7.5 4ZM16.5 13A3.5 3.5 0 1 1 13 16.5 3.5 3.5 0 0 1 16.5 13Zm-1.2-6.3a3 3 0 0 1 4.2 0l.8.8a3 3 0 0 1 0 4.2l-6.8 6.8a3 3 0 0 1-4.2 0l-.8-.8a3 3 0 0 1 0-4.2l6.8-6.8Z"/></svg>`,
+        medicina: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm4 4a1 1 0 0 0-1 1v2H8a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-2V8a1 1 0 0 0-1-1h-2Z"/></svg>`
+      };
+
+      const QUICK = {
+        wa: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l4.9-1.3A10 10 0 1 0 12 2Zm5.6 14.5c-.2.6-1.2 1.2-1.8 1.3-.6.1-1.4.2-2.2-.1-1.5-.5-3.5-1.9-4.8-4.1-1.2-2.1-.9-3.8-.5-4.6.4-.8 1-.9 1.4-.9h.4c.3 0 .5 0 .7.5l.9 2.1c.2.4.1.6 0 .8l-.3.4c-.1.2-.3.4-.1.7.2.3.7 1.3 1.6 2 .9.7 1.6 1 1.9 1.1.3.1.5.1.7-.1l.8-.9c.2-.2.4-.2.7-.1l2.2 1c.4.2.5.3.4.6Z"/></svg>`,
+        tel: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 2h2.2c.6 0 1 .4 1.1.9l.6 2.7c.1.5 0 1-.4 1.3l-1.3 1a14 14 0 0 0 6.1 6.1l1-1.3c.3-.4.8-.5 1.3-.4l2.7.6c.5.1.9.6.9 1.1v2.2c0 .6-.5 1.1-1.1 1.1C10.6 20.4 3.6 13.4 5.5 3.1 5.5 2.5 6 2 6.6 2Z"/></svg>`,
+        map: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>`,
+        mail: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm.8 2 7.2 5 7.2-5H4.8Z"/></svg>`,
+        ig: (cls) => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm5 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm6-1.2a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"/></svg>`
+      };
+
+      // aplicar quick icons
+      const qWA = document.getElementById("icoQuickWA");
+      const qTel = document.getElementById("icoQuickTel");
+      const qMap = document.getElementById("icoQuickMap");
+      const qMail = document.getElementById("icoQuickMail");
+      const qIG = document.getElementById("icoQuickIG");
+      if(qWA) qWA.innerHTML = QUICK.wa("iMini");
+      if(qTel) qTel.innerHTML = QUICK.tel("iMini");
+      if(qMap) qMap.innerHTML = QUICK.map("iMini");
+      if(qMail) qMail.innerHTML = QUICK.mail("iMini");
+      if(qIG) qIG.innerHTML = QUICK.ig("iMini");
+
+      // theme toggle (claro por defecto)
       const root = document.documentElement;
       const toggle = document.getElementById("themeToggle");
       const icon = document.getElementById("themeIcon");
@@ -1656,7 +1271,7 @@
         setTheme(current === "dark" ? "light" : "dark");
       });
 
-      // REVEALS (interseccion)
+      // reveals
       const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if(!reduceMotion){
         const io = new IntersectionObserver((entries) => {
@@ -1667,7 +1282,6 @@
             }
           });
         }, { threshold: 0.14 });
-
         document.querySelectorAll(".reveal").forEach(el => io.observe(el));
 
         const ioSt = new IntersectionObserver((entries) => {
@@ -1678,16 +1292,15 @@
             }
           });
         }, { threshold: 0.16 });
-
         document.querySelectorAll("[data-stagger]").forEach(el => ioSt.observe(el));
       } else {
         document.querySelectorAll(".reveal, [data-stagger]").forEach(el => el.classList.add("in"));
       }
 
-      // CARRUSEL (drag + auto scroll que se pausa al tocar)
+      // carrusel (drag + auto)
       const track = document.getElementById("carTrack");
-      let isDown = false, startX = 0, scrollLeft = 0, userInteracted = false;
-      let autoTimer = null;
+      let isDown=false, startX=0, scrollLeft=0, userInteracted=false;
+      let autoTimer=null;
 
       function startAuto(){
         stopAuto();
@@ -1696,11 +1309,8 @@
           const max = track.scrollWidth - track.clientWidth;
           if(max <= 0) return;
           const next = Math.min(track.scrollLeft + 260, max);
-          if(next >= max - 2){
-            track.scrollTo({ left: 0, behavior: "smooth" });
-          } else {
-            track.scrollTo({ left: next, behavior: "smooth" });
-          }
+          if(next >= max - 2) track.scrollTo({ left: 0, behavior: "smooth" });
+          else track.scrollTo({ left: next, behavior: "smooth" });
         }, 2600);
       }
       function stopAuto(){
@@ -1723,7 +1333,6 @@
         });
         track.addEventListener("pointerup", () => { isDown = false; });
         track.addEventListener("pointercancel", () => { isDown = false; });
-
         track.addEventListener("wheel", () => { userInteracted = true; }, { passive:true });
         track.addEventListener("touchstart", () => { userInteracted = true; }, { passive:true });
 
@@ -1733,7 +1342,28 @@
         });
       }
 
-      // DATA: categorias + servicios
+      // mapa fallback
+      const mapFrame = document.getElementById("mapFrame");
+      const mapFallback = document.getElementById("mapFallback");
+      if(mapFrame && mapFallback){
+        let done = false;
+        const showFallback = () => {
+          if(done) return;
+          done = true;
+          mapFrame.style.display = "none";
+          mapFallback.style.display = "block";
+        };
+        mapFrame.addEventListener("error", showFallback);
+        setTimeout(() => {
+          try{
+            if(!mapFrame.contentWindow) showFallback();
+          }catch(e){
+            showFallback();
+          }
+        }, 2200);
+      }
+
+      // DATA: categorias + servicios (tu base)
       const CATS = [
         { id:"estetica_facial", name:"Estética facial", desc:"Limpieza, peeling, dermapen, lip boost y más." },
         { id:"corporal", name:"Corporal", desc:"Tratamientos corporales y cuidado de la piel." },
@@ -1837,6 +1467,11 @@
       let activeFilter = "all";
       let q = "";
 
+      function iconForCat(catId, cls){
+        const fn = ICONS[catId];
+        return fn ? fn(cls) : "";
+      }
+
       function renderCategories(){
         catGrid.innerHTML = "";
         const visibleCats = CATS.filter(c => (activeFilter === "all" ? true : c.id === activeFilter));
@@ -1846,7 +1481,10 @@
           el.setAttribute("data-cat", c.id);
           el.innerHTML = `
             <div class="h">
-              <div class="name">${c.name}</div>
+              <div class="nameRow">
+                <span class="iWrap" aria-hidden="true">${iconForCat(c.id, "iFill")}</span>
+                <div class="name">${c.name}</div>
+              </div>
               <div class="count">${countByCat(c.id)}</div>
             </div>
             <p class="desc">${c.desc}</p>
@@ -1861,7 +1499,6 @@
           catGrid.appendChild(el);
         });
 
-        // activar stagger cuando re-renderiza
         if(!reduceMotion){ catGrid.classList.add("in"); }
       }
 
@@ -1886,9 +1523,12 @@
           sum.className = "accSum";
           sum.innerHTML = `
             <div class="accMeta">
-              <span>${c.name}</span>
-              <span class="pill">${list.length} items</span>
-              <span class="pill">Horarios: por WhatsApp</span>
+              <span class="lead">
+                <span class="iWrap" aria-hidden="true">${iconForCat(c.id, "iMini")}</span>
+                <span>${c.name}</span>
+              </span>
+              <span class="pill"><span class="iWrap" aria-hidden="true"><svg class="iPill" viewBox="0 0 24 24"><path fill="currentColor" d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm3 6a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-4Z"/></svg></span>${list.length} items</span>
+              <span class="pill"><span class="iWrap" aria-hidden="true"><svg class="iPill" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1 5v5.2l3.4 2a1 1 0 1 1-1 1.7l-4-2.3A1 1 0 0 1 11 12V7a1 1 0 0 1 2 0Z"/></svg></span>Horarios: por WhatsApp</span>
             </div>
             <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           `;
