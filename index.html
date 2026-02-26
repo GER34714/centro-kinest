@@ -1,3 +1,9 @@
+<!--
+PROMPT (para generar una imagen overlay que represente todos los servicios, estilo consultorio medico, suave):
+
+"Create a seamless, subtle medical-clinic overlay background image (PNG) with transparent feel. Use soft pastel tones (mint green, pale aqua, light gray, off-white), very low contrast, and lots of negative space. Include faint line-art icons arranged in a repeating pattern: stethoscope, spine/kinesiology, face skincare, droplet/IV (suerotherapy), leaf/holistic therapy, lymph/drops (drenaje linfatico), dumbbell/electrofitness, wave/radiofrequency, snowflake/cryo, ultrasound probe, foot/podiatry, brain/neurology, nutrition apple. Keep icons thin, minimal, and semi-transparent (5–12% opacity). Add a very light soft gradient wash and a gentle paper texture/grain. No text, no logos, no photos. Should look premium, clean, calm, and professional, suitable as a website overlay. 2048x2048."
+-->
+
 <!doctype html>
 <html lang="es">
 <head>
@@ -21,40 +27,38 @@
 
   <style>
     :root{
-      --bg:#070A12;
-      --bg2:#0B0F1E;
+      --bg:#f6fbfb;
+      --bg2:#eef6f6;
+      --panel:rgba(15,30,30,.06);
+      --panel2:rgba(15,30,30,.09);
+      --line:rgba(15,30,30,.12);
+      --text:rgba(10,18,18,.92);
+      --muted:rgba(10,18,18,.64);
+      --muted2:rgba(10,18,18,.52);
+      --accent:#2bb673;
+      --accent2:#2d7cff;
+      --shadow:0 18px 60px rgba(0,0,0,.10);
+      --radius:18px;
+      --radius2:26px;
+      --max:1120px;
+      --blur:14px;
+
+      --waSize:56px;
+      --waGap:18px;
+
+      --heroMaxH: 210px;
+    }
+
+    [data-theme="dark"]{
+      --bg:#071215;
+      --bg2:#07181c;
       --panel:rgba(255,255,255,.06);
       --panel2:rgba(255,255,255,.10);
       --line:rgba(255,255,255,.14);
       --text:rgba(255,255,255,.92);
       --muted:rgba(255,255,255,.70);
       --muted2:rgba(255,255,255,.56);
-      --accent:#B8FF5A;
-      --accent2:#6BE8FF;
       --shadow:0 18px 60px rgba(0,0,0,.45);
-      --radius:18px;
-      --radius2:26px;
-      --max:1120px;
-      --blur:16px;
-
-      --waSize:56px;
-      --waGap:18px;
-
-      --heroMaxH: 220px; /* HERO CHICO (pedido) */
-    }
-
-    [data-theme="light"]{
-      --bg:#F6F7FB;
-      --bg2:#EEF1F8;
-      --panel:rgba(10,12,20,.05);
-      --panel2:rgba(10,12,20,.08);
-      --line:rgba(10,12,20,.12);
-      --text:rgba(10,12,20,.92);
-      --muted:rgba(10,12,20,.68);
-      --muted2:rgba(10,12,20,.55);
-      --accent:#2BB673;
-      --accent2:#2D7CFF;
-      --shadow:0 18px 60px rgba(0,0,0,.12);
     }
 
     *{ box-sizing:border-box; }
@@ -64,9 +68,8 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(1200px 700px at 15% 10%, rgba(107,232,255,.20), transparent 55%),
-        radial-gradient(900px 600px at 85% 15%, rgba(184,255,90,.18), transparent 55%),
-        radial-gradient(1200px 800px at 50% 110%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(900px 600px at 20% 10%, rgba(45,124,255,.10), transparent 60%),
+        radial-gradient(900px 600px at 80% 15%, rgba(43,182,115,.10), transparent 60%),
         linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
     }
@@ -74,26 +77,35 @@
     a{ color:inherit; text-decoration:none; }
     .wrap{ width:100%; max-width: var(--max); margin:0 auto; padding: 0 18px; }
 
-    .grain{
+    /* overlay (dejar listo para pegar tu PNG cuando la tengas) */
+    .overlayBg{
       pointer-events:none;
       position:fixed; inset:0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
-      mix-blend-mode: overlay;
-      opacity:.22;
+      background:
+        radial-gradient(1200px 800px at 50% 120%, rgba(0,0,0,.02), transparent 60%),
+        radial-gradient(1200px 800px at 50% 0%, rgba(255,255,255,.25), transparent 55%);
+      opacity:.65;
+      mix-blend-mode: normal;
+    }
+    [data-theme="dark"] .overlayBg{
+      background:
+        radial-gradient(1200px 800px at 50% 120%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(1200px 800px at 50% 0%, rgba(255,255,255,.05), transparent 55%);
+      opacity:.35;
     }
 
     header{
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      background: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,0));
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(246,251,251,.72);
+      border-bottom: 1px solid var(--line);
     }
-    [data-theme="light"] header{
-      background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,0));
-      border-bottom: 1px solid rgba(10,12,20,.10);
+    [data-theme="dark"] header{
+      background: rgba(7,18,21,.55);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
 
     .nav{
@@ -115,13 +127,13 @@
       width: 44px; height: 44px;
       border-radius: 14px;
       border: 1px solid var(--line);
-      background:
-        radial-gradient(900px 400px at 15% 15%, rgba(107,232,255,.14), transparent 55%),
-        radial-gradient(700px 340px at 85% 10%, rgba(184,255,90,.12), transparent 60%),
-        linear-gradient(180deg, var(--panel), rgba(255,255,255,.02));
+      background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.18));
       box-shadow: var(--shadow);
       overflow:hidden;
       flex: 0 0 auto;
+    }
+    [data-theme="dark"] .logoMark{
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
     }
     .logoMark img{ width:100%; height:100%; object-fit:cover; display:block; }
 
@@ -133,8 +145,8 @@
       line-height:1.05;
     }
     .brandText .t1{
-      font-weight: 950;
-      letter-spacing: .3px;
+      font-weight: 900;
+      letter-spacing: .2px;
       font-size: 14px;
       white-space:nowrap;
       overflow:hidden;
@@ -162,14 +174,18 @@
       padding: 10px 12px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: linear-gradient(180deg, var(--panel), rgba(255,255,255,.02));
-      box-shadow: 0 12px 30px rgba(0,0,0,.18);
+      background: rgba(255,255,255,.55);
+      box-shadow: 0 12px 30px rgba(0,0,0,.10);
       font-size: 13px;
       color: var(--muted);
       user-select:none;
       white-space:nowrap;
     }
-    .chip strong{ color: var(--text); font-weight: 950; }
+    [data-theme="dark"] .chip{
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 12px 30px rgba(0,0,0,.24);
+    }
+    .chip strong{ color: var(--text); font-weight: 900; }
 
     .btn{
       display:inline-flex;
@@ -179,25 +195,36 @@
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 12px 14px;
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
-      box-shadow: 0 18px 45px rgba(0,0,0,.20);
+      background: rgba(255,255,255,.62);
+      box-shadow: 0 18px 45px rgba(0,0,0,.10);
       color: var(--text);
-      font-weight: 950;
+      font-weight: 900;
       letter-spacing: .2px;
       cursor:pointer;
       transition: transform .15s ease, background .15s ease;
       white-space:nowrap;
     }
-    .btn:hover{ transform: translateY(-1px); background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06)); }
+    [data-theme="dark"] .btn{
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 18px 45px rgba(0,0,0,.25);
+    }
+    .btn:hover{ transform: translateY(-1px); }
     .btn:active{ transform: translateY(0px); }
 
     .btnPrimary{
-      border-color: rgba(184,255,90,.35);
+      border-color: rgba(43,182,115,.40);
       background:
-        radial-gradient(600px 220px at 20% 20%, rgba(184,255,90,.28), transparent 55%),
-        radial-gradient(500px 220px at 85% 40%, rgba(107,232,255,.18), transparent 58%),
-        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+        radial-gradient(600px 220px at 20% 20%, rgba(43,182,115,.18), transparent 55%),
+        radial-gradient(500px 220px at 85% 40%, rgba(45,124,255,.10), transparent 58%),
+        rgba(255,255,255,.72);
     }
+    [data-theme="dark"] .btnPrimary{
+      background:
+        radial-gradient(600px 220px at 20% 20%, rgba(43,182,115,.22), transparent 55%),
+        radial-gradient(500px 220px at 85% 40%, rgba(45,124,255,.14), transparent 58%),
+        rgba(255,255,255,.08);
+    }
+
     .btnGhost{
       background: transparent;
       box-shadow:none;
@@ -205,22 +232,20 @@
 
     .icon{ width: 18px; height: 18px; opacity:.9; flex: 0 0 auto; }
 
-    main{ padding: 26px 0 80px; }
+    main{ padding: 18px 0 80px; }
 
     .card{
       border: 1px solid var(--line);
       border-radius: var(--radius2);
-      background:
-        radial-gradient(900px 400px at 15% 15%, rgba(107,232,255,.14), transparent 55%),
-        radial-gradient(700px 340px at 85% 10%, rgba(184,255,90,.12), transparent 60%),
-        linear-gradient(180deg, var(--panel), rgba(255,255,255,.02));
+      background: rgba(255,255,255,.60);
       box-shadow: var(--shadow);
       backdrop-filter: blur(var(--blur));
       -webkit-backdrop-filter: blur(var(--blur));
       overflow:hidden;
     }
+    [data-theme="dark"] .card{ background: rgba(255,255,255,.06); }
 
-    .hero{ padding: 20px 0 10px; }
+    .hero{ padding: 14px 0 10px; }
 
     .heroGrid{
       display:grid;
@@ -229,14 +254,16 @@
       align-items: stretch;
     }
 
-    .heroCard{ padding: 20px; }
+    .heroCard{ padding: 18px; }
+
     .heroBanner{
       border-radius: 18px;
       border: 1px solid var(--line);
       overflow:hidden;
-      background: rgba(255,255,255,.03);
+      background: rgba(255,255,255,.35);
       max-height: var(--heroMaxH);
     }
+    [data-theme="dark"] .heroBanner{ background: rgba(255,255,255,.03); }
     .heroBanner img{
       width:100%;
       height: 100%;
@@ -252,21 +279,21 @@
       padding: 9px 12px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+      background: rgba(255,255,255,.55);
       color: var(--muted);
       font-size: 13px;
       width: fit-content;
-      margin-top: 12px;
     }
+    [data-theme="dark"] .badge{ background: rgba(255,255,255,.06); }
     .badge .dot{
       width: 10px; height: 10px;
       border-radius: 999px;
       background: radial-gradient(circle at 30% 30%, var(--accent2), rgba(255,255,255,.15));
-      box-shadow: 0 0 0 6px rgba(107,232,255,.10);
+      box-shadow: 0 0 0 6px rgba(45,124,255,.10);
     }
 
-    h1{ margin: 10px 0 8px; font-size: 40px; line-height: 1.06; letter-spacing: -0.6px; }
-    .sub{ margin: 0 0 12px; color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 64ch; }
+    h1{ margin: 10px 0 8px; font-size: 38px; line-height: 1.06; letter-spacing: -0.6px; }
+    .sub{ margin: 0 0 12px; color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 70ch; }
 
     .ctaRow{ display:flex; flex-wrap: wrap; gap: 10px; align-items:center; margin-top: 10px; }
 
@@ -283,24 +310,23 @@
       gap: 8px;
       padding: 8px 10px;
       border-radius: 999px;
-      border: 1px dashed rgba(255,255,255,.18);
-      background: rgba(255,255,255,.03);
+      border: 1px dashed var(--line);
+      background: rgba(255,255,255,.40);
     }
-    [data-theme="light"] .miniRow span{
-      border-color: rgba(10,12,20,.18);
-      background: rgba(10,12,20,.03);
-    }
+    [data-theme="dark"] .miniRow span{ background: rgba(255,255,255,.03); }
 
     .sideCard{ padding: 16px; display:flex; flex-direction:column; gap: 10px; }
+
     .kpi{ display:grid; gap: 10px; }
     .kpiItem{
       border: 1px solid var(--line);
       border-radius: var(--radius);
       padding: 12px;
-      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
+      background: rgba(255,255,255,.45);
     }
+    [data-theme="dark"] .kpiItem{ background: rgba(255,255,255,.03); }
     .kpiItem .label{ color: var(--muted); font-size: 12px; letter-spacing:.2px; margin-bottom: 6px; }
-    .kpiItem .value{ font-weight: 950; letter-spacing: .2px; font-size: 14px; line-height: 1.35; }
+    .kpiItem .value{ font-weight: 900; letter-spacing: .2px; font-size: 14px; line-height: 1.35; }
     .kpiItem a{ text-decoration: underline; text-underline-offset: 3px; }
 
     section{ margin-top: 18px; }
@@ -323,10 +349,14 @@
     .bentoCard{
       border-radius: var(--radius2);
       border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-      box-shadow: 0 18px 50px rgba(0,0,0,.18);
+      background: rgba(255,255,255,.45);
+      box-shadow: 0 18px 50px rgba(0,0,0,.08);
       overflow:hidden;
       padding: 18px;
+    }
+    [data-theme="dark"] .bentoCard{
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 18px 50px rgba(0,0,0,.24);
     }
     .bentoTitle{
       display:flex;
@@ -338,230 +368,155 @@
       margin:0;
       font-size: 16px;
       letter-spacing:.2px;
-      font-weight: 950;
+      font-weight: 900;
     }
     .bentoTitle .tag{
       font-size: 12px;
       color: var(--muted);
       border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
+      background: rgba(255,255,255,.35);
       padding: 7px 10px;
       border-radius: 999px;
       white-space:nowrap;
     }
+    [data-theme="dark"] .bentoTitle .tag{ background: rgba(255,255,255,.03); }
     .bentoP{
       margin: 10px 0 0;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.65;
-      max-width: 78ch;
+      max-width: 80ch;
     }
 
-    .points{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .point{
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 12px;
-      background: rgba(255,255,255,.03);
+    /* filtros */
+    .filters{
       display:flex;
+      flex-wrap:wrap;
       gap: 10px;
-      align-items:flex-start;
-    }
-    [data-theme="light"] .point{ background: rgba(10,12,20,.03); }
-    .point .k{
-      width: 28px; height: 28px;
-      border-radius: 12px;
-      display:grid;
-      place-items:center;
-      border: 1px solid rgba(184,255,90,.35);
-      background: rgba(184,255,90,.10);
-      font-weight: 950;
-      flex: 0 0 auto;
-    }
-    [data-theme="light"] .point .k{
-      border-color: rgba(43,182,115,.35);
-      background: rgba(43,182,115,.10);
-    }
-    .point .t{
-      font-weight: 950;
-      font-size: 13px;
-      margin:0 0 4px;
-    }
-    .point .p{
-      margin:0;
-      color: var(--muted);
-      font-size: 12.5px;
-      line-height: 1.6;
-    }
-
-    /* Horarios */
-    .hoursGrid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-      margin-top: 12px;
-    }
-    .hourItem{
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 12px;
-      background: rgba(255,255,255,.03);
-      display:flex;
+      margin: 10px 0 0;
       align-items:center;
-      justify-content:space-between;
-      gap: 12px;
     }
-    [data-theme="light"] .hourItem{ background: rgba(10,12,20,.03); }
-    .hourItem .d{ font-weight: 950; font-size: 13px; }
-    .hourItem .h{ color: var(--muted); font-size: 13px; white-space:nowrap; }
-
-    /* Servicios cards sin vacios (altura fija + bullets) */
-    .grid4{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-
-    .service{
-      border-radius: 18px;
+    .filterBtn{
       border: 1px solid var(--line);
+      background: rgba(255,255,255,.55);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-weight: 900;
+      font-size: 13px;
+      cursor:pointer;
+      transition: transform .15s ease;
+      user-select:none;
+      white-space:nowrap;
+    }
+    [data-theme="dark"] .filterBtn{ background: rgba(255,255,255,.06); }
+    .filterBtn:hover{ transform: translateY(-1px); }
+    .filterBtn.active{
+      border-color: rgba(43,182,115,.55);
+      box-shadow: 0 12px 26px rgba(43,182,115,.10);
+    }
+
+    .searchRow{
+      margin-top: 10px;
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .search{
+      flex: 1 1 240px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 12px;
+      font-size: 14px;
+      background: rgba(255,255,255,.65);
+      color: var(--text);
+      outline:none;
+    }
+    [data-theme="dark"] .search{ background: rgba(255,255,255,.06); }
+    .search::placeholder{ color: var(--muted); }
+
+    /* grid servicios */
+    .serviceGrid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .svc{
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,.55);
       overflow:hidden;
-      background: rgba(255,255,255,.03);
-      min-height: 292px;
       display:flex;
       flex-direction:column;
+      min-height: 210px;
     }
-    .service .img{
-      height: 170px;
-      overflow:hidden;
-      background: rgba(255,255,255,.04);
-      position:relative;
-    }
-    .service .img img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
-      transform: scale(1.02);
-      filter: saturate(1.05) contrast(1.05);
-    }
-    .service .img::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.55));
-      pointer-events:none;
-    }
-    [data-theme="light"] .service .img::after{
-      background: linear-gradient(180deg, rgba(255,255,255,.00), rgba(255,255,255,.45));
-    }
+    [data-theme="dark"] .svc{ background: rgba(255,255,255,.04); }
 
-    .service .body{
+    .svcTop{
+      padding: 14px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 10px;
+      border-bottom: 1px solid rgba(0,0,0,.04);
+    }
+    [data-theme="dark"] .svcTop{ border-bottom-color: rgba(255,255,255,.08); }
+
+    .svcName{
+      margin:0;
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing:.2px;
+      line-height: 1.3;
+    }
+    .svcCat{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.35);
+      padding: 7px 10px;
+      border-radius: 999px;
+      white-space:nowrap;
+      flex: 0 0 auto;
+    }
+    [data-theme="dark"] .svcCat{ background: rgba(255,255,255,.03); }
+
+    .svcBody{
       padding: 14px;
       display:flex;
       flex-direction:column;
-      gap: 8px;
+      gap: 10px;
       flex: 1;
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
     }
-    .service .name{
-      font-weight: 950;
-      letter-spacing:.2px;
-      font-size: 15px;
-      margin:0;
-    }
-    .service .desc{
+    .svcNote{
       margin:0;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.55;
+      line-height: 1.6;
     }
-    .bullets{
-      margin:0;
-      padding:0;
-      list-style:none;
-      display:grid;
-      gap: 6px;
-    }
-    .bullets li{
-      display:flex;
-      align-items:flex-start;
-      gap: 8px;
-      color: var(--muted2);
-      font-size: 12.5px;
-      line-height: 1.45;
-    }
-    .bullets .b{
-      width: 18px; height: 18px;
-      border-radius: 8px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      display:grid;
-      place-items:center;
-      font-weight: 950;
-      flex: 0 0 auto;
-      margin-top: 1px;
-    }
-
-    .service .foot{
+    .svcCTA{
       margin-top:auto;
-      padding-top: 10px;
       display:flex;
       gap: 10px;
       align-items:center;
       justify-content:space-between;
     }
-    .service .pill{
-      width: fit-content;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      font-size: 12px;
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      white-space:nowrap;
-    }
-    .service .miniCta{
-      font-size: 12px;
+    .svcCTA a{
+      font-size: 12.5px;
       color: var(--muted);
       text-decoration: underline;
       text-underline-offset: 3px;
-      white-space:nowrap;
     }
 
-    /* Especialistas */
+    /* especialistas */
     .specialists{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.1fr .9fr;
       gap: 12px;
       align-items: stretch;
-    }
-    .specCard{
-      padding: 18px;
-      border-radius: var(--radius2);
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-    }
-    .specTitle{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .specTitle h3{ margin:0; font-size: 16px; letter-spacing:.2px; font-weight: 950; }
-    .specTitle .tag{
-      font-size: 12px;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      padding: 7px 10px;
-      border-radius: 999px;
-      white-space:nowrap;
     }
     .specList{ display:grid; gap: 10px; margin-top: 10px; }
     .specItem{
@@ -572,11 +527,29 @@
       padding: 12px 12px;
       border: 1px solid var(--line);
       border-radius: 14px;
-      background: rgba(255,255,255,.03);
+      background: rgba(255,255,255,.40);
     }
-    [data-theme="light"] .specItem{ background: rgba(10,12,20,.03); }
-    .specItem .name{ font-weight: 950; letter-spacing:.2px; font-size: 13px; line-height:1.2; }
+    [data-theme="dark"] .specItem{ background: rgba(255,255,255,.03); }
+    .specItem .name{ font-weight: 900; letter-spacing:.2px; font-size: 13px; line-height:1.2; }
     .specItem .role{ color: var(--muted); font-size: 12px; white-space:nowrap; }
+
+    /* prepagas */
+    .prepagas{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .pp{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.40);
+      border-radius: 999px;
+      padding: 10px 12px;
+      font-weight: 900;
+      font-size: 13px;
+      color: var(--text);
+    }
+    [data-theme="dark"] .pp{ background: rgba(255,255,255,.03); }
 
     /* FAQ */
     .faq{
@@ -587,15 +560,15 @@
     details{
       border: 1px solid var(--line);
       border-radius: 18px;
-      background: rgba(255,255,255,.03);
+      background: rgba(255,255,255,.40);
       overflow:hidden;
     }
-    [data-theme="light"] details{ background: rgba(10,12,20,.03); }
+    [data-theme="dark"] details{ background: rgba(255,255,255,.03); }
     summary{
       cursor:pointer;
       list-style:none;
       padding: 14px 14px;
-      font-weight: 950;
+      font-weight: 900;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -608,28 +581,16 @@
       font-size: 13px;
       line-height: 1.65;
     }
-    .chev{
-      width: 18px; height: 18px; opacity:.8;
-      transition: transform .15s ease;
-    }
+    .chev{ width: 18px; height: 18px; opacity:.8; transition: transform .15s ease; }
     details[open] .chev{ transform: rotate(180deg); }
 
-    /* Contacto */
+    /* contacto + mapa estatico */
     .contactGrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       align-items: stretch;
     }
-
-    .contactCard{
-      padding: 18px;
-      border-radius: var(--radius2);
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-      overflow:hidden;
-    }
-
     .list{ display:grid; gap: 10px; margin-top: 12px; }
     .li{
       display:flex;
@@ -639,38 +600,59 @@
       padding: 12px 12px;
       border: 1px solid var(--line);
       border-radius: 14px;
-      background: rgba(255,255,255,.03);
+      background: rgba(255,255,255,.40);
     }
-    [data-theme="light"] .li{ background: rgba(10,12,20,.03); }
+    [data-theme="dark"] .li{ background: rgba(255,255,255,.03); }
     .li .k{ color: var(--muted); font-size: 13px; min-width: 92px; padding-top: 2px; }
-    .li .v{ font-weight: 950; text-align:right; font-size: 13px; line-height: 1.35; }
+    .li .v{ font-weight: 900; text-align:right; font-size: 13px; line-height: 1.35; }
     .li .v a{ text-decoration: underline; text-underline-offset: 3px; }
 
-    .mapWrap{
+    .mapCard{
       border: 1px solid var(--line);
       border-radius: 18px;
       overflow:hidden;
-      height: 100%;
+      background: rgba(255,255,255,.40);
+      display:flex;
+      flex-direction:column;
       min-height: 320px;
-      background: rgba(255,255,255,.03);
     }
-    .mapWrap iframe{
+    [data-theme="dark"] .mapCard{ background: rgba(255,255,255,.03); }
+    .mapImg{
       width:100%;
-      height:100%;
-      border:0;
-      filter: saturate(1.05) contrast(1.05);
+      height: 100%;
+      object-fit: cover;
+      display:block;
+      flex:1;
     }
+    .mapBar{
+      padding: 12px;
+      border-top: 1px solid rgba(0,0,0,.05);
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    [data-theme="dark"] .mapBar{ border-top-color: rgba(255,255,255,.08); }
+    .mapBar .hint{ color: var(--muted); font-size: 12.5px; }
 
-    /* CTA final premium */
+    /* CTA final */
     .finalCta{
       padding: 18px;
       border-radius: var(--radius2);
-      border: 1px solid rgba(184,255,90,.28);
+      border: 1px solid rgba(43,182,115,.30);
       background:
-        radial-gradient(900px 400px at 15% 15%, rgba(184,255,90,.18), transparent 55%),
-        radial-gradient(700px 340px at 85% 10%, rgba(107,232,255,.14), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-      box-shadow: 0 22px 70px rgba(0,0,0,.25);
+        radial-gradient(900px 400px at 15% 15%, rgba(43,182,115,.10), transparent 55%),
+        radial-gradient(700px 340px at 85% 10%, rgba(45,124,255,.08), transparent 60%),
+        rgba(255,255,255,.55);
+      box-shadow: 0 22px 70px rgba(0,0,0,.10);
+    }
+    [data-theme="dark"] .finalCta{
+      background:
+        radial-gradient(900px 400px at 15% 15%, rgba(43,182,115,.18), transparent 55%),
+        radial-gradient(700px 340px at 85% 10%, rgba(45,124,255,.12), transparent 60%),
+        rgba(255,255,255,.05);
+      box-shadow: 0 22px 70px rgba(0,0,0,.28);
     }
 
     footer{
@@ -678,9 +660,9 @@
       padding: 18px 0 26px;
       color: var(--muted);
       font-size: 13px;
-      border-top: 1px solid rgba(255,255,255,.10);
+      border-top: 1px solid var(--line);
     }
-    [data-theme="light"] footer{ border-top-color: rgba(10,12,20,.10); }
+
     .footRow{
       display:flex;
       flex-wrap:wrap;
@@ -690,7 +672,7 @@
     }
     .footRow a{ text-decoration: underline; text-underline-offset: 3px; }
 
-    /* WhatsApp flotante (sin fondo blanco) */
+    /* WhatsApp flotante (SVG sin fondo blanco) */
     .waFloat{
       position: fixed;
       right: var(--waGap);
@@ -699,25 +681,24 @@
       width: var(--waSize);
       height: var(--waSize);
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(0,0,0,.18);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.70);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 18px 45px rgba(0,0,0,.30);
+      box-shadow: 0 18px 45px rgba(0,0,0,.12);
       display:grid;
       place-items:center;
       overflow:hidden;
       transition: transform .15s ease;
     }
-    [data-theme="light"] .waFloat{
-      background: rgba(255,255,255,.70);
-      border-color: rgba(10,12,20,.10);
-      box-shadow: 0 18px 45px rgba(0,0,0,.12);
+    [data-theme="dark"] .waFloat{
+      background: rgba(0,0,0,.18);
+      border-color: rgba(255,255,255,.16);
+      box-shadow: 0 18px 45px rgba(0,0,0,.30);
     }
     .waFloat:hover{ transform: translateY(-2px); }
     .waSvg{ width: 34px; height: 34px; display:block; }
 
-    /* espacio para que el boton no tape el footer */
     .spacerForFloat{ height: calc(var(--waSize) + (var(--waGap) * 2)); }
 
     /* theme toggle */
@@ -725,43 +706,43 @@
       width: 46px; height: 42px;
       border-radius: 14px;
       border: 1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+      background: rgba(255,255,255,.60);
       display:grid;
       place-items:center;
       cursor:pointer;
       transition: transform .15s ease;
-      box-shadow: 0 12px 30px rgba(0,0,0,.16);
+      box-shadow: 0 12px 30px rgba(0,0,0,.10);
+    }
+    [data-theme="dark"] .toggle{
+      background: rgba(255,255,255,.06);
+      box-shadow: 0 12px 30px rgba(0,0,0,.24);
     }
     .toggle:hover{ transform: translateY(-1px); }
     .toggle svg{ width: 18px; height: 18px; opacity:.9; }
 
     @media (max-width: 980px){
       .heroGrid{ grid-template-columns: 1fr; }
-      h1{ font-size: 36px; }
+      h1{ font-size: 34px; }
       .bento{ grid-template-columns: 1fr; }
-      .grid4{ grid-template-columns: repeat(2, 1fr); }
+      .serviceGrid{ grid-template-columns: repeat(2, 1fr); }
       .specialists{ grid-template-columns: 1fr; }
       .faq{ grid-template-columns: 1fr; }
       .contactGrid{ grid-template-columns: 1fr; }
-      .mapWrap{ min-height: 280px; }
-      .service{ min-height: 300px; }
-      .service .img{ height: 180px; }
+      .mapCard{ min-height: 260px; }
     }
     @media (max-width: 420px){
-      h1{ font-size: 32px; }
+      h1{ font-size: 30px; }
       .btn{ width: 100%; justify-content:center; }
       .chip{ display:none; }
       .logoMark{ width: 40px; height: 40px; }
-      .heroCard{ padding: 18px; }
-      .grid4{ grid-template-columns: 1fr; }
-      .points{ grid-template-columns: 1fr; }
-      :root{ --heroMaxH: 200px; }
+      :root{ --heroMaxH: 190px; }
+      .serviceGrid{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
-  <div class="grain" aria-hidden="true"></div>
+  <div class="overlayBg" aria-hidden="true"></div>
 
   <header>
     <div class="wrap">
@@ -807,10 +788,10 @@
             Centro de Estética, Kinesiología, Medicina y Terapias Holísticas
           </div>
 
-          <h1>Atención integral para verte y sentirte mejor</h1>
+          <h1>Atención integral en un entorno cuidado</h1>
           <p class="sub">
-            En <strong>Centro Kinest</strong> acompañamos a cada paciente con una mirada profesional y humana.
-            Coordiná tu turno por WhatsApp, llamada o email.
+            Coordiná tu turno por WhatsApp y te confirmamos disponibilidad <strong>según especialidad</strong>.
+            También podés comunicarte por teléfono o email.
           </p>
 
           <div class="ctaRow">
@@ -819,10 +800,10 @@
                 <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
                 <path fill="#fff" d="M12.07 21.35h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.22-3.68.96.98-3.58-.24-.37a9.9 9.9 0 1 1 8.38 4.6Zm5.77-7.44c-.31-.16-1.86-.92-2.15-1.02-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61 0 1.54 1.13 3.03 1.29 3.24.16.21 2.23 3.41 5.4 4.79.75.32 1.33.51 1.79.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
               </svg>
-              Pedir turno por WhatsApp
+              Reservar por WhatsApp
             </a>
             <a class="btn" href="tel:40075744">Llamar 4007-5744</a>
-            <a class="btn btnGhost" href="#contacto">Ver contacto</a>
+            <a class="btn btnGhost" href="#especialidades">Ver especialidades</a>
           </div>
 
           <div class="miniRow">
@@ -842,7 +823,6 @@
             </span>
           </div>
 
-          <!-- HERO CHICO (menos protagonista) -->
           <div style="margin-top:12px;">
             <div class="heroBanner" aria-label="Imagen institucional">
               <img src="https://iili.io/qfamgEP.png" alt="KINeST Salud y Bienestar" />
@@ -867,22 +847,18 @@
               <div class="value"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div>
             </div>
             <div class="kpiItem">
-              <div class="label">Dirección</div>
-              <div class="value">
-                <a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">
-                  Av. San Martín 1392
-                </a>
-              </div>
+              <div class="label">Horarios</div>
+              <div class="value">Confirmar por WhatsApp</div>
             </div>
           </div>
 
           <div class="bentoCard" style="padding:14px;">
             <div class="bentoTitle">
-              <h3 style="font-size:14px;">Reserva rápida</h3>
-              <div class="tag">Turnos</div>
+              <h3 style="font-size:14px;">Confirmación rápida</h3>
+              <div class="tag">Disponibilidad real</div>
             </div>
             <p class="bentoP" style="margin-top:8px;">
-              Para coordinar sin vueltas, escribinos por WhatsApp y te confirmamos disponibilidad según especialidad.
+              Escribinos por WhatsApp y te confirmamos turnos según la especialidad.
             </p>
             <div class="ctaRow" style="margin-top:10px;">
               <a class="btn btnPrimary" id="btnSideWA" href="#" rel="noopener" style="width:100%;">
@@ -894,7 +870,6 @@
               </a>
             </div>
           </div>
-
         </div>
       </div>
 
@@ -908,48 +883,16 @@
         <div class="bento">
           <div class="bentoCard">
             <div class="bentoTitle">
-              <h3>Salud y bienestar con enfoque integral</h3>
-              <div class="tag">Atención personalizada</div>
+              <h3>Enfoque integral de salud y bienestar</h3>
+              <div class="tag">Consultorio / centro</div>
             </div>
             <p class="bentoP">
-              En KINeST Salud y Bienestar combinamos <strong>kinesiología</strong>, <strong>medicina</strong>, <strong>estética</strong> y <strong>terapias holísticas</strong>
-              para acompañarte con una mirada profesional y humana.
+              En KINeST Salud y Bienestar trabajamos con un enfoque profesional y humano.
+              Coordinamos turnos de forma simple y confirmamos disponibilidad por WhatsApp según especialidad.
             </p>
             <p class="bentoP">
-              Priorizamos una atención ordenada: te orientamos, coordinamos tu turno y hacemos seguimiento según tu caso.
+              Contamos con áreas de kinesiología, estética, medicina, terapias y aparatología (según los servicios disponibles).
             </p>
-
-            <div class="points" aria-label="Compromisos">
-              <div class="point">
-                <div class="k">1</div>
-                <div>
-                  <p class="t">Orientación clara</p>
-                  <p class="p">Te indicamos cómo coordinar y qué información conviene traer.</p>
-                </div>
-              </div>
-              <div class="point">
-                <div class="k">2</div>
-                <div>
-                  <p class="t">Atención cuidada</p>
-                  <p class="p">Ambiente cómodo, profesional y pensado para tu bienestar.</p>
-                </div>
-              </div>
-              <div class="point">
-                <div class="k">3</div>
-                <div>
-                  <p class="t">Seguimiento</p>
-                  <p class="p">Si aplica, planificamos próximos pasos y control.</p>
-                </div>
-              </div>
-              <div class="point">
-                <div class="k">4</div>
-                <div>
-                  <p class="t">Turnos sin vueltas</p>
-                  <p class="p">Confirmación por WhatsApp con disponibilidad real.</p>
-                </div>
-              </div>
-            </div>
-
             <div class="ctaRow" style="margin-top:14px;">
               <a class="btn btnPrimary" id="btnAboutWA" href="#" rel="noopener">
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -958,216 +901,205 @@
                 </svg>
                 Consultar disponibilidad
               </a>
-              <a class="btn" href="#horarios">Ver horarios</a>
+              <a class="btn" href="#especialidades">Ver especialidades</a>
             </div>
           </div>
 
           <div class="bentoCard" id="horarios">
             <div class="bentoTitle">
               <h3>Horarios</h3>
-              <div class="tag">Por especialidad</div>
+              <div class="tag">Confirmar por WhatsApp</div>
             </div>
-            <p class="bentoP" style="margin-top:10px;">
-              Los horarios pueden variar según especialidad y disponibilidad. Para confirmar, escribinos por WhatsApp.
+            <p class="bentoP">
+              Para evitar errores, los horarios se confirman por WhatsApp según la especialidad y disponibilidad del día.
             </p>
-
-            <div class="hoursGrid" aria-label="Horarios de referencia">
-              <div class="hourItem"><div class="d">Lunes a viernes</div><div class="h">mañana y tarde</div></div>
-              <div class="hourItem"><div class="d">Sábados</div><div class="h">con turno previo</div></div>
-              <div class="hourItem"><div class="d">Reprogramación</div><div class="h">por WhatsApp</div></div>
-            </div>
-
             <div class="ctaRow" style="margin-top:14px;">
               <a class="btn btnPrimary" id="btnHoursWA" href="#" rel="noopener" style="width:100%;">
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                   <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
                   <path fill="#fff" d="M12.07 21.35h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.22-3.68.96.98-3.58-.24-.37a9.9 9.9 0 1 1 8.38 4.6Zm5.77-7.44c-.31-.16-1.86-.92-2.15-1.02-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61 0 1.54 1.13 3.03 1.29 3.24.16.21 2.23 3.41 5.4 4.79.75.32 1.33.51 1.79.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
                 </svg>
-                Confirmar horario por WhatsApp
+                Confirmar horarios
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SERVICIOS -->
-      <section id="servicios">
+      <!-- ESPECIALIDADES / SERVICIOS (FILTRO) -->
+      <section id="especialidades">
         <div class="sectionTitle">
-          <h2>Servicios</h2>
-          <p>Áreas principales</p>
+          <h2>Especialidades y servicios</h2>
+          <p>Filtrá por categoría</p>
         </div>
 
-        <div class="grid4">
-          <article class="service">
-            <div class="img"><img src="https://iili.io/qfc9Ops.jpg" alt="Kinesiología" loading="lazy" /></div>
-            <div class="body">
-              <p class="name">Kinesiología</p>
-              <p class="desc">Acompañamiento profesional para mejorar movilidad y recuperar bienestar.</p>
-              <ul class="bullets">
-                <li><span class="b">✓</span><span>Evaluación inicial y orientación</span></li>
-                <li><span class="b">✓</span><span>Plan de trabajo según necesidad</span></li>
-                <li><span class="b">✓</span><span>Seguimiento y reprogramación simple</span></li>
-              </ul>
-              <div class="foot">
-                <span class="pill">Turno previo</span>
-                <a class="miniCta" href="#contacto">Consultar</a>
-              </div>
-            </div>
-          </article>
+        <div class="filters" id="filters">
+          <button class="filterBtn active" data-filter="all">Todo</button>
+          <button class="filterBtn" data-filter="estetica_facial">Estética facial</button>
+          <button class="filterBtn" data-filter="corporal">Corporal</button>
+          <button class="filterBtn" data-filter="pestanas_cejas">Pestañas y cejas</button>
+          <button class="filterBtn" data-filter="drenaje">Drenaje / Presoterapia</button>
+          <button class="filterBtn" data-filter="mesoterapia">Mesoterapia / Enzimas</button>
+          <button class="filterBtn" data-filter="bioestimulacion">Bioestimulación / Exosomas</button>
+          <button class="filterBtn" data-filter="masajes">Masajes</button>
+          <button class="filterBtn" data-filter="aparatologia">Aparatología / Fitness</button>
+          <button class="filterBtn" data-filter="kinesiologia">Kinesiología / Rehab</button>
+          <button class="filterBtn" data-filter="medicina">Medicina / Especialidades</button>
+        </div>
 
-          <article class="service">
-            <div class="img"><img src="https://iili.io/qfcFku9.jpg" alt="Estética" loading="lazy" /></div>
-            <div class="body">
-              <p class="name">Estética</p>
-              <p class="desc">Tratamientos orientados a resultados, con atención cuidada y personalizada.</p>
-              <ul class="bullets">
-                <li><span class="b">✓</span><span>Evaluación previa según objetivo</span></li>
-                <li><span class="b">✓</span><span>Seguimiento y recomendaciones</span></li>
-                <li><span class="b">✓</span><span>Turnos coordinados por WhatsApp</span></li>
-              </ul>
-              <div class="foot">
-                <span class="pill">Evaluación</span>
-                <a class="miniCta" href="#contacto">Consultar</a>
-              </div>
-            </div>
-          </article>
+        <div class="searchRow">
+          <input class="search" id="search" type="search" placeholder="Buscar (ej: dermapen, ozonoterapia, criolipólisis...)" />
+          <a class="btn btnPrimary" id="btnServicesWA" href="#" rel="noopener">Consultar por WhatsApp</a>
+        </div>
 
-          <article class="service">
-            <div class="img"><img src="https://iili.io/qfcfZBa.jpg" alt="Medicina" loading="lazy" /></div>
-            <div class="body">
-              <p class="name">Medicina</p>
-              <p class="desc">Consulta y orientación integral para tomar decisiones con respaldo profesional.</p>
-              <ul class="bullets">
-                <li><span class="b">✓</span><span>Consulta y orientación</span></li>
-                <li><span class="b">✓</span><span>Indicaciones claras para seguir</span></li>
-                <li><span class="b">✓</span><span>Coordinación de turnos simple</span></li>
-              </ul>
-              <div class="foot">
-                <span class="pill">Consulta</span>
-                <a class="miniCta" href="#contacto">Consultar</a>
-              </div>
-            </div>
+        <div class="serviceGrid" id="serviceGrid">
+          <!-- Estetica facial -->
+          <article class="svc" data-cat="estetica_facial" data-name="Facial Deep Clean">
+            <div class="svcTop"><p class="svcName">Facial Deep Clean</p><span class="svcCat">Estética facial</span></div>
+            <div class="svcBody"><p class="svcNote">Tratamiento facial.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink0" href="#">Turno</a></div></div>
           </article>
+          <article class="svc" data-cat="estetica_facial" data-name="Facial Premium"><div class="svcTop"><p class="svcName">Facial Premium</p><span class="svcCat">Estética facial</span></div><div class="svcBody"><p class="svcNote">Tratamiento facial.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink1" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="estetica_facial" data-name="Facial Glow Skin"><div class="svcTop"><p class="svcName">Facial Glow Skin</p><span class="svcCat">Estética facial</span></div><div class="svcBody"><p class="svcNote">Tratamiento facial.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink2" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="estetica_facial" data-name="Facial Deluxe"><div class="svcTop"><p class="svcName">Facial Deluxe</p><span class="svcCat">Estética facial</span></div><div class="svcBody"><p class="svcNote">Tratamiento facial.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink3" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="estetica_facial" data-name="Facial Skin Lifting"><div class="svcTop"><p class="svcName">Facial Skin Lifting</p><span class="svcCat">Estética facial</span></div><div class="svcBody"><p class="svcNote">Tratamiento facial.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink4" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="estetica_facial" data-name="Peeling Químico"><div class="svcTop"><p class="svcName">Tratamiento Peeling Químico</p><span class="svcCat">Estética facial</span></div><div class="svcBody"><p class="svcNote">Tratamiento facial.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink5" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="estetica_facial" data-name="Peeling Premium"><div class="svcTop"><p class="svcName">Peeling Premium</p><span class="svcCat">Estética facial</span></div><div class="svcBody"><p class="svcNote">Tratamiento facial.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink6" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="estetica_facial" data-name="Mesopeel periocular"><div class="svcTop"><p class="svcName">Mesopeel periocular</p><span class="svcCat">Estética facial</span></div><div class="svcBody"><p class="svcNote">Tratamiento facial.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink7" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="estetica_facial" data-name="Dermapen"><div class="svcTop"><p class="svcName">Tratamiento Dermapen</p><span class="svcCat">Estética facial</span></div><div class="svcBody"><p class="svcNote">Tratamiento facial.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink8" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="estetica_facial" data-name="Lip Boost"><div class="svcTop"><p class="svcName">Tratamiento Lip Boost</p><span class="svcCat">Estética facial</span></div><div class="svcBody"><p class="svcNote">Tratamiento facial.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink9" href="#">Turno</a></div></div></article>
 
-          <article class="service">
-            <div class="img"><img src="https://iili.io/qfcBelj.jpg" alt="Terapias holísticas" loading="lazy" /></div>
-            <div class="body">
-              <p class="name">Terapias holísticas</p>
-              <p class="desc">Enfoque complementario para equilibrio y bienestar, con seguimiento humano.</p>
-              <ul class="bullets">
-                <li><span class="b">✓</span><span>Acompañamiento integral</span></li>
-                <li><span class="b">✓</span><span>Seguimiento según evolución</span></li>
-                <li><span class="b">✓</span><span>Turnos coordinados por WhatsApp</span></li>
-              </ul>
-              <div class="foot">
-                <span class="pill">Bienestar</span>
-                <a class="miniCta" href="#contacto">Consultar</a>
-              </div>
-            </div>
-          </article>
+          <!-- Corporal -->
+          <article class="svc" data-cat="corporal" data-name="Espalda + acné piel"><div class="svcTop"><p class="svcName">Espalda + acné piel</p><span class="svcCat">Corporal</span></div><div class="svcBody"><p class="svcNote">Tratamiento corporal.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink10" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="corporal" data-name="Baby Booty + Peel superficial"><div class="svcTop"><p class="svcName">Baby Booty + Peel superficial</p><span class="svcCat">Corporal</span></div><div class="svcBody"><p class="svcNote">Tratamiento corporal.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink11" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="corporal" data-name="Full Body"><div class="svcTop"><p class="svcName">Full Body</p><span class="svcCat">Corporal</span></div><div class="svcBody"><p class="svcNote">Tratamiento corporal.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink12" href="#">Turno</a></div></div></article>
+
+          <!-- Pestañas y cejas -->
+          <article class="svc" data-cat="pestanas_cejas" data-name="Microblading de cejas"><div class="svcTop"><p class="svcName">Microblading de cejas</p><span class="svcCat">Pestañas y cejas</span></div><div class="svcBody"><p class="svcNote">Pestañas y cejas.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink13" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="pestanas_cejas" data-name="Micropigmentación de labios"><div class="svcTop"><p class="svcName">Micropigmentación de labios</p><span class="svcCat">Pestañas y cejas</span></div><div class="svcBody"><p class="svcNote">Pestañas y cejas.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink14" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="pestanas_cejas" data-name="Lifting de pestañas"><div class="svcTop"><p class="svcName">Lifting de pestañas</p><span class="svcCat">Pestañas y cejas</span></div><div class="svcBody"><p class="svcNote">Pestañas y cejas.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink15" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="pestanas_cejas" data-name="Laminado de cejas"><div class="svcTop"><p class="svcName">Laminado de cejas</p><span class="svcCat">Pestañas y cejas</span></div><div class="svcBody"><p class="svcNote">Pestañas y cejas.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink16" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="pestanas_cejas" data-name="Botox y Nutrition de cejas y pestañas"><div class="svcTop"><p class="svcName">Botox y Nutrition de cejas y pestañas</p><span class="svcCat">Pestañas y cejas</span></div><div class="svcBody"><p class="svcNote">Pestañas y cejas.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink17" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="pestanas_cejas" data-name="Tinte y Henna"><div class="svcTop"><p class="svcName">Tinte y Henna</p><span class="svcCat">Pestañas y cejas</span></div><div class="svcBody"><p class="svcNote">Pestañas y cejas.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink18" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="pestanas_cejas" data-name="Hidropigmentación de labios con Hydralip"><div class="svcTop"><p class="svcName">Hidropigmentación de labios con Hydralip</p><span class="svcCat">Pestañas y cejas</span></div><div class="svcBody"><p class="svcNote">Pestañas y cejas.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink19" href="#">Turno</a></div></div></article>
+
+          <!-- Drenaje / Presoterapia / Celulitis -->
+          <article class="svc" data-cat="drenaje" data-name="Drenaje linfático manual"><div class="svcTop"><p class="svcName">Drenaje linfático manual</p><span class="svcCat">Drenaje</span></div><div class="svcBody"><p class="svcNote">Drenaje / circulación.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink20" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="drenaje" data-name="Presoterapia (botas de drenaje linfático)"><div class="svcTop"><p class="svcName">Presoterapia (botas de drenaje linfático)</p><span class="svcCat">Drenaje</span></div><div class="svcBody"><p class="svcNote">Drenaje / circulación.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink21" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="drenaje" data-name="Criolipólisis"><div class="svcTop"><p class="svcName">Criolipólisis</p><span class="svcCat">Drenaje</span></div><div class="svcBody"><p class="svcNote">Tratamientos corporales.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink22" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="drenaje" data-name="Radiofrecuencia"><div class="svcTop"><p class="svcName">Radiofrecuencia</p><span class="svcCat">Drenaje</span></div><div class="svcBody"><p class="svcNote">Tratamientos corporales.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink23" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="drenaje" data-name="Vela Slim"><div class="svcTop"><p class="svcName">Vela Slim</p><span class="svcCat">Drenaje</span></div><div class="svcBody"><p class="svcNote">Tratamientos corporales.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink24" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="drenaje" data-name="Ultracavitación"><div class="svcTop"><p class="svcName">Ultracavitación</p><span class="svcCat">Drenaje</span></div><div class="svcBody"><p class="svcNote">Tratamientos corporales.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink25" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="drenaje" data-name="Lipoláser"><div class="svcTop"><p class="svcName">Lipoláser</p><span class="svcCat">Drenaje</span></div><div class="svcBody"><p class="svcNote">Tratamientos corporales.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink26" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="drenaje" data-name="Criofrecuencia + HIFU"><div class="svcTop"><p class="svcName">Criofrecuencia + HIFU</p><span class="svcCat">Drenaje</span></div><div class="svcBody"><p class="svcNote">Tratamientos corporales.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink27" href="#">Turno</a></div></div></article>
+
+          <!-- Mesoterapia / Enzimas -->
+          <article class="svc" data-cat="mesoterapia" data-name="Mesoterapia"><div class="svcTop"><p class="svcName">Mesoterapia</p><span class="svcCat">Mesoterapia</span></div><div class="svcBody"><p class="svcNote">Tratamiento.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink28" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="mesoterapia" data-name="Mesoterapia con enzimas bioactivas liofilizadas"><div class="svcTop"><p class="svcName">Mesoterapia con enzimas bioactivas liofilizadas</p><span class="svcCat">Mesoterapia</span></div><div class="svcBody"><p class="svcNote">Tratamiento.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink29" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="mesoterapia" data-name="Enzimas reductoras"><div class="svcTop"><p class="svcName">Tratamiento con enzimas (reductoras)</p><span class="svcCat">Mesoterapia</span></div><div class="svcBody"><p class="svcNote">Tratamiento.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink30" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="mesoterapia" data-name="Enzimas reafirmante"><div class="svcTop"><p class="svcName">Tratamiento con enzimas (reafirmante)</p><span class="svcCat">Mesoterapia</span></div><div class="svcBody"><p class="svcNote">Tratamiento.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink31" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="mesoterapia" data-name="Enzimas anticelulítica"><div class="svcTop"><p class="svcName">Tratamiento con enzimas (anticelulítica)</p><span class="svcCat">Mesoterapia</span></div><div class="svcBody"><p class="svcNote">Tratamiento.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink32" href="#">Turno</a></div></div></article>
+
+          <!-- Bioestimulacion / Exosomas -->
+          <article class="svc" data-cat="bioestimulacion" data-name="RRS HA Long Lasting"><div class="svcTop"><p class="svcName">RRS HA Long Lasting</p><span class="svcCat">Bioestimulacion</span></div><div class="svcBody"><p class="svcNote">Skin builder.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink33" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="bioestimulacion" data-name="Exosomas / exosome hyaluronidase"><div class="svcTop"><p class="svcName">Exosomas (exosome hyaluronidase)</p><span class="svcCat">Bioestimulacion</span></div><div class="svcBody"><p class="svcNote">Ideal para: manchas y melasma, air capilar, activador linfático fibrosis, regeneración celular.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink34" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="bioestimulacion" data-name="Bioestimulación tópica"><div class="svcTop"><p class="svcName">Bioestimulación tópica</p><span class="svcCat">Bioestimulacion</span></div><div class="svcBody"><p class="svcNote">Tratamiento.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink35" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="bioestimulacion" data-name="PDNR + exosomas"><div class="svcTop"><p class="svcName">PDNR + exosomas</p><span class="svcCat">Bioestimulacion</span></div><div class="svcBody"><p class="svcNote">Tratamiento.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink36" href="#">Turno</a></div></div></article>
+
+          <!-- Masajes -->
+          <article class="svc" data-cat="masajes" data-name="Masaje descontracturante"><div class="svcTop"><p class="svcName">Masaje descontracturante</p><span class="svcCat">Masajes</span></div><div class="svcBody"><p class="svcNote">Masajes.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink37" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="masajes" data-name="Masaje relajante"><div class="svcTop"><p class="svcName">Masaje relajante</p><span class="svcCat">Masajes</span></div><div class="svcBody"><p class="svcNote">Masajes.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink38" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="masajes" data-name="Masaje deportivo"><div class="svcTop"><p class="svcName">Masaje deportivo</p><span class="svcCat">Masajes</span></div><div class="svcBody"><p class="svcNote">Masajes.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink39" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="masajes" data-name="Masaje con piedras calientes"><div class="svcTop"><p class="svcName">Masaje con piedras calientes</p><span class="svcCat">Masajes</span></div><div class="svcBody"><p class="svcNote">Masajes.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink40" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="masajes" data-name="Masaje con pindas"><div class="svcTop"><p class="svcName">Masaje con pindas</p><span class="svcCat">Masajes</span></div><div class="svcBody"><p class="svcNote">Masajes.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink41" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="masajes" data-name="Máscara de chocolate"><div class="svcTop"><p class="svcName">Máscara de chocolate</p><span class="svcCat">Masajes</span></div><div class="svcBody"><p class="svcNote">Tratamiento.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink42" href="#">Turno</a></div></div></article>
+
+          <!-- Aparatología / Fitness -->
+          <article class="svc" data-cat="aparatologia" data-name="Thermobike / Termobike"><div class="svcTop"><p class="svcName">Thermobike</p><span class="svcCat">Aparatología</span></div><div class="svcBody"><p class="svcNote">Servicio.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink43" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="aparatologia" data-name="Electrofitness"><div class="svcTop"><p class="svcName">Electrofitness</p><span class="svcCat">Aparatología</span></div><div class="svcBody"><p class="svcNote">Servicio.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink44" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="aparatologia" data-name="Ondas de choque"><div class="svcTop"><p class="svcName">Ondas de choque</p><span class="svcCat">Aparatología</span></div><div class="svcBody"><p class="svcNote">Servicio.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink45" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="aparatologia" data-name="SkinLED"><div class="svcTop"><p class="svcName">SkinLED</p><span class="svcCat">Aparatología</span></div><div class="svcBody"><p class="svcNote">Servicio.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink46" href="#">Turno</a></div></div></article>
+
+          <!-- Kinesiología / Rehab -->
+          <article class="svc" data-cat="kinesiologia" data-name="Kinefilaxia"><div class="svcTop"><p class="svcName">Kinefilaxia</p><span class="svcCat">Kinesiología</span></div><div class="svcBody"><p class="svcNote">Kinesiología / rehabilitación.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink47" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="kinesiologia" data-name="Rehabilitación en pileta"><div class="svcTop"><p class="svcName">Rehabilitación en pileta</p><span class="svcCat">Kinesiología</span></div><div class="svcBody"><p class="svcNote">Kinesiología / rehabilitación.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink48" href="#">Turno</a></div></div></article>
+
+          <!-- Medicina / Especialidades -->
+          <article class="svc" data-cat="medicina" data-name="Medicina biológica (Dr. Gonzalo Gallarino)"><div class="svcTop"><p class="svcName">Medicina biológica (Dr. Gonzalo Gallarino)</p><span class="svcCat">Medicina</span></div><div class="svcBody"><p class="svcNote">Especialidad.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink49" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="medicina" data-name="Sueroterapia"><div class="svcTop"><p class="svcName">Sueroterapia</p><span class="svcCat">Medicina</span></div><div class="svcBody"><p class="svcNote">Especialidad.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink50" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="medicina" data-name="Ozonoterapia (Gonzalo Gallarino)"><div class="svcTop"><p class="svcName">Ozonoterapia (Gonzalo Gallarino)</p><span class="svcCat">Medicina</span></div><div class="svcBody"><p class="svcNote">Especialidad.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink51" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="medicina" data-name="Endocrinología (Dra. Adriana Fiore)"><div class="svcTop"><p class="svcName">Endocrinología (Dra. Adriana Fiore)</p><span class="svcCat">Medicina</span></div><div class="svcBody"><p class="svcNote">Especialidad.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink52" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="medicina" data-name="Flebología (Dr. Fabio Adlerstein)"><div class="svcTop"><p class="svcName">Flebología (Dr. Fabio Adlerstein)</p><span class="svcCat">Medicina</span></div><div class="svcBody"><p class="svcNote">Especialidad.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink53" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="medicina" data-name="Quiropraxia (Lic. Javier Mouzaffar)"><div class="svcTop"><p class="svcName">Quiropraxia (Lic. Javier Mouzaffar)</p><span class="svcCat">Medicina</span></div><div class="svcBody"><p class="svcNote">Especialidad.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink54" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="medicina" data-name="Nutrición (Lic. María del Cielo Fernández)"><div class="svcTop"><p class="svcName">Nutrición (Lic. María del Cielo Fernández)</p><span class="svcCat">Medicina</span></div><div class="svcBody"><p class="svcNote">Especialidad.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink55" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="medicina" data-name="Neurología (Dra. Roxana González)"><div class="svcTop"><p class="svcName">Neurología (Dra. Roxana González)</p><span class="svcCat">Medicina</span></div><div class="svcBody"><p class="svcNote">Especialidad.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink56" href="#">Turno</a></div></div></article>
+          <article class="svc" data-cat="medicina" data-name="Podología"><div class="svcTop"><p class="svcName">Podología</p><span class="svcCat">Medicina</span></div><div class="svcBody"><p class="svcNote">Servicio.</p><div class="svcCTA"><a href="#contacto">Consultar</a><a id="waLink57" href="#">Turno</a></div></div></article>
         </div>
       </section>
 
-      <!-- INDICACIONES -->
+      <!-- PROFESIONALES -->
       <section>
         <div class="sectionTitle">
-          <h2>Indicaciones para tu turno</h2>
-          <p>Para una atención más ágil</p>
-        </div>
-
-        <div class="bento" style="grid-template-columns: 1fr 1fr;">
-          <div class="bentoCard">
-            <div class="bentoTitle">
-              <h3>Antes de venir</h3>
-              <div class="tag">Checklist</div>
-            </div>
-            <div class="points" style="grid-template-columns: 1fr;">
-              <div class="point"><div class="k">✓</div><div><p class="t">Traé estudios si tenés</p><p class="p">Radiografías, resonancias, análisis, informes previos.</p></div></div>
-              <div class="point"><div class="k">✓</div><div><p class="t">Llegá 10 minutos antes</p><p class="p">Para ingresar con calma y comenzar a horario.</p></div></div>
-              <div class="point"><div class="k">✓</div><div><p class="t">Reprogramación</p><p class="p">Si necesitás cambiar el turno, avisá por WhatsApp.</p></div></div>
-            </div>
-          </div>
-
-          <div class="bentoCard">
-            <div class="bentoTitle">
-              <h3>Obras sociales y pagos</h3>
-              <div class="tag">Consultá</div>
-            </div>
-            <p class="bentoP">
-              Consultanos por WhatsApp para confirmar cobertura (obras sociales / prepagas) y medios de pago disponibles al momento de coordinar.
-            </p>
-            <div class="points" style="margin-top:12px;">
-              <div class="point"><div class="k">1</div><div><p class="t">Coberturas</p><p class="p">Confirmación por especialidad y disponibilidad.</p></div></div>
-              <div class="point"><div class="k">2</div><div><p class="t">Medios de pago</p><p class="p">Consulta por opciones vigentes al coordinar.</p></div></div>
-            </div>
-            <div class="ctaRow" style="margin-top:14px;">
-              <a class="btn btnPrimary" id="btnCoverageWA" href="#" rel="noopener" style="width:100%;">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
-                  <path fill="#fff" d="M12.07 21.35h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.22-3.68.96.98-3.58-.24-.37a9.9 9.9 0 1 1 8.38 4.6Zm5.77-7.44c-.31-.16-1.86-.92-2.15-1.02-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61 0 1.54 1.13 3.03 1.29 3.24.16.21 2.23 3.41 5.4 4.79.75.32 1.33.51 1.79.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
-                </svg>
-                Consultar coberturas y pagos
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ESPECIALISTAS -->
-      <section>
-        <div class="sectionTitle">
-          <h2>Especialistas</h2>
-          <p>Traumatología</p>
+          <h2>Profesionales</h2>
+          <p>Listado</p>
         </div>
 
         <div class="specialists">
-          <div class="specCard">
-            <div class="specTitle">
-              <h3>Nuestros especialistas en traumatología</h3>
-              <div class="tag">Reservá tu turno</div>
+          <div class="bentoCard">
+            <div class="bentoTitle">
+              <h3>Traumatología</h3>
+              <div class="tag">Equipo</div>
             </div>
-
             <div class="specList">
               <div class="specItem"><div class="name">Dra. Nora Bengochea</div><div class="role">Traumatología</div></div>
               <div class="specItem"><div class="name">Dr. Roberto Pérez</div><div class="role">Traumatología</div></div>
               <div class="specItem"><div class="name">Dr. Juan Cabral</div><div class="role">Traumatología</div></div>
               <div class="specItem"><div class="name">Dr. Guillermo Flynn</div><div class="role">Traumatología</div></div>
             </div>
-
             <div class="ctaRow" style="margin-top:14px;">
-              <a class="btn btnPrimary" id="btnSpecWA" href="#" rel="noopener">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
-                  <path fill="#fff" d="M12.07 21.35h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.22-3.68.96.98-3.58-.24-.37a9.9 9.9 0 1 1 8.38 4.6Zm5.77-7.44c-.31-.16-1.86-.92-2.15-1.02-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61 0 1.54 1.13 3.03 1.29 3.24.16.21 2.23 3.41 5.4 4.79.75.32 1.33.51 1.79.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
-                </svg>
-                Pedir turno por WhatsApp
-              </a>
-              <a class="btn" href="tel:48964254">Llamar 4896-4254</a>
+              <a class="btn btnPrimary" id="btnSpecWA" href="#" rel="noopener">Consultar turnos</a>
             </div>
           </div>
 
-          <div class="specCard">
-            <div class="specTitle">
-              <h3>Turnos</h3>
-              <div class="tag">Bella Vista</div>
+          <div class="bentoCard">
+            <div class="bentoTitle">
+              <h3>Otras especialidades</h3>
+              <div class="tag">Profesionales</div>
             </div>
+            <div class="specList">
+              <div class="specItem"><div class="name">Dra. Roxana González</div><div class="role">Neurología</div></div>
+              <div class="specItem"><div class="name">Dr. Gonzalo Gallarino</div><div class="role">Medicina biológica / Ozonoterapia / Sueroterapia</div></div>
+              <div class="specItem"><div class="name">Dra. Adriana Fiore</div><div class="role">Endocrinología</div></div>
+              <div class="specItem"><div class="name">Lic. Javier Mouzaffar</div><div class="role">Quiropraxia</div></div>
+              <div class="specItem"><div class="name">Dr. Fabio Adlerstein</div><div class="role">Flebología</div></div>
+              <div class="specItem"><div class="name">Lic. María del Cielo Fernández</div><div class="role">Nutrición</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <div class="list">
-              <div class="li"><div class="k">Teléfono</div><div class="v"><a href="tel:40075744">4007-5744</a></div></div>
-              <div class="li"><div class="k">Teléfono</div><div class="v"><a href="tel:48964254">4896-4254</a></div></div>
-              <div class="li"><div class="k">WhatsApp</div><div class="v"><a id="waSpecLink" href="#" rel="noopener">11-6567-1472</a></div></div>
-              <div class="li"><div class="k">Email</div><div class="v"><a href="mailto:centrokinest_bellavista@hotmail.com">centrokinest_bellavista@hotmail.com</a></div></div>
-            </div>
+      <!-- OBRAS SOCIALES / PREPAGAS -->
+      <section>
+        <div class="sectionTitle">
+          <h2>Obras sociales / prepagas</h2>
+          <p>Consultar cobertura por WhatsApp</p>
+        </div>
 
-            <div class="ctaRow" style="margin-top:14px;">
-              <a class="btn btnPrimary" id="btnSpec2WA" href="#" rel="noopener" style="width:100%;">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
-                  <path fill="#fff" d="M12.07 21.35h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.22-3.68.96.98-3.58-.24-.37a9.9 9.9 0 1 1 8.38 4.6Zm5.77-7.44c-.31-.16-1.86-.92-2.15-1.02-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61 0 1.54 1.13 3.03 1.29 3.24.16.21 2.23 3.41 5.4 4.79.75.32 1.33.51 1.79.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
-                </svg>
-                Pedir turno ahora
-              </a>
-            </div>
+        <div class="bentoCard">
+          <div class="bentoTitle">
+            <h3>Principales</h3>
+            <div class="tag">Cobertura</div>
+          </div>
+          <div class="prepagas">
+            <span class="pp">Swiss Medical</span>
+            <span class="pp">Medicus</span>
+            <span class="pp">Medifé</span>
+            <span class="pp">OSDE</span>
+            <span class="pp">Galeno</span>
+            <span class="pp">Omint</span>
+          </div>
+          <p class="bentoP">Para confirmar cobertura según especialidad, escribinos por WhatsApp.</p>
+          <div class="ctaRow" style="margin-top:12px;">
+            <a class="btn btnPrimary" id="btnCoverageWA" href="#" rel="noopener">Consultar cobertura</a>
           </div>
         </div>
       </section>
@@ -1185,16 +1117,16 @@
               <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </summary>
             <div class="ans">
-              Podés pedir turno por WhatsApp, por teléfono o por email. Para coordinar más rápido, recomendamos WhatsApp.
+              Por WhatsApp (recomendado), por teléfono o por email. Confirmamos disponibilidad según especialidad.
             </div>
           </details>
 
           <details>
-            <summary>¿Qué horarios manejan?
+            <summary>¿Horarios?
               <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </summary>
             <div class="ans">
-              Los horarios pueden variar según especialidad. Confirmamos disponibilidad al momento de coordinar el turno por WhatsApp.
+              Los horarios se confirman por WhatsApp para evitar errores, ya que varían según especialidad y disponibilidad.
             </div>
           </details>
 
@@ -1203,7 +1135,7 @@
               <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </summary>
             <div class="ans">
-              Av. San Martín 1392, Bella Vista, Buenos Aires (1661). En la sección de Contacto tenés el mapa para llegar.
+              Av. San Martín 1392, Bella Vista, Buenos Aires (1661). Abajo tenés una imagen del mapa y el botón para abrir Google Maps.
             </div>
           </details>
 
@@ -1222,7 +1154,7 @@
       <section>
         <div class="sectionTitle">
           <h2>Reservá tu turno</h2>
-          <p>Respuesta rápida por WhatsApp</p>
+          <p>Confirmación por WhatsApp</p>
         </div>
 
         <div class="finalCta">
@@ -1230,17 +1162,11 @@
             <h3>Coordiná por WhatsApp o llamanos</h3>
             <div class="tag">Centro Kinest</div>
           </div>
-          <p class="bentoP" style="margin-top:10px;">
-            Escribinos por WhatsApp y te confirmamos disponibilidad según la especialidad. También podés llamar a los teléfonos del centro.
+          <p class="bentoP">
+            Escribinos por WhatsApp y te confirmamos disponibilidad según especialidad.
           </p>
           <div class="ctaRow" style="margin-top:14px;">
-            <a class="btn btnPrimary" id="btnFinalWA" href="#" rel="noopener">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
-                <path fill="#fff" d="M12.07 21.35h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.22-3.68.96.98-3.58-.24-.37a9.9 9.9 0 1 1 8.38 4.6Zm5.77-7.44c-.31-.16-1.86-.92-2.15-1.02-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61 0 1.54 1.13 3.03 1.29 3.24.16.21 2.23 3.41 5.4 4.79.75.32 1.33.51 1.79.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
-              </svg>
-              Pedir turno por WhatsApp
-            </a>
+            <a class="btn btnPrimary" id="btnFinalWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
             <a class="btn" href="tel:40075744">4007-5744</a>
             <a class="btn" href="tel:48964254">4896-4254</a>
           </div>
@@ -1251,11 +1177,11 @@
       <section id="contacto">
         <div class="sectionTitle">
           <h2>Contacto y ubicación</h2>
-          <p>Para coordinar rápido</p>
+          <p>Mapa estático + acceso directo</p>
         </div>
 
         <div class="contactGrid">
-          <div class="contactCard">
+          <div class="bentoCard">
             <div class="badge" style="margin-bottom:10px;">
               <span class="dot" aria-hidden="true"></span>
               Centro Kinest · Bella Vista
@@ -1275,30 +1201,22 @@
                 </div>
               </div>
               <div class="li"><div class="k">Instagram</div><div class="v"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div></div>
-              <div class="li"><div class="k">Facebook</div><div class="v"><a href="https://www.facebook.com/" target="_blank" rel="noopener">Centro Kinest</a></div></div>
             </div>
 
             <div class="ctaRow" style="margin-top:14px;">
-              <a class="btn btnPrimary" id="btnBottomWA" href="#" rel="noopener">
-                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                  <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
-                  <path fill="#fff" d="M12.07 21.35h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.22-3.68.96.98-3.58-.24-.37a9.9 9.9 0 1 1 8.38 4.6Zm5.77-7.44c-.31-.16-1.86-.92-2.15-1.02-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61 0 1.54 1.13 3.03 1.29 3.24.16.21 2.23 3.41 5.4 4.79.75.32 1.33.51 1.79.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
-                </svg>
-                Pedir turno por WhatsApp
-              </a>
-              <a class="btn" href="#horarios">Ver horarios</a>
+              <a class="btn btnPrimary" id="btnBottomWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
+              <a class="btn" href="#especialidades">Ver servicios</a>
             </div>
 
             <div class="spacerForFloat" aria-hidden="true"></div>
           </div>
 
-          <div class="mapWrap" aria-label="Mapa">
-            <iframe
-              loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
-              src="https://www.google.com/maps?q=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661&output=embed"
-              title="Mapa: Av. San Martín 1392, Bella Vista">
-            </iframe>
+          <div class="mapCard" aria-label="Mapa">
+            <img class="mapImg" src="https://iili.io/qf0ljTP.png" alt="Mapa / Ubicación Centro Kinest" loading="lazy" />
+            <div class="mapBar">
+              <div class="hint">Si Instagram no muestra el mapa interactivo, esta imagen ayuda a ubicarte.</div>
+              <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Abrir en Google Maps</a>
+            </div>
           </div>
         </div>
       </section>
@@ -1310,7 +1228,7 @@
             <span style="margin-left:8px;">· Centro Kinest · Bella Vista</span>
           </div>
           <div>
-            <a href="#servicios">Servicios</a>
+            <a href="#especialidades">Especialidades</a>
             <span style="margin:0 8px;">|</span>
             <a href="#contacto">Contacto</a>
           </div>
@@ -1333,49 +1251,97 @@
 
   <script>
     (function(){
+      // WhatsApp
       const WHATSAPP_NUMBER = "5491165671472";
-      const WA_TEXT = "Hola! Quiero pedir un turno en Centro Kinest. Me indicás disponibilidad?";
+      const WA_TEXT = "Hola! Quiero pedir un turno en Centro Kinest. Me indicás disponibilidad y especialidad?";
       const waHref = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(WA_TEXT);
 
-      const ids = [
-        "btnNavWA","btnHeroWA","btnBottomWA","btnSpecWA","btnSpec2WA",
-        "btnAboutWA","btnHoursWA","btnCoverageWA","btnFinalWA","btnSideWA",
-        "waFloat","waTextLink","waContactLink","waSpecLink"
+      // asignar links WA
+      const waIds = [
+        "btnNavWA","btnHeroWA","btnSideWA","btnAboutWA","btnHoursWA","btnServicesWA",
+        "btnSpecWA","btnCoverageWA","btnFinalWA","btnBottomWA","waFloat","waTextLink","waContactLink"
       ];
-      ids.forEach(id => {
+      waIds.forEach(id => {
         const el = document.getElementById(id);
         if(el) el.setAttribute("href", waHref);
       });
+      // links turnos en cards
+      const cardLinks = document.querySelectorAll("[id^='waLink']");
+      cardLinks.forEach(a => a.setAttribute("href", waHref));
 
+      // Theme toggle (default: light, suave)
       const root = document.documentElement;
       const toggle = document.getElementById("themeToggle");
       const icon = document.getElementById("themeIcon");
 
       function setTheme(theme){
-        root.setAttribute("data-theme", theme);
-        localStorage.setItem("kinest_theme", theme);
-
-        if(theme === "light"){
+        if(theme === "dark"){
+          root.setAttribute("data-theme", "dark");
           icon.innerHTML = "<path d='M21 12.8A8.5 8.5 0 1 1 11.2 3a6.7 6.7 0 0 0 9.8 9.8Z' stroke='currentColor' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/>";
         } else {
+          root.removeAttribute("data-theme");
           icon.innerHTML =
             "<path d='M12 3v2.2M12 18.8V21M4.2 12H3M21 12h-1.2M6 6l-1.6-1.6M19.6 19.6 18 18M18 6l1.6-1.6M4.4 19.6 6 18' stroke='currentColor' stroke-width='2' stroke-linecap='round'/>" +
             "<path d='M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z' stroke='currentColor' stroke-width='2' fill='none'/>";
         }
+        localStorage.setItem("kinest_theme", theme);
       }
 
       const saved = localStorage.getItem("kinest_theme");
       if(saved){
         setTheme(saved);
       } else {
-        const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
-        setTheme(prefersLight ? "light" : "dark");
+        setTheme("light");
       }
 
       toggle.addEventListener("click", function(){
-        const current = root.getAttribute("data-theme") || "dark";
+        const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
         setTheme(current === "dark" ? "light" : "dark");
       });
+
+      // Filtros + buscador
+      const grid = document.getElementById("serviceGrid");
+      const items = Array.from(grid.querySelectorAll(".svc"));
+      const filterWrap = document.getElementById("filters");
+      const filterBtns = Array.from(filterWrap.querySelectorAll(".filterBtn"));
+      const search = document.getElementById("search");
+
+      let activeFilter = "all";
+      let q = "";
+
+      function normalize(s){
+        return (s || "")
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+      }
+
+      function apply(){
+        const nq = normalize(q);
+        items.forEach(it => {
+          const cat = it.getAttribute("data-cat");
+          const name = normalize(it.getAttribute("data-name"));
+          const matchesCat = (activeFilter === "all") ? true : (cat === activeFilter);
+          const matchesQ = nq ? name.includes(nq) : true;
+          it.style.display = (matchesCat && matchesQ) ? "flex" : "none";
+        });
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          activeFilter = btn.getAttribute("data-filter");
+          apply();
+        });
+      });
+
+      search.addEventListener("input", (e) => {
+        q = e.target.value || "";
+        apply();
+      });
+
+      apply();
     })();
   </script>
 </body>
