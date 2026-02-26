@@ -36,8 +36,11 @@
       --radius2:26px;
       --max:1120px;
       --blur:16px;
+
       --waSize:56px;
       --waGap:18px;
+
+      --heroMaxH: 220px; /* HERO CHICO (pedido) */
     }
 
     [data-theme="light"]{
@@ -195,7 +198,6 @@
         radial-gradient(500px 220px at 85% 40%, rgba(107,232,255,.18), transparent 58%),
         linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
     }
-
     .btnGhost{
       background: transparent;
       box-shadow:none;
@@ -204,15 +206,6 @@
     .icon{ width: 18px; height: 18px; opacity:.9; flex: 0 0 auto; }
 
     main{ padding: 26px 0 80px; }
-
-    .hero{ padding: 28px 0 10px; }
-
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 18px;
-      align-items: stretch;
-    }
 
     .card{
       border: 1px solid var(--line);
@@ -227,16 +220,30 @@
       overflow:hidden;
     }
 
-    .heroCard{ padding: 22px; }
+    .hero{ padding: 20px 0 10px; }
 
-    .heroMedia{
-      border-radius: 22px;
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .heroCard{ padding: 20px; }
+    .heroBanner{
+      border-radius: 18px;
       border: 1px solid var(--line);
       overflow:hidden;
       background: rgba(255,255,255,.03);
-      box-shadow: 0 18px 50px rgba(0,0,0,.25);
+      max-height: var(--heroMaxH);
     }
-    .heroMedia img{ width:100%; height:auto; display:block; object-fit:cover; }
+    .heroBanner img{
+      width:100%;
+      height: 100%;
+      max-height: var(--heroMaxH);
+      object-fit: cover;
+      display:block;
+    }
 
     .badge{
       display:inline-flex;
@@ -249,7 +256,7 @@
       color: var(--muted);
       font-size: 13px;
       width: fit-content;
-      margin-top: 14px;
+      margin-top: 12px;
     }
     .badge .dot{
       width: 10px; height: 10px;
@@ -258,14 +265,14 @@
       box-shadow: 0 0 0 6px rgba(107,232,255,.10);
     }
 
-    h1{ margin: 12px 0 8px; font-size: 40px; line-height: 1.06; letter-spacing: -0.6px; }
-    .sub{ margin: 0 0 14px; color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 56ch; }
+    h1{ margin: 10px 0 8px; font-size: 40px; line-height: 1.06; letter-spacing: -0.6px; }
+    .sub{ margin: 0 0 12px; color: var(--muted); font-size: 15px; line-height: 1.6; max-width: 64ch; }
 
-    .ctaRow{ display:flex; flex-wrap: wrap; gap: 10px; align-items:center; margin-top: 12px; }
+    .ctaRow{ display:flex; flex-wrap: wrap; gap: 10px; align-items:center; margin-top: 10px; }
 
     .miniRow{
       display:flex; flex-wrap:wrap; gap: 10px;
-      margin-top: 12px;
+      margin-top: 10px;
       color: var(--muted2);
       font-size: 13px;
       line-height:1.45;
@@ -284,13 +291,12 @@
       background: rgba(10,12,20,.03);
     }
 
-    .sideCard{ padding: 18px; display:flex; flex-direction:column; gap: 12px; }
-
+    .sideCard{ padding: 16px; display:flex; flex-direction:column; gap: 10px; }
     .kpi{ display:grid; gap: 10px; }
     .kpiItem{
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 14px;
+      padding: 12px;
       background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
     }
     .kpiItem .label{ color: var(--muted); font-size: 12px; letter-spacing:.2px; margin-bottom: 6px; }
@@ -298,7 +304,6 @@
     .kpiItem a{ text-decoration: underline; text-underline-offset: 3px; }
 
     section{ margin-top: 18px; }
-
     .sectionTitle{
       display:flex;
       align-items:flex-end;
@@ -308,78 +313,6 @@
     }
     .sectionTitle h2{ margin:0; font-size: 18px; letter-spacing: .2px; }
     .sectionTitle p{ margin:0; font-size: 13px; color: var(--muted); }
-
-    /* Servicios: tarjetas mas ajustadas a la imagen */
-    .grid4{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-
-    .service{
-      position:relative;
-      border-radius: 18px;
-      border: 1px solid var(--line);
-      overflow:hidden;
-      background: rgba(255,255,255,.03);
-      min-height: 240px;
-      display:flex;
-      flex-direction:column;
-    }
-    .service .img{
-      position:relative;
-      height: 72%;
-      overflow:hidden;
-      background: rgba(255,255,255,.04);
-    }
-    .service .img img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
-      transform: scale(1.02);
-      filter: saturate(1.05) contrast(1.05);
-    }
-    .service .img::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.55));
-      pointer-events:none;
-    }
-    [data-theme="light"] .service .img::after{
-      background: linear-gradient(180deg, rgba(255,255,255,.00), rgba(255,255,255,.45));
-    }
-
-    .service .body{
-      padding: 14px;
-      display:flex;
-      flex-direction:column;
-      gap: 6px;
-      flex: 1;
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-    }
-    .service .name{
-      font-weight: 950;
-      letter-spacing:.2px;
-      font-size: 15px;
-      margin:0;
-    }
-    .service .desc{
-      margin:0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-    .service .pill{
-      margin-top: 6px;
-      width: fit-content;
-      padding: 7px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      color: var(--muted);
-      font-size: 12px;
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-    }
 
     /* Bento */
     .bento{
@@ -421,13 +354,55 @@
       color: var(--muted);
       font-size: 13px;
       line-height: 1.65;
-      max-width: 70ch;
+      max-width: 78ch;
+    }
+
+    .points{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .point{
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background: rgba(255,255,255,.03);
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+    }
+    [data-theme="light"] .point{ background: rgba(10,12,20,.03); }
+    .point .k{
+      width: 28px; height: 28px;
+      border-radius: 12px;
+      display:grid;
+      place-items:center;
+      border: 1px solid rgba(184,255,90,.35);
+      background: rgba(184,255,90,.10);
+      font-weight: 950;
+      flex: 0 0 auto;
+    }
+    [data-theme="light"] .point .k{
+      border-color: rgba(43,182,115,.35);
+      background: rgba(43,182,115,.10);
+    }
+    .point .t{
+      font-weight: 950;
+      font-size: 13px;
+      margin:0 0 4px;
+    }
+    .point .p{
+      margin:0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.6;
     }
 
     /* Horarios */
     .hoursGrid{
       display:grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       gap: 10px;
       margin-top: 12px;
     }
@@ -444,6 +419,119 @@
     [data-theme="light"] .hourItem{ background: rgba(10,12,20,.03); }
     .hourItem .d{ font-weight: 950; font-size: 13px; }
     .hourItem .h{ color: var(--muted); font-size: 13px; white-space:nowrap; }
+
+    /* Servicios cards sin vacios (altura fija + bullets) */
+    .grid4{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+    .service{
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      overflow:hidden;
+      background: rgba(255,255,255,.03);
+      min-height: 292px;
+      display:flex;
+      flex-direction:column;
+    }
+    .service .img{
+      height: 170px;
+      overflow:hidden;
+      background: rgba(255,255,255,.04);
+      position:relative;
+    }
+    .service .img img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.02);
+      filter: saturate(1.05) contrast(1.05);
+    }
+    .service .img::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.55));
+      pointer-events:none;
+    }
+    [data-theme="light"] .service .img::after{
+      background: linear-gradient(180deg, rgba(255,255,255,.00), rgba(255,255,255,.45));
+    }
+
+    .service .body{
+      padding: 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+      flex: 1;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    }
+    .service .name{
+      font-weight: 950;
+      letter-spacing:.2px;
+      font-size: 15px;
+      margin:0;
+    }
+    .service .desc{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .bullets{
+      margin:0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap: 6px;
+    }
+    .bullets li{
+      display:flex;
+      align-items:flex-start;
+      gap: 8px;
+      color: var(--muted2);
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+    .bullets .b{
+      width: 18px; height: 18px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      display:grid;
+      place-items:center;
+      font-weight: 950;
+      flex: 0 0 auto;
+      margin-top: 1px;
+    }
+
+    .service .foot{
+      margin-top:auto;
+      padding-top: 10px;
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .service .pill{
+      width: fit-content;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 12px;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      white-space:nowrap;
+    }
+    .service .miniCta{
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      white-space:nowrap;
+    }
 
     /* Especialistas */
     .specialists{
@@ -573,6 +661,18 @@
       filter: saturate(1.05) contrast(1.05);
     }
 
+    /* CTA final premium */
+    .finalCta{
+      padding: 18px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(184,255,90,.28);
+      background:
+        radial-gradient(900px 400px at 15% 15%, rgba(184,255,90,.18), transparent 55%),
+        radial-gradient(700px 340px at 85% 10%, rgba(107,232,255,.14), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      box-shadow: 0 22px 70px rgba(0,0,0,.25);
+    }
+
     footer{
       margin-top: 18px;
       padding: 18px 0 26px;
@@ -617,6 +717,7 @@
     .waFloat:hover{ transform: translateY(-2px); }
     .waSvg{ width: 34px; height: 34px; display:block; }
 
+    /* espacio para que el boton no tape el footer */
     .spacerForFloat{ height: calc(var(--waSize) + (var(--waGap) * 2)); }
 
     /* theme toggle */
@@ -637,13 +738,14 @@
     @media (max-width: 980px){
       .heroGrid{ grid-template-columns: 1fr; }
       h1{ font-size: 36px; }
-      .grid4{ grid-template-columns: repeat(2, 1fr); }
       .bento{ grid-template-columns: 1fr; }
-      .hoursGrid{ grid-template-columns: 1fr; }
+      .grid4{ grid-template-columns: repeat(2, 1fr); }
       .specialists{ grid-template-columns: 1fr; }
       .faq{ grid-template-columns: 1fr; }
       .contactGrid{ grid-template-columns: 1fr; }
       .mapWrap{ min-height: 280px; }
+      .service{ min-height: 300px; }
+      .service .img{ height: 180px; }
     }
     @media (max-width: 420px){
       h1{ font-size: 32px; }
@@ -652,6 +754,8 @@
       .logoMark{ width: 40px; height: 40px; }
       .heroCard{ padding: 18px; }
       .grid4{ grid-template-columns: 1fr; }
+      .points{ grid-template-columns: 1fr; }
+      :root{ --heroMaxH: 200px; }
     }
   </style>
 </head>
@@ -698,10 +802,6 @@
     <div class="wrap hero">
       <div class="heroGrid">
         <div class="card heroCard">
-          <div class="heroMedia">
-            <img src="https://iili.io/qfamgEP.png" alt="KINeST Salud y Bienestar - Reservá tu turno" />
-          </div>
-
           <div class="badge">
             <span class="dot" aria-hidden="true"></span>
             Centro de Estética, Kinesiología, Medicina y Terapias Holísticas
@@ -709,7 +809,7 @@
 
           <h1>Atención integral para verte y sentirte mejor</h1>
           <p class="sub">
-            En <strong>Centro Kinest</strong> trabajamos con un enfoque profesional y personalizado.
+            En <strong>Centro Kinest</strong> acompañamos a cada paciente con una mirada profesional y humana.
             Coordiná tu turno por WhatsApp, llamada o email.
           </p>
 
@@ -741,6 +841,13 @@
               centrokinest_bellavista@hotmail.com
             </span>
           </div>
+
+          <!-- HERO CHICO (menos protagonista) -->
+          <div style="margin-top:12px;">
+            <div class="heroBanner" aria-label="Imagen institucional">
+              <img src="https://iili.io/qfamgEP.png" alt="KINeST Salud y Bienestar" />
+            </div>
+          </div>
         </div>
 
         <div class="card sideCard">
@@ -761,34 +868,88 @@
             </div>
             <div class="kpiItem">
               <div class="label">Dirección</div>
-              <div class="value"><a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Av. San Martín 1392</a></div>
+              <div class="value">
+                <a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">
+                  Av. San Martín 1392
+                </a>
+              </div>
             </div>
           </div>
+
+          <div class="bentoCard" style="padding:14px;">
+            <div class="bentoTitle">
+              <h3 style="font-size:14px;">Reserva rápida</h3>
+              <div class="tag">Turnos</div>
+            </div>
+            <p class="bentoP" style="margin-top:8px;">
+              Para coordinar sin vueltas, escribinos por WhatsApp y te confirmamos disponibilidad según especialidad.
+            </p>
+            <div class="ctaRow" style="margin-top:10px;">
+              <a class="btn btnPrimary" id="btnSideWA" href="#" rel="noopener" style="width:100%;">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
+                  <path fill="#fff" d="M12.07 21.35h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.22-3.68.96.98-3.58-.24-.37a9.9 9.9 0 1 1 8.38 4.6Zm5.77-7.44c-.31-.16-1.86-.92-2.15-1.02-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61 0 1.54 1.13 3.03 1.29 3.24.16.21 2.23 3.41 5.4 4.79.75.32 1.33.51 1.79.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
+                </svg>
+                Reservar por WhatsApp
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <!-- QUIENES SOMOS (Bento) -->
+      <!-- QUIENES SOMOS -->
       <section>
         <div class="sectionTitle">
           <h2>Quiénes somos</h2>
-          <p>Centro Kinest · Bella Vista</p>
+          <p>Un centro pensado para atenderte bien</p>
         </div>
 
         <div class="bento">
           <div class="bentoCard">
             <div class="bentoTitle">
-              <h3>Un centro de salud y bienestar con enfoque integral</h3>
+              <h3>Salud y bienestar con enfoque integral</h3>
               <div class="tag">Atención personalizada</div>
             </div>
             <p class="bentoP">
-              En KINeST Salud y Bienestar acompañamos a cada paciente con una mirada profesional y humana.
-              Integramos <strong>kinesiología</strong>, <strong>medicina</strong>, <strong>estética</strong> y <strong>terapias holísticas</strong> para
-              ayudarte a sentirte mejor, con seguimiento y orientación clara.
+              En KINeST Salud y Bienestar combinamos <strong>kinesiología</strong>, <strong>medicina</strong>, <strong>estética</strong> y <strong>terapias holísticas</strong>
+              para acompañarte con una mirada profesional y humana.
             </p>
             <p class="bentoP">
-              Nuestro objetivo es que puedas coordinar tu turno de forma simple y que encuentres un espacio cuidado,
-              cómodo y ordenado para tu atención.
+              Priorizamos una atención ordenada: te orientamos, coordinamos tu turno y hacemos seguimiento según tu caso.
             </p>
+
+            <div class="points" aria-label="Compromisos">
+              <div class="point">
+                <div class="k">1</div>
+                <div>
+                  <p class="t">Orientación clara</p>
+                  <p class="p">Te indicamos cómo coordinar y qué información conviene traer.</p>
+                </div>
+              </div>
+              <div class="point">
+                <div class="k">2</div>
+                <div>
+                  <p class="t">Atención cuidada</p>
+                  <p class="p">Ambiente cómodo, profesional y pensado para tu bienestar.</p>
+                </div>
+              </div>
+              <div class="point">
+                <div class="k">3</div>
+                <div>
+                  <p class="t">Seguimiento</p>
+                  <p class="p">Si aplica, planificamos próximos pasos y control.</p>
+                </div>
+              </div>
+              <div class="point">
+                <div class="k">4</div>
+                <div>
+                  <p class="t">Turnos sin vueltas</p>
+                  <p class="p">Confirmación por WhatsApp con disponibilidad real.</p>
+                </div>
+              </div>
+            </div>
+
             <div class="ctaRow" style="margin-top:14px;">
               <a class="btn btnPrimary" id="btnAboutWA" href="#" rel="noopener">
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -804,37 +965,33 @@
           <div class="bentoCard" id="horarios">
             <div class="bentoTitle">
               <h3>Horarios</h3>
-              <div class="tag">Confirmación por WhatsApp</div>
+              <div class="tag">Por especialidad</div>
             </div>
             <p class="bentoP" style="margin-top:10px;">
-              Los horarios pueden variar según especialidad. Para confirmar disponibilidad y turnos, escribinos por WhatsApp.
+              Los horarios pueden variar según especialidad y disponibilidad. Para confirmar, escribinos por WhatsApp.
             </p>
 
-            <div class="hoursGrid" aria-label="Horarios (referencia)">
-              <div class="hourItem"><div class="d">Lunes</div><div class="h">09:00 a 19:00</div></div>
-              <div class="hourItem"><div class="d">Martes</div><div class="h">09:00 a 19:00</div></div>
-              <div class="hourItem"><div class="d">Miércoles</div><div class="h">09:00 a 19:00</div></div>
-              <div class="hourItem"><div class="d">Jueves</div><div class="h">09:00 a 19:00</div></div>
-              <div class="hourItem"><div class="d">Viernes</div><div class="h">09:00 a 19:00</div></div>
-              <div class="hourItem"><div class="d">Sábados</div><div class="h">Con turno previo</div></div>
+            <div class="hoursGrid" aria-label="Horarios de referencia">
+              <div class="hourItem"><div class="d">Lunes a viernes</div><div class="h">mañana y tarde</div></div>
+              <div class="hourItem"><div class="d">Sábados</div><div class="h">con turno previo</div></div>
+              <div class="hourItem"><div class="d">Reprogramación</div><div class="h">por WhatsApp</div></div>
             </div>
 
             <div class="ctaRow" style="margin-top:14px;">
-              <a class="btn btnPrimary" id="btnHoursWA" href="#" rel="noopener">
+              <a class="btn btnPrimary" id="btnHoursWA" href="#" rel="noopener" style="width:100%;">
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                   <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
                   <path fill="#fff" d="M12.07 21.35h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.22-3.68.96.98-3.58-.24-.37a9.9 9.9 0 1 1 8.38 4.6Zm5.77-7.44c-.31-.16-1.86-.92-2.15-1.02-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61 0 1.54 1.13 3.03 1.29 3.24.16.21 2.23 3.41 5.4 4.79.75.32 1.33.51 1.79.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
                 </svg>
-                Confirmar horario
+                Confirmar horario por WhatsApp
               </a>
-              <a class="btn" href="tel:40075744">Llamar 4007-5744</a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SERVICIOS (con imagen ajustada) -->
-      <section>
+      <!-- SERVICIOS -->
+      <section id="servicios">
         <div class="sectionTitle">
           <h2>Servicios</h2>
           <p>Áreas principales</p>
@@ -846,7 +1003,15 @@
             <div class="body">
               <p class="name">Kinesiología</p>
               <p class="desc">Acompañamiento profesional para mejorar movilidad y recuperar bienestar.</p>
-              <span class="pill">Atención con turno</span>
+              <ul class="bullets">
+                <li><span class="b">✓</span><span>Evaluación inicial y orientación</span></li>
+                <li><span class="b">✓</span><span>Plan de trabajo según necesidad</span></li>
+                <li><span class="b">✓</span><span>Seguimiento y reprogramación simple</span></li>
+              </ul>
+              <div class="foot">
+                <span class="pill">Turno previo</span>
+                <a class="miniCta" href="#contacto">Consultar</a>
+              </div>
             </div>
           </article>
 
@@ -854,8 +1019,16 @@
             <div class="img"><img src="https://iili.io/qfcFku9.jpg" alt="Estética" loading="lazy" /></div>
             <div class="body">
               <p class="name">Estética</p>
-              <p class="desc">Tratamientos orientados a resultados, con una atención cuidada y personalizada.</p>
-              <span class="pill">Evaluación previa</span>
+              <p class="desc">Tratamientos orientados a resultados, con atención cuidada y personalizada.</p>
+              <ul class="bullets">
+                <li><span class="b">✓</span><span>Evaluación previa según objetivo</span></li>
+                <li><span class="b">✓</span><span>Seguimiento y recomendaciones</span></li>
+                <li><span class="b">✓</span><span>Turnos coordinados por WhatsApp</span></li>
+              </ul>
+              <div class="foot">
+                <span class="pill">Evaluación</span>
+                <a class="miniCta" href="#contacto">Consultar</a>
+              </div>
             </div>
           </article>
 
@@ -864,7 +1037,15 @@
             <div class="body">
               <p class="name">Medicina</p>
               <p class="desc">Consulta y orientación integral para tomar decisiones con respaldo profesional.</p>
-              <span class="pill">Consulta profesional</span>
+              <ul class="bullets">
+                <li><span class="b">✓</span><span>Consulta y orientación</span></li>
+                <li><span class="b">✓</span><span>Indicaciones claras para seguir</span></li>
+                <li><span class="b">✓</span><span>Coordinación de turnos simple</span></li>
+              </ul>
+              <div class="foot">
+                <span class="pill">Consulta</span>
+                <a class="miniCta" href="#contacto">Consultar</a>
+              </div>
             </div>
           </article>
 
@@ -873,47 +1054,61 @@
             <div class="body">
               <p class="name">Terapias holísticas</p>
               <p class="desc">Enfoque complementario para equilibrio y bienestar, con seguimiento humano.</p>
-              <span class="pill">Acompañamiento integral</span>
+              <ul class="bullets">
+                <li><span class="b">✓</span><span>Acompañamiento integral</span></li>
+                <li><span class="b">✓</span><span>Seguimiento según evolución</span></li>
+                <li><span class="b">✓</span><span>Turnos coordinados por WhatsApp</span></li>
+              </ul>
+              <div class="foot">
+                <span class="pill">Bienestar</span>
+                <a class="miniCta" href="#contacto">Consultar</a>
+              </div>
             </div>
           </article>
         </div>
       </section>
 
-      <!-- COMO TRABAJAMOS -->
+      <!-- INDICACIONES -->
       <section>
         <div class="sectionTitle">
-          <h2>Cómo coordinamos tu turno</h2>
-          <p>Simple y ordenado</p>
+          <h2>Indicaciones para tu turno</h2>
+          <p>Para una atención más ágil</p>
         </div>
 
         <div class="bento" style="grid-template-columns: 1fr 1fr;">
           <div class="bentoCard">
             <div class="bentoTitle">
-              <h3>1) Nos escribís</h3>
-              <div class="tag">WhatsApp</div>
+              <h3>Antes de venir</h3>
+              <div class="tag">Checklist</div>
             </div>
-            <p class="bentoP">Contanos qué necesitás y, si querés, qué día/horario preferís.</p>
+            <div class="points" style="grid-template-columns: 1fr;">
+              <div class="point"><div class="k">✓</div><div><p class="t">Traé estudios si tenés</p><p class="p">Radiografías, resonancias, análisis, informes previos.</p></div></div>
+              <div class="point"><div class="k">✓</div><div><p class="t">Llegá 10 minutos antes</p><p class="p">Para ingresar con calma y comenzar a horario.</p></div></div>
+              <div class="point"><div class="k">✓</div><div><p class="t">Reprogramación</p><p class="p">Si necesitás cambiar el turno, avisá por WhatsApp.</p></div></div>
+            </div>
           </div>
+
           <div class="bentoCard">
             <div class="bentoTitle">
-              <h3>2) Confirmamos</h3>
-              <div class="tag">Disponibilidad</div>
+              <h3>Obras sociales y pagos</h3>
+              <div class="tag">Consultá</div>
             </div>
-            <p class="bentoP">Te proponemos opciones y dejamos el turno confirmado de forma simple.</p>
-          </div>
-          <div class="bentoCard">
-            <div class="bentoTitle">
-              <h3>3) Atención en el centro</h3>
-              <div class="tag">Seguimiento</div>
+            <p class="bentoP">
+              Consultanos por WhatsApp para confirmar cobertura (obras sociales / prepagas) y medios de pago disponibles al momento de coordinar.
+            </p>
+            <div class="points" style="margin-top:12px;">
+              <div class="point"><div class="k">1</div><div><p class="t">Coberturas</p><p class="p">Confirmación por especialidad y disponibilidad.</p></div></div>
+              <div class="point"><div class="k">2</div><div><p class="t">Medios de pago</p><p class="p">Consulta por opciones vigentes al coordinar.</p></div></div>
             </div>
-            <p class="bentoP">Atención profesional y seguimiento. Si aplica, planificamos próximos pasos.</p>
-          </div>
-          <div class="bentoCard">
-            <div class="bentoTitle">
-              <h3>4) Si necesitás, reprogramamos</h3>
-              <div class="tag">Sin vueltas</div>
+            <div class="ctaRow" style="margin-top:14px;">
+              <a class="btn btnPrimary" id="btnCoverageWA" href="#" rel="noopener" style="width:100%;">
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
+                  <path fill="#fff" d="M12.07 21.35h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.22-3.68.96.98-3.58-.24-.37a9.9 9.9 0 1 1 8.38 4.6Zm5.77-7.44c-.31-.16-1.86-.92-2.15-1.02-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61 0 1.54 1.13 3.03 1.29 3.24.16.21 2.23 3.41 5.4 4.79.75.32 1.33.51 1.79.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
+                </svg>
+                Consultar coberturas y pagos
+              </a>
             </div>
-            <p class="bentoP">Podés avisarnos por WhatsApp para reprogramar según disponibilidad.</p>
           </div>
         </div>
       </section>
@@ -965,7 +1160,7 @@
             </div>
 
             <div class="ctaRow" style="margin-top:14px;">
-              <a class="btn btnPrimary" id="btnSpec2WA" href="#" rel="noopener">
+              <a class="btn btnPrimary" id="btnSpec2WA" href="#" rel="noopener" style="width:100%;">
                 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
                   <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
                   <path fill="#fff" d="M12.07 21.35h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.22-3.68.96.98-3.58-.24-.37a9.9 9.9 0 1 1 8.38 4.6Zm5.77-7.44c-.31-.16-1.86-.92-2.15-1.02-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61 0 1.54 1.13 3.03 1.29 3.24.16.21 2.23 3.41 5.4 4.79.75.32 1.33.51 1.79.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
@@ -986,8 +1181,7 @@
 
         <div class="faq">
           <details>
-            <summary>
-              ¿Cómo saco turno?
+            <summary>¿Cómo saco turno?
               <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </summary>
             <div class="ans">
@@ -996,34 +1190,60 @@
           </details>
 
           <details>
-            <summary>
-              ¿Qué horarios manejan?
+            <summary>¿Qué horarios manejan?
               <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </summary>
             <div class="ans">
-              Los horarios pueden variar según especialidad. En el bloque de Horarios tenés una referencia y por WhatsApp confirmamos disponibilidad.
+              Los horarios pueden variar según especialidad. Confirmamos disponibilidad al momento de coordinar el turno por WhatsApp.
             </div>
           </details>
 
           <details>
-            <summary>
-              ¿Dónde están ubicados?
+            <summary>¿Dónde están ubicados?
               <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </summary>
             <div class="ans">
-              Av. San Martín 1392, Bella Vista, Buenos Aires (1661). Abajo tenés el mapa para llegar.
+              Av. San Martín 1392, Bella Vista, Buenos Aires (1661). En la sección de Contacto tenés el mapa para llegar.
             </div>
           </details>
 
           <details>
-            <summary>
-              ¿Puedo reprogramar un turno?
+            <summary>¿Puedo reprogramar un turno?
               <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </summary>
             <div class="ans">
               Sí. Avisanos por WhatsApp y lo reprogramamos según disponibilidad.
             </div>
           </details>
+        </div>
+      </section>
+
+      <!-- CTA FINAL -->
+      <section>
+        <div class="sectionTitle">
+          <h2>Reservá tu turno</h2>
+          <p>Respuesta rápida por WhatsApp</p>
+        </div>
+
+        <div class="finalCta">
+          <div class="bentoTitle">
+            <h3>Coordiná por WhatsApp o llamanos</h3>
+            <div class="tag">Centro Kinest</div>
+          </div>
+          <p class="bentoP" style="margin-top:10px;">
+            Escribinos por WhatsApp y te confirmamos disponibilidad según la especialidad. También podés llamar a los teléfonos del centro.
+          </p>
+          <div class="ctaRow" style="margin-top:14px;">
+            <a class="btn btnPrimary" id="btnFinalWA" href="#" rel="noopener">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
+                <path fill="#fff" d="M12.07 21.35h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.22-3.68.96.98-3.58-.24-.37a9.9 9.9 0 1 1 8.38 4.6Zm5.77-7.44c-.31-.16-1.86-.92-2.15-1.02-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61 0 1.54 1.13 3.03 1.29 3.24.16.21 2.23 3.41 5.4 4.79.75.32 1.33.51 1.79.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
+              </svg>
+              Pedir turno por WhatsApp
+            </a>
+            <a class="btn" href="tel:40075744">4007-5744</a>
+            <a class="btn" href="tel:48964254">4896-4254</a>
+          </div>
         </div>
       </section>
 
@@ -1090,10 +1310,15 @@
             <span style="margin-left:8px;">· Centro Kinest · Bella Vista</span>
           </div>
           <div>
-            <a href="#contacto">Contacto</a>
+            <a href="#servicios">Servicios</a>
             <span style="margin:0 8px;">|</span>
-            <a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">Instagram</a>
+            <a href="#contacto">Contacto</a>
           </div>
+        </div>
+
+        <div class="footRow" style="margin-top:10px;">
+          <div>Creado y diseñado por <a href="https://ciborg347.onrender.com" target="_blank" rel="noopener">Ciborg 347</a></div>
+          <div><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">Instagram</a></div>
         </div>
       </footer>
     </div>
@@ -1113,7 +1338,8 @@
       const waHref = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(WA_TEXT);
 
       const ids = [
-        "btnNavWA","btnHeroWA","btnBottomWA","btnSpecWA","btnSpec2WA","btnAboutWA","btnHoursWA",
+        "btnNavWA","btnHeroWA","btnBottomWA","btnSpecWA","btnSpec2WA",
+        "btnAboutWA","btnHoursWA","btnCoverageWA","btnFinalWA","btnSideWA",
         "waFloat","waTextLink","waContactLink","waSpecLink"
       ];
       ids.forEach(id => {
