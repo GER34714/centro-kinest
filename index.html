@@ -1,0 +1,872 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KINeST Salud y Bienestar | Centro Kinest - Bella Vista</title>
+  <meta name="description" content="Centro de Estética, Kinesiología, Medicina y Terapias Holísticas en Bella Vista. Turnos por WhatsApp, llamada o email." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="KINeST Salud y Bienestar | Centro Kinest - Bella Vista" />
+  <meta property="og:description" content="Centro de Estética, Kinesiología, Medicina y Terapias Holísticas en Bella Vista. Turnos por WhatsApp, llamada o email." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <!-- Nota: og:image se deja sin definir porque no se proporcionó una imagen específica para usar como preview -->
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="KINeST Salud y Bienestar | Centro Kinest - Bella Vista" />
+  <meta name="twitter:description" content="Centro de Estética, Kinesiología, Medicina y Terapias Holísticas en Bella Vista. Turnos por WhatsApp, llamada o email." />
+
+  <style>
+    :root{
+      --bg: #070A12;
+      --bg2:#0B0F1E;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.10);
+      --line: rgba(255,255,255,.14);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.56);
+      --accent: #B8FF5A;
+      --accent2:#6BE8FF;
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+      --blur: 16px;
+      --pad: 18px;
+      --pad2: 26px;
+      --waSize: 56px;
+      --waGap: 18px;
+    }
+
+    [data-theme="light"]{
+      --bg: #F6F7FB;
+      --bg2:#EEF1F8;
+      --panel: rgba(10,12,20,.05);
+      --panel2: rgba(10,12,20,.08);
+      --line: rgba(10,12,20,.12);
+      --text: rgba(10,12,20,.92);
+      --muted: rgba(10,12,20,.68);
+      --muted2: rgba(10,12,20,.55);
+      --accent: #2BB673;
+      --accent2:#2D7CFF;
+      --shadow: 0 18px 60px rgba(0,0,0,.12);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 700px at 15% 10%, rgba(107,232,255,.20), transparent 55%),
+                  radial-gradient(900px 600px at 85% 15%, rgba(184,255,90,.18), transparent 55%),
+                  radial-gradient(1200px 800px at 50% 110%, rgba(255,255,255,.06), transparent 60%),
+                  linear-gradient(180deg, var(--bg), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:100%; max-width: var(--max); margin:0 auto; padding: 0 18px; }
+
+    /* subtle grain */
+    .grain{
+      pointer-events:none;
+      position:fixed; inset:0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+      opacity:.22;
+    }
+
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      background: linear-gradient(180deg, rgba(0,0,0,.20), rgba(0,0,0,0));
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    [data-theme="light"] header{
+      background: linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,0));
+      border-bottom: 1px solid rgba(10,12,20,.10);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 14px 0;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .logoMark{
+      width: 44px; height: 44px;
+      border-radius: 999px;
+      display:grid;
+      place-items:center;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(107,232,255,.35), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(184,255,90,.28), transparent 60%),
+        linear-gradient(180deg, var(--panel), var(--panel2));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      flex: 0 0 auto;
+    }
+
+    .brandText{
+      display:flex;
+      flex-direction:column;
+      gap: 2px;
+      min-width:0;
+      line-height:1.05;
+    }
+
+    .brandText .t1{
+      font-weight: 900;
+      letter-spacing: .3px;
+      font-size: 14px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .brandText .t2{
+      font-size: 12px;
+      color: var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .navRight{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--panel), rgba(255,255,255,.02));
+      box-shadow: 0 12px 30px rgba(0,0,0,.18);
+      font-size: 13px;
+      color: var(--muted);
+      transition: transform .15s ease, background .15s ease;
+      user-select:none;
+    }
+    .chip:hover{ transform: translateY(-1px); background: linear-gradient(180deg, var(--panel2), rgba(255,255,255,.03)); }
+    .chip strong{ color: var(--text); font-weight: 800; }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+      box-shadow: 0 18px 45px rgba(0,0,0,.20);
+      color: var(--text);
+      font-weight: 800;
+      letter-spacing: .2px;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06)); }
+    .btn:active{ transform: translateY(0px); }
+
+    .btnPrimary{
+      border-color: rgba(184,255,90,.35);
+      background:
+        radial-gradient(600px 220px at 20% 20%, rgba(184,255,90,.28), transparent 55%),
+        radial-gradient(500px 220px at 85% 40%, rgba(107,232,255,.18), transparent 58%),
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+    }
+
+    .btnGhost{
+      background: transparent;
+      box-shadow:none;
+    }
+
+    .icon{
+      width: 18px; height: 18px;
+      opacity:.9;
+      flex: 0 0 auto;
+    }
+
+    main{ padding: 26px 0 80px; }
+
+    .hero{
+      padding: 28px 0 10px;
+    }
+
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .card{
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      background:
+        radial-gradient(900px 400px at 15% 15%, rgba(107,232,255,.14), transparent 55%),
+        radial-gradient(700px 340px at 85% 10%, rgba(184,255,90,.12), transparent 60%),
+        linear-gradient(180deg, var(--panel), rgba(255,255,255,.02));
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(var(--blur));
+      -webkit-backdrop-filter: blur(var(--blur));
+      overflow:hidden;
+    }
+
+    .heroCard{
+      padding: 26px;
+      position:relative;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+      color: var(--muted);
+      font-size: 13px;
+      width: fit-content;
+    }
+    .badge .dot{
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, var(--accent2), rgba(255,255,255,.15));
+      box-shadow: 0 0 0 6px rgba(107,232,255,.10);
+    }
+
+    h1{
+      margin: 14px 0 8px;
+      font-size: 44px;
+      line-height: 1.05;
+      letter-spacing: -0.6px;
+    }
+    .sub{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 54ch;
+    }
+
+    .ctaRow{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items:center;
+      margin-top: 14px;
+    }
+
+    .miniRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      margin-top: 14px;
+      color: var(--muted2);
+      font-size: 13px;
+      line-height:1.45;
+    }
+    .miniRow span{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px dashed rgba(255,255,255,.18);
+      background: rgba(255,255,255,.03);
+    }
+    [data-theme="light"] .miniRow span{
+      border-color: rgba(10,12,20,.18);
+      background: rgba(10,12,20,.03);
+    }
+
+    .sideCard{
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+
+    .kpi{
+      display:grid;
+      gap: 10px;
+    }
+    .kpiItem{
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.02));
+    }
+    .kpiItem .label{
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing:.2px;
+      margin-bottom: 6px;
+    }
+    .kpiItem .value{
+      font-weight: 900;
+      letter-spacing: .2px;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+    .kpiItem a{ text-decoration: underline; text-underline-offset: 3px; }
+
+    section{
+      margin-top: 18px;
+    }
+
+    .sectionTitle{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 12px;
+      margin: 18px 0 10px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+    .sectionTitle p{
+      margin:0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .grid4{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .service{
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      min-height: 110px;
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+    }
+    .service .name{
+      font-weight: 900;
+      letter-spacing:.2px;
+    }
+    .service .desc{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .step{
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+    }
+    .step .n{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      display:grid; place-items:center;
+      font-weight: 900;
+      border: 1px solid rgba(184,255,90,.35);
+      background: rgba(184,255,90,.10);
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    [data-theme="light"] .step .n{
+      border-color: rgba(43,182,115,.35);
+      background: rgba(43,182,115,.10);
+    }
+    .step .t{
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+    .step .p{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .contactGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .contactCard{
+      padding: 18px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      overflow:hidden;
+    }
+
+    .list{
+      display:grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .li{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 12px 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+    }
+    [data-theme="light"] .li{ background: rgba(10,12,20,.03); }
+    .li .k{
+      color: var(--muted);
+      font-size: 13px;
+      min-width: 92px;
+      padding-top: 2px;
+    }
+    .li .v{
+      font-weight: 800;
+      text-align:right;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .li .v a{
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .mapWrap{
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow:hidden;
+      height: 100%;
+      min-height: 320px;
+      background: rgba(255,255,255,.03);
+    }
+    .mapWrap iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      filter: saturate(1.05) contrast(1.05);
+    }
+
+    footer{
+      margin-top: 18px;
+      padding: 18px 0 26px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,.10);
+    }
+    [data-theme="light"] footer{ border-top-color: rgba(10,12,20,.10); }
+    .footRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .footRow a{ text-decoration: underline; text-underline-offset: 3px; }
+
+    /* floating WhatsApp */
+    .waFloat{
+      position: fixed;
+      right: var(--waGap);
+      bottom: var(--waGap);
+      z-index: 60;
+      width: var(--waSize);
+      height: var(--waSize);
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(0,0,0,.18);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 18px 45px rgba(0,0,0,.30);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      transition: transform .15s ease;
+    }
+    [data-theme="light"] .waFloat{
+      background: rgba(255,255,255,.70);
+      border-color: rgba(10,12,20,.10);
+      box-shadow: 0 18px 45px rgba(0,0,0,.12);
+    }
+    .waFloat:hover{ transform: translateY(-2px); }
+    .waFloat img{
+      width: 34px; height: 34px;
+      display:block;
+    }
+
+    /* avoid overlap with footer on small screens */
+    .spacerForFloat{
+      height: calc(var(--waSize) + (var(--waGap) * 2));
+    }
+
+    /* theme toggle */
+    .toggle{
+      width: 46px; height: 42px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      transition: transform .15s ease;
+      box-shadow: 0 12px 30px rgba(0,0,0,.16);
+    }
+    .toggle:hover{ transform: translateY(-1px); }
+    .toggle svg{ width: 18px; height: 18px; opacity:.9; }
+
+    /* responsive */
+    @media (max-width: 980px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      h1{ font-size: 38px; }
+      .grid4{ grid-template-columns: repeat(2, 1fr); }
+      .steps{ grid-template-columns: 1fr; }
+      .contactGrid{ grid-template-columns: 1fr; }
+      .mapWrap{ min-height: 280px; }
+    }
+    @media (max-width: 420px){
+      h1{ font-size: 34px; }
+      .btn{ width: 100%; justify-content:center; }
+      .chip{ display:none; }
+      .logoMark{ width: 40px; height: 40px; }
+      .heroCard{ padding: 20px; }
+      .grid4{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <div class="logoMark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" class="icon" aria-hidden="true">
+              <path d="M7 7l10 10M17 7L7 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="brandText">
+            <div class="t1">KINeST Salud y Bienestar</div>
+            <div class="t2">Centro Kinest · Bella Vista</div>
+          </div>
+        </div>
+
+        <div class="navRight">
+          <span class="chip"><strong>Turnos</strong> por WhatsApp o llamada</span>
+
+          <button class="toggle" id="themeToggle" aria-label="Cambiar tema">
+            <svg id="themeIcon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3v2.2M12 18.8V21M4.2 12H3M21 12h-1.2M6 6l-1.6-1.6M19.6 19.6 18 18M18 6l1.6-1.6M4.4 19.6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </button>
+
+          <a class="btn btnPrimary" id="btnNavWA" href="#" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M20 11.2A8.2 8.2 0 1 1 8.4 3.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M20 4v6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            Pedir turno
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div class="heroGrid">
+        <div class="card heroCard">
+          <div class="badge">
+            <span class="dot" aria-hidden="true"></span>
+            Centro de Estética, Kinesiología, Medicina y Terapias Holísticas
+          </div>
+
+          <h1>Atención integral para verte y sentirte mejor</h1>
+          <p class="sub">
+            En <strong>Centro Kinest</strong> te acompañamos con un enfoque profesional y personalizado.
+            Coordiná tu turno por WhatsApp, llamada o email.
+          </p>
+
+          <div class="ctaRow">
+            <a class="btn btnPrimary" id="btnHeroWA" href="#" rel="noopener">
+              <img alt="" aria-hidden="true" src="https://iili.io/fm1NjzQ.jpg" style="width:18px;height:18px;border-radius:4px;display:block;" />
+              Pedir turno por WhatsApp
+            </a>
+            <a class="btn" href="tel:40075744">Llamar 4007-5744</a>
+            <a class="btn btnGhost" href="#contacto">Ver contacto</a>
+          </div>
+
+          <div class="miniRow">
+            <span title="Dirección">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 21s7-5.3 7-11a7 7 0 1 0-14 0c0 5.7 7 11 7 11Z" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 12.2a2.2 2.2 0 1 0 0-4.4 2.2 2.2 0 0 0 0 4.4Z" stroke="currentColor" stroke-width="2"/>
+              </svg>
+              Av. San Martín 1392, Bella Vista
+            </span>
+            <span title="Email">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2"/>
+                <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              centrokinest_bellavista@hotmail.com
+            </span>
+          </div>
+        </div>
+
+        <div class="card sideCard">
+          <div class="kpi">
+            <div class="kpiItem">
+              <div class="label">WhatsApp / Turnos</div>
+              <div class="value"><a id="waTextLink" href="#" rel="noopener">11-6567-1472</a></div>
+            </div>
+            <div class="kpiItem">
+              <div class="label">Teléfonos</div>
+              <div class="value">
+                <a href="tel:40075744">4007-5744</a> · <a href="tel:48964254">4896-4254</a>
+              </div>
+            </div>
+            <div class="kpiItem">
+              <div class="label">Instagram</div>
+              <div class="value"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div>
+            </div>
+            <div class="kpiItem">
+              <div class="label">Facebook</div>
+              <div class="value"><a href="https://www.facebook.com/" target="_blank" rel="noopener">Centro Kinest</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section>
+        <div class="sectionTitle">
+          <h2>Servicios</h2>
+          <p>Lo esencial, claro y directo</p>
+        </div>
+
+        <div class="grid4">
+          <div class="service">
+            <div class="name">Kinesiología</div>
+            <p class="desc">Acompañamiento profesional para mejorar movilidad, aliviar molestias y recuperar bienestar.</p>
+          </div>
+          <div class="service">
+            <div class="name">Estética</div>
+            <p class="desc">Tratamientos orientados a resultados, con una atención cuidada y personalizada.</p>
+          </div>
+          <div class="service">
+            <div class="name">Medicina</div>
+            <p class="desc">Consulta y orientación integral para tomar decisiones con respaldo profesional.</p>
+          </div>
+          <div class="service">
+            <div class="name">Terapias holísticas</div>
+            <p class="desc">Enfoque complementario para equilibrio, bienestar y seguimiento humano.</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sectionTitle">
+          <h2>Cómo coordinamos tu turno</h2>
+          <p>En 3 pasos</p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="n">1</div>
+            <div class="t">Escribís por WhatsApp</div>
+            <p class="p">Contanos qué necesitás y te orientamos para coordinar el mejor horario.</p>
+          </div>
+          <div class="step">
+            <div class="n">2</div>
+            <div class="t">Confirmamos disponibilidad</div>
+            <p class="p">Te proponemos opciones y dejamos el turno confirmado de forma simple.</p>
+          </div>
+          <div class="step">
+            <div class="n">3</div>
+            <div class="t">Venís al centro</div>
+            <p class="p">Atención profesional y seguimiento. Si querés, planificamos próximos pasos.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto">
+        <div class="sectionTitle">
+          <h2>Contacto y ubicación</h2>
+          <p>Para coordinar rápido</p>
+        </div>
+
+        <div class="contactGrid">
+          <div class="contactCard">
+            <div class="badge" style="margin-bottom:10px;">
+              <span class="dot" aria-hidden="true"></span>
+              Centro Kinest · Bella Vista
+            </div>
+
+            <div class="list">
+              <div class="li">
+                <div class="k">WhatsApp</div>
+                <div class="v"><a id="waContactLink" href="#" rel="noopener">11-6567-1472</a></div>
+              </div>
+              <div class="li">
+                <div class="k">Teléfono</div>
+                <div class="v"><a href="tel:40075744">4007-5744</a></div>
+              </div>
+              <div class="li">
+                <div class="k">Teléfono</div>
+                <div class="v"><a href="tel:48964254">4896-4254</a></div>
+              </div>
+              <div class="li">
+                <div class="k">Email</div>
+                <div class="v"><a href="mailto:centrokinest_bellavista@hotmail.com">centrokinest_bellavista@hotmail.com</a></div>
+              </div>
+              <div class="li">
+                <div class="k">Dirección</div>
+                <div class="v">
+                  <a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">
+                    Av. San Martín 1392, Bella Vista (1661)
+                  </a>
+                </div>
+              </div>
+              <div class="li">
+                <div class="k">Instagram</div>
+                <div class="v"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div>
+              </div>
+              <div class="li">
+                <div class="k">Facebook</div>
+                <div class="v"><a href="https://www.facebook.com/" target="_blank" rel="noopener">Centro Kinest</a></div>
+              </div>
+            </div>
+
+            <div class="ctaRow" style="margin-top:14px;">
+              <a class="btn btnPrimary" id="btnBottomWA" href="#" rel="noopener">
+                <img alt="" aria-hidden="true" src="https://iili.io/fm1NjzQ.jpg" style="width:18px;height:18px;border-radius:4px;display:block;" />
+                Pedir turno por WhatsApp
+              </a>
+              <a class="btn" href="tel:1165671472">Llamar 11-6567-1472</a>
+            </div>
+
+            <div class="spacerForFloat" aria-hidden="true"></div>
+          </div>
+
+          <div class="mapWrap" aria-label="Mapa">
+            <iframe
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661&output=embed"
+              title="Mapa: Av. San Martín 1392, Bella Vista">
+            </iframe>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footRow">
+          <div>
+            <strong style="color:var(--text);">KINeST Salud y Bienestar</strong>
+            <span style="margin-left:8px;">· Centro Kinest · Bella Vista</span>
+          </div>
+          <div>
+            <a href="#contacto">Contacto</a>
+            <span style="margin:0 8px;">|</span>
+            <a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">Instagram</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <a class="waFloat" id="waFloat" href="#" rel="noopener" aria-label="Pedir turno por WhatsApp">
+    <img src="https://iili.io/fm1NjzQ.jpg" alt="WhatsApp" />
+  </a>
+
+  <script>
+    (function(){
+      // Datos
+      const WHATSAPP_NUMBER = "5491165671472"; // AR +54 9 11 + 6567 1472
+      const WA_TEXT = "Hola! Quiero pedir un turno en Centro Kinest. Me indicás disponibilidad?";
+
+      function buildWaLink() {
+        const text = encodeURIComponent(WA_TEXT);
+        return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + text;
+      }
+
+      // Links WhatsApp
+      const waHref = buildWaLink();
+      const ids = ["btnNavWA","btnHeroWA","btnBottomWA","waFloat","waTextLink","waContactLink"];
+      ids.forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.setAttribute("href", waHref);
+      });
+
+      // Tema (por defecto: respeta sistema)
+      const root = document.documentElement;
+      const toggle = document.getElementById("themeToggle");
+      const icon = document.getElementById("themeIcon");
+
+      function setTheme(theme){
+        root.setAttribute("data-theme", theme);
+        localStorage.setItem("kinest_theme", theme);
+        // icon swap simple
+        if(theme === "light"){
+          icon.innerHTML = "<path d='M21 12.8A8.5 8.5 0 1 1 11.2 3a6.7 6.7 0 0 0 9.8 9.8Z' stroke='currentColor' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/>";
+        } else {
+          icon.innerHTML =
+            "<path d='M12 3v2.2M12 18.8V21M4.2 12H3M21 12h-1.2M6 6l-1.6-1.6M19.6 19.6 18 18M18 6l1.6-1.6M4.4 19.6 6 18' stroke='currentColor' stroke-width='2' stroke-linecap='round'/>" +
+            "<path d='M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z' stroke='currentColor' stroke-width='2' fill='none'/>";
+        }
+      }
+
+      const saved = localStorage.getItem("kinest_theme");
+      if(saved){
+        setTheme(saved);
+      } else {
+        const prefersLight = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+        setTheme(prefersLight ? "light" : "dark");
+      }
+
+      toggle.addEventListener("click", function(){
+        const current = root.getAttribute("data-theme") || "dark";
+        setTheme(current === "dark" ? "light" : "dark");
+      });
+    })();
+  </script>
+</body>
+</html>
