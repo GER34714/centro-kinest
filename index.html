@@ -1,20 +1,17 @@
-
 <!doctype html>
-<html lang="es">
+<html lang="es" style="scroll-behavior: smooth;">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KINeST Salud y Bienestar | Centro Kinest - Bella Vista</title>
   <meta name="description" content="Centro de Estética, Kinesiología, Medicina y Terapias Holísticas en Bella Vista. Turnos por WhatsApp, llamada o email." />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="KINeST Salud y Bienestar | Centro Kinest - Bella Vista" />
   <meta property="og:description" content="Centro de Estética, Kinesiología, Medicina y Terapias Holísticas en Bella Vista. Turnos por WhatsApp, llamada o email." />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="es_AR" />
   <meta property="og:image" content="https://iili.io/qfamgEP.png" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="KINeST Salud y Bienestar | Centro Kinest - Bella Vista" />
   <meta name="twitter:description" content="Centro de Estética, Kinesiología, Medicina y Terapias Holísticas en Bella Vista. Turnos por WhatsApp, llamada o email." />
@@ -42,10 +39,7 @@
       --waSize:56px;
       --waGap:18px;
 
-      /* mas hero, mas premium */
       --heroMaxH: 280px;
-
-      /* ritmo premium */
       --secGap: 20px;
       --secGap2: 26px;
 
@@ -216,14 +210,14 @@
       font-weight: 900;
       letter-spacing: .2px;
       cursor:pointer;
-      transition: transform .15s ease, background .15s ease;
+      transition: all .2s ease;
       white-space:nowrap;
     }
     [data-theme="dark"] .btn{
       background: rgba(255,255,255,.08);
       box-shadow: 0 18px 45px rgba(0,0,0,.25);
     }
-    .btn:hover{ transform: translateY(-1px); }
+    .btn:hover{ transform: translateY(-2px); }
     .btn:active{ transform: translateY(0px); }
 
     .btnPrimary{
@@ -238,6 +232,10 @@
         radial-gradient(600px 220px at 20% 20%, rgba(43,182,115,.22), transparent 55%),
         radial-gradient(500px 220px at 85% 40%, rgba(45,124,255,.14), transparent 58%),
         rgba(255,255,255,.08);
+    }
+    /* Glow effect para botones primarios */
+    .btnPrimary:hover {
+      box-shadow: 0 10px 25px rgba(43, 182, 115, 0.35);
     }
 
     .btnGhost{
@@ -262,7 +260,7 @@
       background: rgba(255,255,255,.06);
       box-shadow: 0 12px 30px rgba(0,0,0,.24);
     }
-    .toggle:hover{ transform: translateY(-1px); }
+    .toggle:hover{ transform: translateY(-2px); }
     .toggle svg{ width: 18px; height: 18px; opacity:.9; }
 
     main{ padding: 18px 0 80px; position:relative; z-index: 2; }
@@ -327,7 +325,23 @@
       box-shadow: 0 0 0 6px rgba(45,124,255,.10);
     }
 
-    h1{ margin: 12px 0 10px; font-size: 40px; line-height: 1.04; letter-spacing: -0.7px; }
+    /* Degradado en el H1 para mayor UX moderna */
+    h1 { 
+      margin: 12px 0 10px; 
+      font-size: 40px; 
+      line-height: 1.04; 
+      letter-spacing: -0.7px; 
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0px 4px 15px rgba(43, 182, 115, 0.15);
+    }
+    [data-theme="dark"] h1 {
+      background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
     .sub{ margin: 0 0 12px; color: var(--muted); font-size: 15px; line-height: 1.7; max-width: 72ch; }
 
     .ctaRow{ display:flex; flex-wrap: wrap; gap: 10px; align-items:center; margin-top: 12px; }
@@ -423,7 +437,7 @@
       max-width: 80ch;
     }
 
-    /* destacados (menos “cuadritos”: ahora cards mas aire y menos rigidez) */
+    /* destacados y cards */
     .featuredGrid{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
@@ -444,7 +458,7 @@
       transition: transform .18s ease;
     }
     [data-theme="dark"] .feat{ background: rgba(255,255,255,.04); }
-    .feat:hover{ transform: translateY(-2px); }
+    .feat:hover{ transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
     .feat:before{
       content:"";
       position:absolute; inset:-2px;
@@ -459,7 +473,7 @@
     .feat .t{ font-weight: 900; letter-spacing:.2px; }
     .feat .p{ margin:0; color: var(--muted); font-size: 12.8px; line-height: 1.55; }
 
-    /* CARRUSEL PREMIUM (scroll-snap + drag + auto) */
+    /* CARRUSEL */
     .carousel{
       border: 1px solid var(--line);
       border-radius: var(--r2);
@@ -540,15 +554,16 @@
       font-weight: 900;
       font-size: 13px;
       cursor:pointer;
-      transition: transform .15s ease;
+      transition: all .2s ease;
       user-select:none;
       white-space:nowrap;
     }
     [data-theme="dark"] .filterBtn{ background: rgba(255,255,255,.06); }
-    .filterBtn:hover{ transform: translateY(-1px); }
+    .filterBtn:hover{ transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
     .filterBtn.active{
       border-color: rgba(43,182,115,.55);
-      box-shadow: 0 12px 26px rgba(43,182,115,.10);
+      background: rgba(43,182,115,.1);
+      box-shadow: 0 12px 26px rgba(43,182,115,.15);
     }
 
     .searchRow{
@@ -567,7 +582,9 @@
       background: rgba(255,255,255,.70);
       color: var(--text);
       outline:none;
+      transition: border-color 0.2s ease;
     }
+    .search:focus { border-color: var(--accent); }
     [data-theme="dark"] .search{ background: rgba(255,255,255,.06); }
     .search::placeholder{ color: var(--muted); }
 
@@ -588,7 +605,7 @@
       flex-direction:column;
       gap: 8px;
       cursor:pointer;
-      transition: transform .15s ease;
+      transition: transform .2s ease, box-shadow .2s ease;
       position:relative;
       overflow:hidden;
     }
@@ -604,7 +621,7 @@
     [data-theme="dark"] .catCard{ background: rgba(255,255,255,.04); box-shadow: 0 10px 30px rgba(0,0,0,.20); }
     [data-theme="dark"] .catCard:before{ opacity:.55; }
     .catCard > *{ position:relative; z-index:1; }
-    .catCard:hover{ transform: translateY(-2px); }
+    .catCard:hover{ transform: translateY(-4px); box-shadow: 0 15px 35px rgba(0,0,0,.1); }
     .catCard .h{
       display:flex; align-items:center; justify-content:space-between; gap: 10px;
     }
@@ -700,12 +717,26 @@
       align-items:center;
       justify-content:space-between;
       gap: 12px;
-      padding: 12px 12px;
+      padding: 12px;
       border: 1px solid var(--line);
       border-radius: 14px;
       background: rgba(255,255,255,.40);
+      transition: transform .2s ease;
     }
+    .specItem:hover { transform: translateX(4px); background: rgba(255,255,255,.6); }
     [data-theme="dark"] .specItem{ background: rgba(255,255,255,.03); }
+    [data-theme="dark"] .specItem:hover{ background: rgba(255,255,255,.08); }
+    .specItem .avatar {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      background: rgba(43,182,115,.15);
+      display: grid; place-items:center;
+      color: var(--accent);
+      flex: 0 0 auto;
+    }
+    [data-theme="dark"] .specItem .avatar { background: rgba(43,182,115,.2); }
+    .specItem .avatar svg { width: 20px; height: 20px; }
+    .specItem .info { display:flex; flex-direction:column; gap: 2px; }
     .specItem .name{ font-weight: 900; letter-spacing:.2px; font-size: 13px; line-height:1.2; }
     .specItem .role{ color: var(--muted); font-size: 12px; white-space:nowrap; }
 
@@ -834,7 +865,12 @@
     }
     .footRow a{ text-decoration: underline; text-underline-offset: 3px; }
 
-    /* WhatsApp flotante */
+    /* WhatsApp flotante animado */
+    @keyframes pulseWa {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+      70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
     .waFloat{
       position: fixed;
       right: var(--waGap);
@@ -852,13 +888,14 @@
       place-items:center;
       overflow:hidden;
       transition: transform .15s ease;
+      animation: pulseWa 2.5s infinite;
     }
     [data-theme="dark"] .waFloat{
       background: rgba(0,0,0,.18);
       border-color: rgba(255,255,255,.16);
       box-shadow: 0 18px 45px rgba(0,0,0,.30);
     }
-    .waFloat:hover{ transform: translateY(-2px); }
+    .waFloat:hover{ transform: translateY(-4px); animation: none; }
     .waSvg{ width: 34px; height: 34px; display:block; }
     .spacerForFloat{ height: calc(var(--waSize) + (var(--waGap) * 2)); }
 
@@ -927,6 +964,7 @@
 
     @media (prefers-reduced-motion: reduce){
       .reveal, .stagger > *{ transition: none !important; transform:none !important; filter:none !important; opacity:1 !important; }
+      .waFloat { animation: none !important; }
     }
 
     @media (max-width: 980px){
@@ -1057,7 +1095,6 @@
         </div>
       </div>
 
-      <!-- DESTACADOS -->
       <section class="reveal" data-reveal="up">
         <div class="sectionTitle">
           <h2>Destacados</h2>
@@ -1081,7 +1118,6 @@
         </div>
       </section>
 
-      <!-- CARRUSEL (vida + movimiento sin inventar imágenes externas) -->
       <section class="reveal" data-reveal="up">
         <div class="sectionTitle">
           <h2>Áreas del centro</h2>
@@ -1158,7 +1194,6 @@
         </div>
       </section>
 
-      <!-- QUIENES SOMOS -->
       <section class="reveal" data-reveal="up">
         <div class="sectionTitle">
           <h2>Quiénes somos</h2>
@@ -1196,7 +1231,35 @@
         </div>
       </section>
 
-      <!-- ESPECIALIDADES -->
+      <section class="reveal" data-reveal="up">
+        <div class="sectionTitle">
+          <h2>Tu primera visita</h2>
+          <p>Un proceso simple y transparente</p>
+        </div>
+
+        <div class="catGrid stagger" data-stagger style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+          
+          <div class="catCard" style="text-align: center; padding: 24px 16px;">
+            <div style="font-size: 32px; font-weight: 900; color: var(--accent); margin-bottom: 8px;">1</div>
+            <div class="name" style="font-size: 16px;">Contacto Inicial</div>
+            <p class="desc" style="margin-top: 8px;">Nos escribís por WhatsApp contándonos qué necesitas o qué zona te gustaría tratar.</p>
+          </div>
+
+          <div class="catCard" style="text-align: center; padding: 24px 16px;">
+            <div style="font-size: 32px; font-weight: 900; color: var(--accent); margin-bottom: 8px;">2</div>
+            <div class="name" style="font-size: 16px;">Asesoramiento</div>
+            <p class="desc" style="margin-top: 8px;">Te orientamos sobre el profesional adecuado y buscamos el mejor turno disponible.</p>
+          </div>
+
+          <div class="catCard" style="text-align: center; padding: 24px 16px;">
+            <div style="font-size: 32px; font-weight: 900; color: var(--accent); margin-bottom: 8px;">3</div>
+            <div class="name" style="font-size: 16px;">Atención en Clínica</div>
+            <p class="desc" style="margin-top: 8px;">Te recibimos en Bella Vista con un diagnóstico preciso y tecnología de primer nivel.</p>
+          </div>
+
+        </div>
+      </section>
+
       <section id="especialidades" class="reveal" data-reveal="up">
         <div class="sectionTitle">
           <h2>Especialidades</h2>
@@ -1218,7 +1281,7 @@
         </div>
 
         <div class="searchRow">
-          <input class="search" id="search" type="search" placeholder="Buscar (ej: dermapen, ozonoterapia, criolipólisis...)" />
+          <input class="search" id="search" type="search" placeholder="Buscar (ej: dermapen, ozonoterapia...)" />
           <a class="btn btnPrimary" id="btnServicesWA" href="#" rel="noopener">Consultar por WhatsApp</a>
         </div>
 
@@ -1226,7 +1289,6 @@
         <div class="accordionWrap" id="accordionWrap"></div>
       </section>
 
-      <!-- PROFESIONALES -->
       <section class="reveal" data-reveal="up">
         <div class="sectionTitle">
           <h2>Profesionales</h2>
@@ -1240,10 +1302,46 @@
               <span class="tag">Equipo</span>
             </div>
             <div class="specList stagger" data-stagger>
-              <div class="specItem"><div class="name">Dra. Nora Bengochea</div><div class="role">Traumatología</div></div>
-              <div class="specItem"><div class="name">Dr. Roberto Pérez</div><div class="role">Traumatología</div></div>
-              <div class="specItem"><div class="name">Dr. Juan Cabral</div><div class="role">Traumatología</div></div>
-              <div class="specItem"><div class="name">Dr. Guillermo Flynn</div><div class="role">Traumatología</div></div>
+              <div class="specItem">
+                <div style="display:flex; align-items:center; gap: 12px;">
+                  <div class="avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  </div>
+                  <div class="info">
+                    <div class="name">Dra. Nora Bengochea</div><div class="role">Traumatología</div>
+                  </div>
+                </div>
+              </div>
+              <div class="specItem">
+                <div style="display:flex; align-items:center; gap: 12px;">
+                  <div class="avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  </div>
+                  <div class="info">
+                    <div class="name">Dr. Roberto Pérez</div><div class="role">Traumatología</div>
+                  </div>
+                </div>
+              </div>
+              <div class="specItem">
+                <div style="display:flex; align-items:center; gap: 12px;">
+                  <div class="avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  </div>
+                  <div class="info">
+                    <div class="name">Dr. Juan Cabral</div><div class="role">Traumatología</div>
+                  </div>
+                </div>
+              </div>
+              <div class="specItem">
+                <div style="display:flex; align-items:center; gap: 12px;">
+                  <div class="avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  </div>
+                  <div class="info">
+                    <div class="name">Dr. Guillermo Flynn</div><div class="role">Traumatología</div>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="ctaRow" style="margin-top:12px;">
               <a class="btn btnPrimary" id="btnSpecWA" href="#" rel="noopener">Consultar turnos</a>
@@ -1256,18 +1354,71 @@
               <span class="tag">Profesionales</span>
             </div>
             <div class="specList stagger" data-stagger>
-              <div class="specItem"><div class="name">Dra. Roxana González</div><div class="role">Neurología</div></div>
-              <div class="specItem"><div class="name">Dr. Gonzalo Gallarino</div><div class="role">Medicina biológica / Ozonoterapia / Sueroterapia</div></div>
-              <div class="specItem"><div class="name">Dra. Adriana Fiore</div><div class="role">Endocrinología</div></div>
-              <div class="specItem"><div class="name">Lic. Javier Mouzaffar</div><div class="role">Quiropraxia</div></div>
-              <div class="specItem"><div class="name">Dr. Fabio Adlerstein</div><div class="role">Flebología</div></div>
-              <div class="specItem"><div class="name">Lic. María del Cielo Fernández</div><div class="role">Nutrición</div></div>
+              <div class="specItem">
+                <div style="display:flex; align-items:center; gap: 12px;">
+                  <div class="avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  </div>
+                  <div class="info">
+                    <div class="name">Dra. Roxana González</div><div class="role">Neurología</div>
+                  </div>
+                </div>
+              </div>
+              <div class="specItem">
+                <div style="display:flex; align-items:center; gap: 12px;">
+                  <div class="avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  </div>
+                  <div class="info">
+                    <div class="name">Dr. Gonzalo Gallarino</div><div class="role">Medicina biológica / Ozonoterapia</div>
+                  </div>
+                </div>
+              </div>
+              <div class="specItem">
+                <div style="display:flex; align-items:center; gap: 12px;">
+                  <div class="avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  </div>
+                  <div class="info">
+                    <div class="name">Dra. Adriana Fiore</div><div class="role">Endocrinología</div>
+                  </div>
+                </div>
+              </div>
+              <div class="specItem">
+                <div style="display:flex; align-items:center; gap: 12px;">
+                  <div class="avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  </div>
+                  <div class="info">
+                    <div class="name">Lic. Javier Mouzaffar</div><div class="role">Quiropraxia</div>
+                  </div>
+                </div>
+              </div>
+              <div class="specItem">
+                <div style="display:flex; align-items:center; gap: 12px;">
+                  <div class="avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  </div>
+                  <div class="info">
+                    <div class="name">Dr. Fabio Adlerstein</div><div class="role">Flebología</div>
+                  </div>
+                </div>
+              </div>
+              <div class="specItem">
+                <div style="display:flex; align-items:center; gap: 12px;">
+                  <div class="avatar">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  </div>
+                  <div class="info">
+                    <div class="name">Lic. María Fernández</div><div class="role">Nutrición</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- OBRAS SOCIALES / PREPAGAS -->
       <section class="reveal" data-reveal="up">
         <div class="sectionTitle">
           <h2>Obras sociales / prepagas</h2>
@@ -1294,7 +1445,35 @@
         </div>
       </section>
 
-      <!-- FAQ -->
+      <section class="reveal" data-reveal="up">
+        <div class="sectionTitle">
+          <h2>Experiencias Kinest</h2>
+          <p>Lo que dicen nuestros pacientes</p>
+        </div>
+
+        <div class="featuredGrid stagger" data-stagger style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+          
+          <div class="feat" style="gap: 12px; min-height: auto;">
+            <div style="color: #FFB800; font-size: 14px;">⭐⭐⭐⭐⭐</div>
+            <p class="p" style="font-style: italic;">"Excelente la atención de los profesionales. Fui por un tema postural y en pocas sesiones noté la diferencia. Las instalaciones son impecables."</p>
+            <div class="t" style="font-size: 13px; color: var(--accent);">— Mariana L.</div>
+          </div>
+
+          <div class="feat" style="gap: 12px; min-height: auto;">
+            <div style="color: #FFB800; font-size: 14px;">⭐⭐⭐⭐⭐</div>
+            <p class="p" style="font-style: italic;">"Me hice el tratamiento facial con Dermapen y estoy fascinada. Me explicaron cada paso y me sentí súper cuidada. Muy recomendables."</p>
+            <div class="t" style="font-size: 13px; color: var(--accent);">— Sofía R.</div>
+          </div>
+
+          <div class="feat" style="gap: 12px; min-height: auto;">
+            <div style="color: #FFB800; font-size: 14px;">⭐⭐⭐⭐⭐</div>
+            <p class="p" style="font-style: italic;">"Destaco la calidez humana desde que pedís el turno por WhatsApp hasta que te atiende el médico. Es mi centro de confianza en Bella Vista."</p>
+            <div class="t" style="font-size: 13px; color: var(--accent);">— Javier M.</div>
+          </div>
+
+        </div>
+      </section>
+
       <section class="reveal" data-reveal="up">
         <div class="sectionTitle">
           <h2>Preguntas frecuentes</h2>
@@ -1332,7 +1511,6 @@
         </div>
       </section>
 
-      <!-- CTA FINAL -->
       <section class="reveal" data-reveal="up">
         <div class="sectionTitle">
           <h2>Reservá tu turno</h2>
@@ -1353,7 +1531,6 @@
         </div>
       </section>
 
-      <!-- CONTACTO -->
       <section id="contacto" class="reveal" data-reveal="up">
         <div class="sectionTitle">
           <h2>Contacto y ubicación</h2>
@@ -1423,7 +1600,6 @@
     </div>
   </main>
 
-  <!-- WhatsApp flotante -->
   <a class="waFloat" id="waFloat" href="#" rel="noopener" aria-label="Pedir turno por WhatsApp">
     <svg class="waSvg" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
@@ -1431,7 +1607,6 @@
     </svg>
   </a>
 
-  <!-- Sticky CTA mobile -->
   <div class="stickyCta" aria-label="Acción rápida">
     <div class="mini">Turnos por WhatsApp<br/>Confirmación por especialidad</div>
     <div class="act">
@@ -1773,4 +1948,3 @@
   </script>
 </body>
 </html>
-```
