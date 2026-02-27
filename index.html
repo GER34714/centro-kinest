@@ -19,7 +19,6 @@
 
   <style>
     :root{
-      /* pastel clinica */
       --bg:#fbfaf6;
       --bg2:#f3f7f4;
       --text:#101716;
@@ -31,7 +30,6 @@
       --sky:#8bbcff;
       --line:rgba(16,23,22,.10);
 
-      /* crystal */
       --glass: rgba(255,255,255,.58);
       --glass2: rgba(255,255,255,.44);
       --blur: 14px;
@@ -50,17 +48,10 @@
       --ease: cubic-bezier(.2,.9,.2,1);
       --dur: 650ms;
 
-      /* banditas */
       --bandA: rgba(255,255,255,.00);
       --bandB: rgba(127,220,196,.09);
       --bandC: rgba(139,188,255,.08);
 
-      /* icon */
-      --icon: rgba(82,202,169,.92);
-      --iconSoft: rgba(82,202,169,.80);
-      --iconPlaceholder: rgba(16,23,22,.18);
-
-      /* open highlight */
       --openBg: rgba(127,220,196,.10);
       --openLine: rgba(127,220,196,.55);
       --openBar: rgba(127,220,196,.55);
@@ -84,10 +75,6 @@
       --bandA: rgba(255,255,255,.00);
       --bandB: rgba(127,220,196,.08);
       --bandC: rgba(139,188,255,.06);
-
-      --icon: rgba(127,220,196,.92);
-      --iconSoft: rgba(127,220,196,.78);
-      --iconPlaceholder: rgba(255,255,255,.22);
 
       --openBg: rgba(127,220,196,.08);
       --openLine: rgba(127,220,196,.40);
@@ -129,19 +116,8 @@
     }
     [data-theme="dark"] header{ background: rgba(15,23,23,.62); }
 
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 12px;
-      padding: 14px 0;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      min-width: 0;
-    }
+    .nav{ display:flex; align-items:center; justify-content:space-between; gap: 12px; padding: 14px 0; }
+    .brand{ display:flex; align-items:center; gap: 12px; min-width: 0; }
     .logoMark{
       width: 44px; height: 44px;
       border-radius: 14px;
@@ -151,9 +127,7 @@
       overflow:hidden;
       flex: 0 0 auto;
     }
-    [data-theme="dark"] .logoMark{
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
-    }
+    [data-theme="dark"] .logoMark{ background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04)); }
     .logoMark img{ width:100%; height:100%; object-fit:cover; display:block; }
 
     .brandText{ display:flex; flex-direction:column; gap: 2px; min-width:0; line-height:1.05; }
@@ -221,7 +195,7 @@
       overflow:hidden;
     }
 
-    /* bands (para no parecer pergamino) */
+    /* bands */
     .band{
       border-radius: var(--r2);
       border: 1px solid var(--line);
@@ -238,24 +212,13 @@
     [data-theme="dark"] .bandC{ background: linear-gradient(180deg, var(--bandC), rgba(0,0,0,0)); }
 
     /* reveal */
-    .reveal{
-      opacity: 0;
-      transform: translate3d(0, 14px, 0);
-      filter: blur(2px);
-      transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), filter var(--dur) var(--ease);
-      will-change: transform, opacity, filter;
-    }
+    .reveal{ opacity: 0; transform: translate3d(0, 14px, 0); filter: blur(2px); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), filter var(--dur) var(--ease); will-change: transform, opacity, filter; }
     .reveal[data-reveal="left"]{ transform: translate3d(-18px, 10px, 0); }
     .reveal[data-reveal="right"]{ transform: translate3d(18px, 10px, 0); }
     .reveal[data-reveal="up"]{ transform: translate3d(0, 18px, 0); }
     .reveal.in{ opacity: 1; transform: translate3d(0,0,0); filter: blur(0px); }
 
-    .stagger > *{
-      opacity: 0;
-      transform: translate3d(0, 12px, 0);
-      filter: blur(2px);
-      transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), filter var(--dur) var(--ease);
-    }
+    .stagger > *{ opacity: 0; transform: translate3d(0, 12px, 0); filter: blur(2px); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), filter var(--dur) var(--ease); }
     .stagger.in > *{ opacity: 1; transform: translate3d(0,0,0); filter: blur(0px); }
     .stagger.in > *:nth-child(1){ transition-delay: 0ms; }
     .stagger.in > *:nth-child(2){ transition-delay: 70ms; }
@@ -270,11 +233,11 @@
       .reveal, .stagger > *{ transition:none !important; transform:none !important; filter:none !important; opacity:1 !important; }
     }
 
-    /* icon placeholders (no invento svg, solo reservamos lugar) */
+    /* icons (PNG) */
     .iWrap{ display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; }
-    .iFill,.iMini,.iPill{ width: 20px; height: 20px; display:block; color: var(--icon); }
-    .iMini{ width: 18px; height: 18px; color: var(--iconSoft); }
-    .iPill{ width: 16px; height: 16px; color: var(--iconSoft); }
+    .iImg{ width: 20px; height: 20px; display:block; object-fit: contain; }
+    .iImgMini{ width: 18px; height: 18px; display:block; object-fit: contain; }
+    .iImgPill{ width: 16px; height: 16px; display:block; object-fit: contain; }
     .iPh{
       width: 20px; height: 20px;
       border-radius: 10px;
@@ -292,12 +255,7 @@
     }
 
     /* hero */
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 14px;
-      align-items: stretch;
-    }
+    .heroGrid{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 14px; align-items: stretch; }
     .heroCard{ padding: 22px; }
     .badge{
       display:inline-flex; align-items:center; gap: 10px;
@@ -345,13 +303,7 @@
     .qi .v a{ text-decoration: underline; text-underline-offset: 3px; }
 
     section{ margin-top: 22px; }
-    .sectionTitle{
-      display:flex;
-      align-items:flex-end;
-      justify-content:space-between;
-      gap: 12px;
-      margin: 0 0 12px;
-    }
+    .sectionTitle{ display:flex; align-items:flex-end; justify-content:space-between; gap: 12px; margin: 0 0 12px; }
     .sectionTitle h2{ margin:0; font-size: 18px; letter-spacing: .2px; }
     .sectionTitle p{ margin:0; font-size: 13px; color: var(--muted); }
 
@@ -415,11 +367,7 @@
     .carBody .p{ margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
 
     /* filtros + search */
-    .filters{
-      display:flex; flex-wrap:wrap; gap: 10px;
-      margin: 10px 0 0;
-      align-items:center;
-    }
+    .filters{ display:flex; flex-wrap:wrap; gap: 10px; margin: 10px 0 0; align-items:center; }
     .filterBtn{
       border: 1px solid var(--line);
       background: rgba(255,255,255,.60);
@@ -435,15 +383,9 @@
     }
     [data-theme="dark"] .filterBtn{ background: rgba(255,255,255,.06); }
     .filterBtn:hover{ transform: translateY(-1px); }
-    .filterBtn.active{
-      border-color: rgba(127,220,196,.70);
-      box-shadow: 0 12px 26px rgba(127,220,196,.10);
-    }
+    .filterBtn.active{ border-color: rgba(127,220,196,.70); box-shadow: 0 12px 26px rgba(127,220,196,.10); }
 
-    .searchRow{
-      margin-top: 10px;
-      display:flex; gap: 10px; align-items:center; flex-wrap:wrap;
-    }
+    .searchRow{ margin-top: 10px; display:flex; gap: 10px; align-items:center; flex-wrap:wrap; }
     .search{
       flex: 1 1 240px;
       border: 1px solid var(--line);
@@ -458,12 +400,7 @@
     .search::placeholder{ color: var(--muted); }
 
     /* categorias */
-    .catGrid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 12px;
-    }
+    .catGrid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
     .catCard{
       border: 1px solid var(--line);
       border-radius: 22px;
@@ -491,12 +428,8 @@
     .catCard > *{ position:relative; z-index:1; }
     .catCard:hover{ transform: translateY(-2px); }
 
-    .catCard .h{
-      display:flex; align-items:center; justify-content:space-between; gap: 10px;
-    }
-    .catCard .nameRow{
-      display:flex; align-items:center; gap: 10px; min-width:0;
-    }
+    .catCard .h{ display:flex; align-items:center; justify-content:space-between; gap: 10px; }
+    .catCard .nameRow{ display:flex; align-items:center; gap: 10px; min-width:0; }
     .catCard .name{ font-weight: 900; }
     .catCard .count{
       font-size: 12px;
@@ -525,25 +458,16 @@
       border-color: var(--openLine);
       box-shadow: 0 18px 56px rgba(16,23,22,.10);
     }
-    [data-theme="dark"] details.acc[open]{
-      box-shadow: 0 18px 56px rgba(0,0,0,.35);
-    }
+    [data-theme="dark"] details.acc[open]{ box-shadow: 0 18px 56px rgba(0,0,0,.35); }
     details.acc[open]::before{
       content:"";
-      position:absolute;
-      left: 0; top: 0; right: 0;
+      position:absolute; left: 0; top: 0; right: 0;
       height: 4px;
       background: var(--openBar);
       opacity:.65;
     }
-    details.acc.flash{
-      animation: flashAcc 800ms var(--ease);
-    }
-    @keyframes flashAcc{
-      0%{ transform: translate3d(0,0,0); }
-      30%{ transform: translate3d(0,-2px,0); }
-      100%{ transform: translate3d(0,0,0); }
-    }
+    details.acc.flash{ animation: flashAcc 800ms var(--ease); }
+    @keyframes flashAcc{ 0%{ transform: translate3d(0,0,0); } 30%{ transform: translate3d(0,-2px,0); } 100%{ transform: translate3d(0,0,0); } }
 
     summary.accSum{
       cursor:pointer;
@@ -577,20 +501,9 @@
     details[open] .chev{ transform: rotate(180deg); }
 
     .accBody{ padding: 0 14px 14px; }
-    .accDesc{
-      margin: 2px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.75;
-      max-width: 90ch;
-    }
+    .accDesc{ margin: 2px 0 0; color: var(--muted); font-size: 13px; line-height: 1.75; max-width: 90ch; }
 
-    .svcList{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px 14px;
-      margin-top: 12px;
-    }
+    .svcList{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; margin-top: 12px; }
     .svcItem{
       border: 1px solid var(--line);
       border-radius: 16px;
@@ -614,12 +527,7 @@
     [data-theme="dark"] .svcMark{ background: rgba(255,255,255,.05); }
     .svcTxt{ min-width:0; }
     .svcName{ font-weight: 900; font-size: 13px; line-height: 1.35; }
-    .svcDesc{
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 12.6px;
-      line-height: 1.65;
-    }
+    .svcDesc{ margin-top: 4px; color: var(--muted); font-size: 12.6px; line-height: 1.65; }
 
     .accCTA{
       margin-top: 12px;
@@ -632,17 +540,9 @@
     .accCTA .hint{ color: var(--muted); font-size: 12.5px; line-height:1.6; }
 
     /* profesionales */
-    .specialists{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 12px;
-      align-items: stretch;
-    }
+    .specialists{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 12px; align-items: stretch; }
     .pane{ padding: 18px; }
-    .paneTitle{
-      display:flex; align-items:flex-start; justify-content:space-between; gap: 12px;
-      margin-bottom: 10px;
-    }
+    .paneTitle{ display:flex; align-items:flex-start; justify-content:space-between; gap: 12px; margin-bottom: 10px; }
     .paneTitle h3{ margin:0; font-size: 16px; letter-spacing:.2px; font-weight: 900; }
     .tag{
       font-size: 12px;
@@ -654,7 +554,6 @@
       white-space:nowrap;
     }
     [data-theme="dark"] .tag{ background: rgba(255,255,255,.03); }
-
     .specList{ display:grid; gap: 10px; margin-top: 10px; }
     .specItem{
       display:flex;
@@ -682,11 +581,7 @@
     }
 
     /* FAQ */
-    .faq{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
+    .faq{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     details.fq{
       border: 1px solid var(--line);
       border-radius: 22px;
@@ -713,12 +608,7 @@
     }
 
     /* contacto + mapa */
-    .contactGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      align-items: stretch;
-    }
+    .contactGrid{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: stretch; }
     .list{ display:grid; gap: 10px; margin-top: 12px; }
     .li{
       display:flex;
@@ -766,13 +656,7 @@
       font-size: 13px;
       border-top: 1px solid var(--line);
     }
-    .footRow{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 10px;
-      align-items:center;
-      justify-content:space-between;
-    }
+    .footRow{ display:flex; flex-wrap:wrap; gap: 10px; align-items:center; justify-content:space-between; }
     .footRow a{ text-decoration: underline; text-underline-offset: 3px; }
 
     /* WhatsApp flotante */
@@ -1237,56 +1121,48 @@
         if(el) el.setAttribute("href", waHref);
       });
 
-      // ICONOS: PEGAR ACA LOS SVG RELLENOS (NO INVENTO)
-      // Cada valor debe ser un string con el <svg ...>...</svg>
-      // Recomendado: fill="currentColor" y sin width/height fijos (ya lo controlamos con CSS).
-      const ICONS_SVG = {
-        // categorias (10)
-        estetica_facial: "",
-        corporal: "",
-        pestanas_cejas: "",
-        drenaje: "",
-        mesoterapia: "",
-        bioestimulacion: "",
-        masajes: "",
-        aparatologia: "",
-        kinesiologia: "",
-        medicina: "",
+      // ICONOS (PNG) - los links que me pasaste
+      const ICONS_IMG = {
+        // categorias
+        aparatologia: "https://iili.io/qfXlmLQ.png",
+        bioestimulacion: "https://iili.io/qfXlbhx.png",
+        estetica_facial: "https://iili.io/qfXEIbs.png",
+        corporal: "https://iili.io/qfXEWLx.png",
+        pestanas_cejas: "https://iili.io/qfXEPrN.png",
+        drenaje: "https://iili.io/qfXEDIs.png",
+        mesoterapia: "https://iili.io/qfXG3v9.png",
+        masajes: "https://iili.io/qfXGx4V.png",
+        kinesiologia: "https://iili.io/qfXG7ja.png",
+        medicina: "https://iili.io/qfXGNnf.png",
 
-        // quick (5)
-        quick_wa: "",
-        quick_tel: "",
-        quick_map: "",
-        quick_mail: "",
-        quick_ig: "",
-
-        // pills (2)
-        pill_items: "",
-        pill_clock: ""
+        // quick
+        quick_wa: "https://iili.io/qfXMCAX.png",
+        quick_tel: "https://iili.io/qfXMEVj.png",
+        quick_map: "https://iili.io/qfXMNOF.png",
+        quick_mail: "https://iili.io/qfXMiOX.png",
+        quick_ig: "https://iili.io/qfXMtsf.png"
       };
 
-      function safeSvg(svg, cls){
-        if(!svg || typeof svg !== "string" || svg.trim() === "") return `<span class="iPh" aria-hidden="true"></span>`;
-        // inyecta clase en <svg ...>
-        const s = svg.trim().replace(/<svg\b([^>]*)>/i, (m, attrs) => {
-          if(/class\s*=/.test(attrs)) return `<svg${attrs.replace(/class\s*=\s*(['"])(.*?)\1/i, (mm,q,c)=>` class=${q}${c} ${cls}${q}`)}>`;
-          return `<svg class="${cls}"${attrs}>`;
-        });
-        return s;
+      function iconImg(url, cls, alt){
+        if(!url) return '<span class="iPh" aria-hidden="true"></span>';
+        const a = alt ? alt.replace(/"/g,'') : "";
+        return `<img class="${cls}" src="${url}" alt="${a}" loading="lazy" decoding="async" />`;
       }
 
-      // aplica quick icons si existen
+      // quick icons
       const quickMap = {
-        icoQuickWA: "quick_wa",
-        icoQuickTel: "quick_tel",
-        icoQuickMap: "quick_map",
-        icoQuickMail: "quick_mail",
-        icoQuickIG: "quick_ig"
+        icoQuickWA: ["quick_wa","WhatsApp"],
+        icoQuickTel: ["quick_tel","Teléfono"],
+        icoQuickMap: ["quick_map","Ubicación"],
+        icoQuickMail: ["quick_mail","Email"],
+        icoQuickIG: ["quick_ig","Instagram"]
       };
       Object.keys(quickMap).forEach(id => {
         const el = document.getElementById(id);
         if(el){
-          el.innerHTML = safeSvg(ICONS_SVG[quickMap[id]], "iMini");
+          const key = quickMap[id][0];
+          const alt = quickMap[id][1];
+          el.innerHTML = iconImg(ICONS_IMG[key], "iImgMini", alt);
         }
       });
 
@@ -1340,7 +1216,7 @@
         document.querySelectorAll(".reveal, [data-stagger]").forEach(el => el.classList.add("in"));
       }
 
-      // carrusel (drag + auto)
+      // carrusel
       const track = document.getElementById("carTrack");
       let isDown=false, startX=0, scrollLeft=0, userInteracted=false;
       let autoTimer=null;
@@ -1406,7 +1282,7 @@
         }, 2200);
       }
 
-      // DATA: categorias + servicios
+      // DATA
       const CATS = [
         { id:"estetica_facial", name:"Estética facial", desc:"Limpieza, peeling, dermapen, lip boost y más." },
         { id:"corporal", name:"Corporal", desc:"Tratamientos corporales y cuidado de la piel." },
@@ -1420,7 +1296,6 @@
         { id:"medicina", name:"Medicina / Especialidades", desc:"Medicina biológica, sueroterapia, ozonoterapia y más." },
       ];
 
-      // si un servicio no tiene desc, se genera (opcion A)
       const SERVICES = [
         {cat:"estetica_facial", name:"Facial Deep Clean"},
         {cat:"estetica_facial", name:"Facial Premium"},
@@ -1491,7 +1366,6 @@
         {cat:"medicina", name:"Neurología (Dra. Roxana González)"},
       ];
 
-      // plantillas de descripcion por categoria (genericas, sin prometer resultados)
       const CAT_DESC_TPL = {
         estetica_facial: "Servicio de estética facial orientado al cuidado y rutina de la piel.",
         corporal: "Servicio corporal para acompañar tu rutina de cuidado y bienestar.",
@@ -1531,11 +1405,8 @@
       let q = "";
 
       function iconForCat(catId, cls){
-        return safeSvg(ICONS_SVG[catId], cls);
-      }
-
-      function pillIcon(key, cls){
-        return safeSvg(ICONS_SVG[key], cls);
+        const url = ICONS_IMG[catId];
+        return iconImg(url, cls, catId);
       }
 
       function renderCategories(){
@@ -1548,7 +1419,7 @@
           el.innerHTML = `
             <div class="h">
               <div class="nameRow">
-                <span class="iWrap" aria-hidden="true">${iconForCat(c.id, "iFill")}</span>
+                <span class="iWrap" aria-hidden="true">${iconForCat(c.id, "iImg")}</span>
                 <div class="name">${c.name}</div>
               </div>
               <div class="count">${countByCat(c.id)}</div>
@@ -1556,17 +1427,13 @@
             <p class="desc">${c.desc}</p>
           `;
           el.addEventListener("click", () => {
-            // abrir y resaltar
             const d = document.getElementById("acc_" + c.id);
             if(d){
-              // cerrar otros (para que se entienda donde estas)
               document.querySelectorAll("details.acc[open]").forEach(x => { if(x !== d) x.removeAttribute("open"); });
               d.open = true;
-
               d.classList.remove("flash");
               void d.offsetWidth;
               d.classList.add("flash");
-
               d.scrollIntoView({behavior:"smooth", block:"start"});
             }
           });
@@ -1598,17 +1465,11 @@
           sum.innerHTML = `
             <div class="accMeta">
               <span class="lead">
-                <span class="iWrap" aria-hidden="true">${iconForCat(c.id, "iMini")}</span>
+                <span class="iWrap" aria-hidden="true">${iconForCat(c.id, "iImgMini")}</span>
                 <span>${c.name}</span>
               </span>
-              <span class="pill">
-                <span class="iWrap" aria-hidden="true">${pillIcon("pill_items","iPill")}</span>
-                ${list.length} items
-              </span>
-              <span class="pill">
-                <span class="iWrap" aria-hidden="true">${pillIcon("pill_clock","iPill")}</span>
-                Horarios: por WhatsApp
-              </span>
+              <span class="pill">${list.length} items</span>
+              <span class="pill">Horarios: por WhatsApp</span>
             </div>
             <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           `;
@@ -1651,7 +1512,6 @@
           body.appendChild(cta);
           d.appendChild(body);
 
-          // al abrir, cerrar otros (para que quede claro donde estas)
           d.addEventListener("toggle", () => {
             if(d.open){
               document.querySelectorAll("details.acc[open]").forEach(x => { if(x !== d) x.removeAttribute("open"); });
