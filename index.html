@@ -94,6 +94,22 @@
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
+
+    /* OVERLAY FIX (sin transforms/100vw para evitar tiles/artefactos) */
+    html::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      background-image: var(--overlayLight);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: var(--overlayOpacity);
+      pointer-events: none;
+      z-index: 0;
+    }
+    [data-theme="dark"] html::before{ background-image: var(--overlayDark); }
+
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
@@ -104,27 +120,12 @@
         linear-gradient(180deg, var(--bg), var(--bg2));
       overflow-x:hidden;
       position: relative;
+      z-index: 1;
+      isolation: isolate; /* ayuda a evitar compositing raro con blur */
     }
+
     a{ color:inherit; text-decoration:none; }
     .wrap{ width:100%; max-width: var(--max); margin:0 auto; padding: 0 var(--pad); }
-
-    /* FULL PAGE OVERLAY */
-    body::before{
-      content:"";
-      position: fixed;
-      inset: 0;
-      width: 100vw;
-      height: 100vh;
-      background-image: var(--overlayLight);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: var(--overlayOpacity);
-      pointer-events: none;
-      z-index: 0;
-      transform: translateZ(0);
-    }
-    [data-theme="dark"] body::before{ background-image: var(--overlayDark); }
 
     .noise{
       pointer-events:none;
@@ -146,8 +147,15 @@
     }
     [data-theme="dark"] header{ background: rgba(11,18,32,.62); }
 
-    .nav{ display:flex; align-items:center; justify-content:space-between; gap: 12px; padding: 14px 0; }
-    .brand{ display:flex; align-items:center; gap: 12px; min-width: 0; }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 14px 0;
+      flex-wrap: wrap; /* FIX: no rompe en mobile */
+    }
+    .brand{ display:flex; align-items:center; gap: 12px; min-width: 0; flex: 1 1 280px; }
     .logoMark{
       width: 44px; height: 44px;
       border-radius: 14px;
@@ -164,7 +172,14 @@
     .brandText .t1{ font-weight: 900; letter-spacing: .2px; font-size: 14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .brandText .t2{ font-size: 12px; color: var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
-    .navRight{ display:flex; align-items:center; gap: 10px; flex: 0 0 auto; }
+    .navRight{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex: 0 1 auto;
+      flex-wrap: wrap; /* FIX */
+      justify-content:flex-end;
+    }
 
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap: 10px;
@@ -210,6 +225,7 @@
       transition: transform .15s ease;
       box-shadow: var(--shadow2);
       outline: none;
+      flex: 0 0 auto;
     }
     [data-theme="dark"] .toggle{ background: rgba(255,255,255,.06); }
     .toggle:hover{ transform: translateY(-1px); }
@@ -225,6 +241,7 @@
       backdrop-filter: blur(var(--blur));
       -webkit-backdrop-filter: blur(var(--blur));
       overflow:hidden;
+      contain: paint; /* ayuda a evitar artefactos de compositing */
     }
 
     /* bands */
@@ -235,6 +252,7 @@
       backdrop-filter: blur(var(--blur));
       -webkit-backdrop-filter: blur(var(--blur));
       overflow:hidden;
+      contain: paint;
     }
     .bandInner{ padding: 18px; }
     .bandA{ background: var(--glass); }
@@ -345,6 +363,7 @@
       background: var(--glass);
       box-shadow: var(--shadow2);
       overflow:hidden;
+      contain: paint;
     }
     .carHead{
       padding: 14px 16px;
@@ -508,6 +527,7 @@
       overflow:hidden;
       box-shadow: var(--shadow2);
       position:relative;
+      contain: paint;
     }
     details.acc[open]{
       background: linear-gradient(180deg, var(--openBg), var(--glass));
@@ -569,7 +589,11 @@
       display:flex;
       align-items:flex-start;
       gap: 10px;
+      cursor: pointer; /* NUEVO: click = WhatsApp con contexto */
+      transition: transform .12s ease;
     }
+    .svcItem:hover{ transform: translateY(-1px); }
+
     .svcMark{
       width: 20px; height: 20px;
       border-radius: 10px;
@@ -630,7 +654,6 @@
       line-height:1.2;
       min-width: 0;
     }
-    /* desktop: puede ir en una línea */
     .specItem .role{
       color: var(--muted);
       font-size: 12px;
@@ -661,6 +684,7 @@
       background: var(--glass);
       overflow:hidden;
       box-shadow: var(--shadow2);
+      contain: paint;
     }
     summary.fqSum{
       cursor:pointer;
@@ -707,6 +731,7 @@
       display:flex;
       flex-direction:column;
       min-height: 360px;
+      contain: paint;
     }
     .mapFrame{ width:100%; height: 320px; border:0; display:block; }
     .mapImg{ width:100%; height: 320px; object-fit: cover; display:block; }
@@ -808,6 +833,21 @@
         overflow-wrap: anywhere;
         word-break: break-word;
       }
+
+      /* FIX: no duplicar CTA fijo en mobile */
+      .waFloat{ display:none; }
+
+      /* FIX: reducir blur en mobile para evitar tiles/artefactos */
+      header, .glass, .band, .stickyCta, .waFloat{
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+      }
+    }
+
+    @media (max-width: 520px){
+      /* si aprieta el header, oculto Ubicación en mobile chico */
+      .navRight a[href="#ubicacion"]{ display:none; }
+      .btn{ padding: 11px 12px; }
     }
 
     @media (max-width: 420px){
@@ -1193,8 +1233,15 @@
   <script>
     (function(){
       const WHATSAPP_NUMBER = "5491165671472";
-      const WA_TEXT = "Hola! Quiero pedir un turno en Centro Kinest. Me indicas disponibilidad y especialidad?";
-      const waHref = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(WA_TEXT);
+      const WA_TEXT_BASE = "Hola! Quiero pedir un turno en Centro Kinest. Me indicas disponibilidad y especialidad?";
+      const waHrefBase = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(WA_TEXT_BASE);
+
+      function waHrefWithTopic(topic){
+        const clean = String(topic || "").trim();
+        if(!clean) return waHrefBase;
+        const t = "Hola! Quiero consultar y pedir un turno en Centro Kinest. Me interesa: " + clean + ". Me indicas disponibilidad?";
+        return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(t);
+      }
 
       const waIds = [
         "btnNavWA","btnHeroWA","btnSideWA","btnFeaturedWA","btnServicesWA","btnSpecWA",
@@ -1203,7 +1250,7 @@
       ];
       waIds.forEach(id => {
         const el = document.getElementById(id);
-        if(el) el.setAttribute("href", waHref);
+        if(el) el.setAttribute("href", waHrefBase);
       });
 
       // ICONOS (PNG)
@@ -1298,7 +1345,7 @@
         document.querySelectorAll(".reveal, [data-stagger]").forEach(el => el.classList.add("in"));
       }
 
-      // CARRUSEL INFINITO con imágenes
+      // CARRUSEL INFINITO con imágenes (OPT: no re-render por loop)
       const FEATURED = [
         { t:"Dermapen", p:"Tratamiento facial.", img:"https://iili.io/qfwt41e.jpg" },
         { t:"Peeling", p:"Tratamientos faciales.", img:"https://iili.io/qfN3exs.jpg" },
@@ -1331,7 +1378,7 @@
         const safeP = esc(item.p);
         const safeImg = esc(item.img);
         return `
-          <article class="carItem">
+          <article class="carItem" data-topic="${safeT}">
             <div class="carMedia" aria-hidden="true">
               <img src="${safeImg}" alt="${safeT}" loading="lazy" decoding="async" />
             </div>
@@ -1343,19 +1390,11 @@
         `;
       }
 
-      function restartAnimation(){
-        if(!marquee || reduceMotion) return;
-        marquee.style.animation = "none";
-        void marquee.offsetWidth;
-        marquee.style.animation = "";
-      }
-
-      function renderFeatured(mix){
+      function renderFeatured(){
         if(!marquee) return;
-        const base = mix ? shuffle(FEATURED) : FEATURED.slice();
+        const base = shuffle(FEATURED);
         const htmlOnce = base.map(cardHTML).join("");
         marquee.innerHTML = htmlOnce + htmlOnce;
-        restartAnimation();
       }
 
       let pauseTimer = null;
@@ -1371,10 +1410,16 @@
       }
 
       if(marquee){
-        renderFeatured(true);
-        marquee.addEventListener("animationiteration", () => {
-          renderFeatured(true);
-        });
+        renderFeatured();
+
+        // click en destacado = WhatsApp con contexto
+        marquee.addEventListener("click", (e) => {
+          const card = e.target && e.target.closest ? e.target.closest(".carItem") : null;
+          if(card){
+            const topic = card.getAttribute("data-topic") || "";
+            window.open(waHrefWithTopic(topic), "_blank", "noopener");
+          }
+        }, { passive:true });
 
         if(viewport){
           viewport.addEventListener("pointerdown", pauseMarquee, { passive:true });
@@ -1618,6 +1663,7 @@
           list.forEach(item => {
             const card = document.createElement("div");
             card.className = "svcItem";
+            card.setAttribute("data-topic", item.name);
             card.innerHTML = `
               <div class="svcMark">✓</div>
               <div class="svcTxt">
@@ -1625,6 +1671,9 @@
                 <div class="svcDesc">${item.desc}</div>
               </div>
             `;
+            card.addEventListener("click", () => {
+              window.open(waHrefWithTopic(item.name), "_blank", "noopener");
+            });
             grid.appendChild(card);
           });
 
@@ -1633,7 +1682,7 @@
           cta.innerHTML = `
             <div class="hint">Consultanos por WhatsApp para confirmar disponibilidad según especialidad.</div>
             <div style="display:flex;gap:10px;flex-wrap:wrap;">
-              <a class="btn btnPrimary" href="${waHref}" rel="noopener">Consultar por WhatsApp</a>
+              <a class="btn btnPrimary" href="${waHrefBase}" rel="noopener">Consultar por WhatsApp</a>
               <a class="btn" href="tel:40075744">Llamar</a>
             </div>
           `;
