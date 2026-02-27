@@ -20,27 +20,46 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+<!doctype html>
+<html lang="es" style="scroll-behavior:smooth;">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KINeST Salud y Bienestar | Centro Kinest - Bella Vista</title>
+  <meta name="description" content="Centro de Estética, Kinesiología, Medicina y Terapias Holísticas en Bella Vista. Turnos por WhatsApp, llamada o email." />
+
+  <meta property="og:title" content="KINeST Salud y Bienestar | Centro Kinest - Bella Vista" />
+  <meta property="og:description" content="Centro de Estética, Kinesiología, Medicina y Terapias Holísticas en Bella Vista. Turnos por WhatsApp, llamada o email." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:image" content="https://iili.io/qfamgEP.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KINeST Salud y Bienestar | Centro Kinest - Bella Vista" />
+  <meta name="twitter:description" content="Centro de Estética, Kinesiología, Medicina y Terapias Holísticas en Bella Vista. Turnos por WhatsApp, llamada o email." />
+  <meta name="twitter:image" content="https://iili.io/qfamgEP.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..900&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
     :root{
-      --bg:#fbfaf6;
-      --bg2:#f2efe9;
-      --paper:#ffffff;
-      --paper2:#fbfbf8;
+      /* P1: SAGE & SAND (serio, calido) */
+      --bg:#f3ede2;         /* arena solida */
+      --paper:#fbf7f0;      /* papel */
+      --paper2:#f8f2ea;     /* papel 2 */
+      --ink:#1a2321;        /* texto */
+      --muted:rgba(26,35,33,.66);
+      --muted2:rgba(26,35,33,.52);
 
-      --text:#0e1413;
-      --muted:rgba(14,20,19,.66);
-      --muted2:rgba(14,20,19,.50);
+      --sage:#4ea58f;       /* acento */
+      --sage2:#2f8f77;
+      --sandLine:rgba(26,35,33,.12);
+      --sandLine2:rgba(26,35,33,.09);
 
-      --mint:#49b59b;
-      --mint2:#2d9f84;
-      --sky:#6f9cff;
-
-      --line:rgba(14,20,19,.14);
-      --line2:rgba(14,20,19,.10);
-
-      --shadow: 0 18px 50px rgba(14,20,19,.10);
-      --shadow2: 0 12px 30px rgba(14,20,19,.08);
+      --shadow: 0 18px 56px rgba(26,35,33,.12);
+      --shadow2: 0 12px 30px rgba(26,35,33,.10);
 
       --r:18px;
       --r2:28px;
@@ -56,31 +75,31 @@
       --fontSans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
       --fontSerif: "Fraunces", ui-serif, Georgia, "Times New Roman", Times, serif;
 
-      /* SECCION ACTIVA */
-      --activeBg: rgba(73,181,155,.10);
-      --activeLine: rgba(73,181,155,.45);
-      --activeGlow: 0 22px 70px rgba(73,181,155,.14);
+      /* SECCION ACTIVA (MUY OBVIO) */
+      --activeBg: rgba(78,165,143,.18);
+      --activeLine: rgba(78,165,143,.55);
+      --activeGlow: 0 26px 80px rgba(78,165,143,.22);
+      --activeBar: linear-gradient(180deg, rgba(78,165,143,.95), rgba(47,143,119,.35));
     }
 
     [data-theme="dark"]{
-      --bg:#0c1110;
-      --bg2:#070c0b;
-      --paper:#0f1615;
-      --paper2:#0d1413;
+      --bg:#0f1413;
+      --paper:#121a18;
+      --paper2:#101715;
+      --ink:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --muted2:rgba(255,255,255,.58);
 
-      --text:rgba(255,255,255,.92);
-      --muted:rgba(255,255,255,.70);
-      --muted2:rgba(255,255,255,.56);
+      --sandLine:rgba(255,255,255,.16);
+      --sandLine2:rgba(255,255,255,.12);
 
-      --line:rgba(255,255,255,.16);
-      --line2:rgba(255,255,255,.12);
+      --shadow: 0 20px 66px rgba(0,0,0,.55);
+      --shadow2: 0 14px 36px rgba(0,0,0,.40);
 
-      --shadow: 0 18px 60px rgba(0,0,0,.45);
-      --shadow2: 0 12px 34px rgba(0,0,0,.32);
-
-      --activeBg: rgba(73,181,155,.10);
-      --activeLine: rgba(73,181,155,.34);
-      --activeGlow: 0 22px 70px rgba(0,0,0,.40);
+      --activeBg: rgba(78,165,143,.14);
+      --activeLine: rgba(78,165,143,.40);
+      --activeGlow: 0 26px 90px rgba(0,0,0,.55);
+      --activeBar: linear-gradient(180deg, rgba(78,165,143,.85), rgba(47,143,119,.25));
     }
 
     *{ box-sizing:border-box; }
@@ -88,17 +107,15 @@
     body{
       margin:0;
       font-family: var(--fontSans);
-      color: var(--text);
-      background:
-        radial-gradient(900px 520px at 18% 10%, rgba(73,181,155,.14), transparent 62%),
-        radial-gradient(900px 520px at 82% 14%, rgba(111,156,255,.10), transparent 64%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--ink);
+      background: var(--bg); /* SOLIDO como pediste */
       overflow-x:hidden;
     }
 
     a{ color:inherit; text-decoration:none; }
     .wrap{ width:100%; max-width: var(--max); margin:0 auto; padding: 0 var(--pad); }
 
+    /* grain suave */
     .noise{
       pointer-events:none;
       position:fixed; inset:0;
@@ -111,13 +128,13 @@
     header{
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 80;
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      background: rgba(251,250,246,.92);
-      border-bottom: 1px solid var(--line2);
+      background: rgba(243,237,226,.92);
+      border-bottom: 1px solid var(--sandLine2);
     }
-    [data-theme="dark"] header{ background: rgba(12,17,16,.80); }
+    [data-theme="dark"] header{ background: rgba(15,20,19,.80); }
 
     .nav{ display:flex; align-items:center; justify-content:space-between; gap: 12px; padding: 12px 0; }
     .brand{ display:flex; align-items:center; gap: 12px; min-width: 0; }
@@ -125,8 +142,8 @@
     .logoMark{
       width: 44px; height: 44px;
       border-radius: 14px;
-      border: 1px solid var(--line2);
-      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.62));
+      border: 1px solid var(--sandLine2);
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.66));
       box-shadow: var(--shadow2);
       overflow:hidden;
       flex: 0 0 auto;
@@ -142,12 +159,12 @@
 
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap: 10px;
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       border-radius: 14px;
       padding: 12px 14px;
-      background: rgba(255,255,255,.90);
-      box-shadow: 0 10px 22px rgba(14,20,19,.06);
-      color: var(--text);
+      background: rgba(251,247,240,.92);
+      box-shadow: 0 10px 22px rgba(26,35,33,.08);
+      color: var(--ink);
       font-weight: 900;
       letter-spacing: .2px;
       cursor:pointer;
@@ -155,92 +172,149 @@
       white-space:nowrap;
     }
     [data-theme="dark"] .btn{ background: rgba(255,255,255,.07); box-shadow: 0 12px 28px rgba(0,0,0,.30); }
-    .btn:hover{ transform: translateY(-1px); border-color: var(--line); }
+    .btn:hover{ transform: translateY(-1px); border-color: var(--sandLine); }
     .btn:active{ transform: translateY(0px); }
 
     .btnPrimary{
-      border-color: rgba(73,181,155,.38);
-      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.74));
+      border-color: rgba(78,165,143,.46);
+      background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(251,247,240,.76));
     }
-    [data-theme="dark"] .btnPrimary{ background: rgba(255,255,255,.08); border-color: rgba(73,181,155,.26); }
+    [data-theme="dark"] .btnPrimary{ background: rgba(255,255,255,.08); border-color: rgba(78,165,143,.28); }
 
     .toggle{
       width: 46px; height: 42px;
       border-radius: 14px;
-      border: 1px solid var(--line2);
-      background: rgba(255,255,255,.90);
+      border: 1px solid var(--sandLine2);
+      background: rgba(251,247,240,.92);
       display:grid;
       place-items:center;
       cursor:pointer;
       transition: transform .15s ease, border-color .15s ease;
-      box-shadow: 0 10px 22px rgba(14,20,19,.06);
+      box-shadow: 0 10px 22px rgba(26,35,33,.08);
     }
     [data-theme="dark"] .toggle{ background: rgba(255,255,255,.06); box-shadow: 0 12px 28px rgba(0,0,0,.30); }
-    .toggle:hover{ transform: translateY(-1px); border-color: var(--line); }
+    .toggle:hover{ transform: translateY(-1px); border-color: var(--sandLine); }
     .toggle svg{ width: 18px; height: 18px; opacity:.9; }
-
-    /* NAV DE SECCIONES (SCROLLSPY) */
-    .spyNav{
-      display:flex;
-      align-items:center;
-      gap: 8px;
-      flex-wrap:wrap;
-      margin-left: 12px;
-      padding-left: 12px;
-      border-left: 1px solid var(--line2);
-    }
-    .spyLink{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      background: transparent;
-      color: var(--muted);
-      font-weight: 900;
-      font-size: 12px;
-      letter-spacing: .2px;
-      transition: background .15s ease, border-color .15s ease, transform .15s ease, color .15s ease;
-      cursor:pointer;
-      user-select:none;
-    }
-    .spyLink:hover{ transform: translateY(-1px); color: var(--text); border-color: var(--line2); background: rgba(255,255,255,.55); }
-    [data-theme="dark"] .spyLink:hover{ background: rgba(255,255,255,.05); }
-
-    .spyLink.active{
-      color: var(--text);
-      border-color: rgba(73,181,155,.42);
-      background: rgba(73,181,155,.14);
-      box-shadow: 0 12px 26px rgba(73,181,155,.12);
-    }
-    .spyDot{
-      width: 8px; height: 8px; border-radius: 999px;
-      background: rgba(14,20,19,.20);
-    }
-    .spyLink.active .spyDot{
-      background: radial-gradient(circle at 30% 30%, var(--mint), rgba(255,255,255,.20));
-      box-shadow: 0 0 0 6px rgba(73,181,155,.12);
-    }
 
     main{ padding: 18px 0 80px; position:relative; z-index: 2; }
 
-    /* SECCIONES: mas contraste + estilo "capitulo" */
-    section{ margin-top: 22px; }
+    /* LAYOUT: SIDEBAR + CONTENIDO (DESKTOP) */
+    .layout{
+      display:grid;
+      grid-template-columns: 290px 1fr;
+      gap: 16px;
+      align-items:start;
+    }
 
+    /* TOC / SIDEBAR (MUY OBVIO) */
+    .toc{
+      position: sticky;
+      top: 82px;
+      align-self:start;
+      border-radius: var(--r2);
+      border: 1px solid var(--sandLine2);
+      background: var(--paper);
+      box-shadow: var(--shadow2);
+      overflow:hidden;
+    }
+    [data-theme="dark"] .toc{ background: rgba(255,255,255,.05); }
+
+    .tocHead{
+      padding: 14px 14px;
+      border-bottom: 1px solid var(--sandLine2);
+      background: linear-gradient(180deg, rgba(78,165,143,.10), rgba(0,0,0,0));
+    }
+    .tocHead .k{
+      font-weight: 900;
+      letter-spacing: .22em;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .tocHead .t{
+      margin-top: 6px;
+      font-family: var(--fontSerif);
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: -0.3px;
+      font-variation-settings: "opsz" 56, "wght" 780;
+    }
+
+    .tocBody{ padding: 10px 10px 12px; }
+    .tocLink{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 10px 10px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: .2px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease, color .12s ease;
+    }
+    .tocLink:hover{
+      transform: translateY(-1px);
+      color: var(--ink);
+      border-color: var(--sandLine2);
+      background: rgba(78,165,143,.08);
+    }
+    [data-theme="dark"] .tocLink:hover{ background: rgba(255,255,255,.04); }
+
+    .tocLink.active{
+      color: var(--ink);
+      border-color: rgba(78,165,143,.48);
+      background: rgba(78,165,143,.14);
+      box-shadow: 0 14px 34px rgba(78,165,143,.14);
+    }
+
+    .tocPill{
+      font-size: 11px;
+      color: var(--muted);
+      border: 1px solid var(--sandLine2);
+      background: rgba(255,255,255,.55);
+      padding: 6px 8px;
+      border-radius: 999px;
+      white-space:nowrap;
+    }
+    [data-theme="dark"] .tocPill{ background: rgba(255,255,255,.03); }
+
+    .tocProgWrap{
+      padding: 0 14px 14px;
+    }
+    .tocProg{
+      height: 8px;
+      border-radius: 999px;
+      border: 1px solid var(--sandLine2);
+      background: rgba(255,255,255,.55);
+      overflow:hidden;
+    }
+    [data-theme="dark"] .tocProg{ background: rgba(255,255,255,.03); }
+    .tocProg > i{
+      display:block;
+      height:100%;
+      width: 0%;
+      background: linear-gradient(90deg, rgba(78,165,143,.95), rgba(47,143,119,.45));
+      border-radius: 999px;
+    }
+
+    /* SECCIONES (BAND) */
     .band{
       border-radius: var(--r2);
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       box-shadow: var(--shadow2);
       overflow:hidden;
       background: var(--paper);
       position: relative;
       transition: background .2s ease, border-color .2s ease, box-shadow .2s ease;
     }
+    [data-theme="dark"] .band{ background: rgba(255,255,255,.05); }
 
     .bandInner{ padding: 18px; }
 
-    /* NUMERO DE CAPITULO */
+    /* CHAPTER + TITLES */
     .chap{
       display:inline-flex;
       align-items:center;
@@ -255,7 +329,7 @@
     .chap:before{
       content:"";
       width: 18px; height: 2px;
-      background: var(--line2);
+      background: var(--sandLine2);
       border-radius: 999px;
     }
 
@@ -263,22 +337,25 @@
       display:flex; align-items:flex-end; justify-content:space-between; gap: 12px;
       margin: 0 0 12px;
       padding-bottom: 12px;
-      border-bottom: 1px solid var(--line2);
+      border-bottom: 1px solid var(--sandLine2);
     }
     .sectionTitle h2{
       margin:0;
       font-family: var(--fontSerif);
-      font-size: 24px;
-      letter-spacing: -0.5px;
-      font-variation-settings: "opsz" 56, "wght" 760;
+      font-size: 26px;
+      letter-spacing: -0.6px;
+      font-variation-settings: "opsz" 56, "wght" 820;
     }
     .sectionTitle p{ margin:0; font-size: 13px; color: var(--muted); }
 
-    /* SECCION ACTIVA: se ve BIEN */
+    /* SECCION ACTIVA (MUY OBVIO) */
     .band.activeSection{
       border-color: var(--activeLine);
       background: linear-gradient(180deg, var(--activeBg), var(--paper));
       box-shadow: var(--activeGlow);
+    }
+    [data-theme="dark"] .band.activeSection{
+      background: linear-gradient(180deg, var(--activeBg), rgba(255,255,255,.05));
     }
     .band.activeSection:before{
       content:"";
@@ -286,12 +363,30 @@
       left: 0;
       top: 0;
       bottom: 0;
-      width: 6px;
-      background: linear-gradient(180deg, rgba(73,181,155,.75), rgba(111,156,255,.35));
-      opacity:.75;
+      width: 9px; /* mas grande */
+      background: var(--activeBar);
+      opacity:.85;
     }
+    .secFlag{
+      position:absolute;
+      right: 14px;
+      top: 14px;
+      z-index: 2;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--sandLine2);
+      background: rgba(255,255,255,.62);
+      padding: 8px 10px;
+      border-radius: 999px;
+      display:none;
+    }
+    [data-theme="dark"] .secFlag{ background: rgba(255,255,255,.04); }
+    .band.activeSection .secFlag{ display:inline-flex; }
 
-    /* reveal (como tenias) */
+    /* reveal */
     .reveal{ opacity: 0; transform: translate3d(0, 14px, 0); filter: blur(2px); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), filter var(--dur) var(--ease); will-change: transform, opacity, filter; }
     .reveal[data-reveal="left"]{ transform: translate3d(-18px, 10px, 0); }
     .reveal[data-reveal="right"]{ transform: translate3d(18px, 10px, 0); }
@@ -313,14 +408,14 @@
       .reveal, .stagger > *{ transition:none !important; transform:none !important; filter:none !important; opacity:1 !important; }
     }
 
-    /* ICONOS */
+    /* Icons (PNG) */
     .iWrap{ display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; }
     .iImg{ width: 20px; height: 20px; display:block; object-fit: contain; }
     .iImgMini{ width: 18px; height: 18px; display:block; object-fit: contain; }
     .iPh{
       width: 20px; height: 20px;
       border-radius: 10px;
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       background: rgba(255,255,255,.22);
       position: relative;
       overflow:hidden;
@@ -329,7 +424,7 @@
     .iPh:after{
       content:"";
       position:absolute; inset:0;
-      background: radial-gradient(14px 14px at 30% 30%, rgba(73,181,155,.18), transparent 60%);
+      background: radial-gradient(14px 14px at 30% 30%, rgba(78,165,143,.18), transparent 60%);
       opacity:.9;
     }
 
@@ -337,22 +432,21 @@
     .heroGrid{ display:grid; grid-template-columns: 1.1fr .9fr; gap: 14px; align-items: stretch; }
 
     .glass{
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       border-radius: var(--r2);
-      background: rgba(255,255,255,.84);
+      background: rgba(255,255,255,.72);
       box-shadow: var(--shadow);
       overflow:hidden;
     }
     [data-theme="dark"] .glass{ background: rgba(255,255,255,.06); }
 
     .heroCard{ padding: 22px; }
-
     .badge{
       display:inline-flex; align-items:center; gap: 10px;
       padding: 9px 12px;
       border-radius: 999px;
-      border: 1px solid var(--line2);
-      background: rgba(255,255,255,.68);
+      border: 1px solid var(--sandLine2);
+      background: rgba(255,255,255,.62);
       color: var(--muted);
       font-size: 13px;
       width: fit-content;
@@ -360,8 +454,8 @@
     [data-theme="dark"] .badge{ background: rgba(255,255,255,.06); }
     .badge .dot{
       width: 10px; height: 10px; border-radius: 999px;
-      background: radial-gradient(circle at 30% 30%, var(--mint), rgba(255,255,255,.15));
-      box-shadow: 0 0 0 6px rgba(73,181,155,.10);
+      background: radial-gradient(circle at 30% 30%, var(--sage), rgba(255,255,255,.15));
+      box-shadow: 0 0 0 7px rgba(78,165,143,.12);
     }
 
     h1{
@@ -370,9 +464,8 @@
       font-size: clamp(34px, 4.6vw, 56px);
       line-height: 1.03;
       letter-spacing: -1px;
-      font-variation-settings: "opsz" 72, "wght" 820;
+      font-variation-settings: "opsz" 72, "wght" 860;
     }
-
     .sub{
       margin: 0 0 12px;
       color: var(--muted);
@@ -380,14 +473,12 @@
       line-height: 1.8;
       max-width: 72ch;
     }
-
     .ctaRow{ display:flex; flex-wrap: wrap; gap: 10px; align-items:center; margin-top: 12px; }
 
     .heroMedia{ padding: 18px; display:flex; flex-direction:column; gap: 12px; }
-
     .heroImg{
       border-radius: 22px;
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       background: rgba(255,255,255,.60);
       box-shadow: var(--shadow2);
       overflow:hidden;
@@ -397,9 +488,9 @@
 
     .quick{ display:grid; gap: 10px; margin-top: 2px; }
     .qi{
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       border-radius: 16px;
-      background: rgba(255,255,255,.68);
+      background: rgba(255,255,255,.62);
       padding: 12px 12px;
       display:flex;
       align-items:flex-start;
@@ -412,20 +503,21 @@
     .qi .v{ font-weight: 900; text-align:right; font-size: 13px; line-height: 1.35; }
     .qi .v a{ text-decoration: underline; text-underline-offset: 3px; }
 
-    /* CARRUSEL + RESTO (similar a tu base) */
+    /* CAROUSEL (IMAGENES) */
     .carousel{
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       border-radius: var(--r2);
-      background: rgba(255,255,255,.90);
+      background: rgba(255,255,255,.78);
       box-shadow: var(--shadow2);
       overflow:hidden;
     }
     [data-theme="dark"] .carousel{ background: rgba(255,255,255,.05); }
+
     .carHead{
       padding: 14px 16px;
       display:flex; align-items:center; justify-content:space-between; gap: 12px;
-      border-bottom: 1px solid var(--line2);
-      background: rgba(255,255,255,.60);
+      border-bottom: 1px solid var(--sandLine2);
+      background: rgba(255,255,255,.55);
     }
     [data-theme="dark"] .carHead{ background: rgba(255,255,255,.03); }
     .carHead .ttl{ font-weight: 900; letter-spacing:.2px; }
@@ -439,6 +531,7 @@
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       cursor: grab;
+      user-select:none;
     }
     .carTrack:active{ cursor: grabbing; }
     .carTrack::-webkit-scrollbar{ display:none; }
@@ -447,28 +540,30 @@
       flex: 0 0 auto;
       width: min(360px, 86vw);
       scroll-snap-align: start;
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       border-radius: 22px;
       overflow:hidden;
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.70);
       box-shadow: var(--shadow2);
     }
     [data-theme="dark"] .carItem{ background: rgba(255,255,255,.05); }
+
     .carMedia{
-      height: 170px;
-      background:
-        radial-gradient(800px 240px at 20% 30%, rgba(73,181,155,.16), transparent 58%),
-        radial-gradient(800px 240px at 80% 70%, rgba(111,156,255,.12), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.10));
-      display:grid; place-items:center;
+      height: 190px;
+      border-bottom: 1px solid var(--sandLine2);
+      background: rgba(255,255,255,.45);
+      position:relative;
+      overflow:hidden;
     }
-    [data-theme="dark"] .carMedia{
-      background:
-        radial-gradient(800px 240px at 20% 30%, rgba(73,181,155,.10), transparent 58%),
-        radial-gradient(800px 240px at 80% 70%, rgba(111,156,255,.08), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    [data-theme="dark"] .carMedia{ background: rgba(255,255,255,.03); }
+    .carMedia img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.02);
     }
-    .carMedia svg{ width: 82px; height: 82px; opacity:.92; }
+
     .carBody{ padding: 14px 14px 16px; }
     .carBody .t{ font-weight: 900; letter-spacing:.2px; }
     .carBody .p{ margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
@@ -476,9 +571,9 @@
     /* filtros + search */
     .filters{ display:flex; flex-wrap:wrap; gap: 10px; margin: 10px 0 0; align-items:center; }
     .filterBtn{
-      border: 1px solid var(--line2);
-      background: rgba(255,255,255,.92);
-      color: var(--text);
+      border: 1px solid var(--sandLine2);
+      background: rgba(255,255,255,.80);
+      color: var(--ink);
       border-radius: 999px;
       padding: 10px 12px;
       font-weight: 900;
@@ -489,22 +584,22 @@
       white-space:nowrap;
     }
     [data-theme="dark"] .filterBtn{ background: rgba(255,255,255,.06); }
-    .filterBtn:hover{ transform: translateY(-1px); border-color: var(--line); }
+    .filterBtn:hover{ transform: translateY(-1px); border-color: var(--sandLine); }
     .filterBtn.active{
-      border-color: rgba(73,181,155,.50);
-      background: rgba(73,181,155,.14);
-      box-shadow: 0 12px 26px rgba(73,181,155,.12);
+      border-color: rgba(78,165,143,.55);
+      background: rgba(78,165,143,.16);
+      box-shadow: 0 12px 26px rgba(78,165,143,.14);
     }
 
     .searchRow{ margin-top: 10px; display:flex; gap: 10px; align-items:center; flex-wrap:wrap; }
     .search{
       flex: 1 1 240px;
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       border-radius: 14px;
       padding: 12px 12px;
       font-size: 14px;
-      background: rgba(255,255,255,.92);
-      color: var(--text);
+      background: rgba(255,255,255,.82);
+      color: var(--ink);
       outline:none;
     }
     [data-theme="dark"] .search{ background: rgba(255,255,255,.06); }
@@ -513,9 +608,9 @@
     /* categorias */
     .catGrid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
     .catCard{
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       border-radius: 22px;
-      background: rgba(255,255,255,.74);
+      background: rgba(255,255,255,.70);
       padding: 16px;
       box-shadow: var(--shadow2);
       display:flex;
@@ -531,14 +626,14 @@
       content:"";
       position:absolute; inset:-2px;
       background:
-        radial-gradient(420px 240px at 18% 10%, rgba(73,181,155,.14), transparent 66%),
-        radial-gradient(420px 240px at 88% 90%, rgba(111,156,255,.10), transparent 66%);
+        radial-gradient(420px 240px at 18% 10%, rgba(78,165,143,.14), transparent 66%),
+        radial-gradient(420px 240px at 88% 90%, rgba(78,165,143,.08), transparent 70%);
       opacity:.85;
       pointer-events:none;
     }
     [data-theme="dark"] .catCard:before{ opacity:.45; }
     .catCard > *{ position:relative; z-index:1; }
-    .catCard:hover{ transform: translateY(-2px); border-color: var(--line); background: rgba(255,255,255,.82); }
+    .catCard:hover{ transform: translateY(-2px); border-color: var(--sandLine); background: rgba(255,255,255,.82); }
     [data-theme="dark"] .catCard:hover{ background: rgba(255,255,255,.07); }
 
     .catCard .h{ display:flex; align-items:center; justify-content:space-between; gap: 10px; }
@@ -547,8 +642,8 @@
     .catCard .count{
       font-size: 12px;
       color: var(--muted);
-      border: 1px solid var(--line2);
-      background: rgba(255,255,255,.72);
+      border: 1px solid var(--sandLine2);
+      background: rgba(255,255,255,.62);
       padding: 6px 10px;
       border-radius: 999px;
       white-space:nowrap;
@@ -559,28 +654,27 @@
     /* accordion */
     .accordionWrap{ margin-top: 12px; display:grid; gap: 12px; }
     details.acc{
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       border-radius: 22px;
-      background: rgba(255,255,255,.92);
+      background: rgba(255,255,255,.82);
       overflow:hidden;
       box-shadow: var(--shadow2);
       position:relative;
     }
     [data-theme="dark"] details.acc{ background: rgba(255,255,255,.05); }
     details.acc[open]{
-      background: linear-gradient(180deg, rgba(73,181,155,.10), rgba(255,255,255,.92));
-      border-color: rgba(73,181,155,.42);
-      box-shadow: 0 18px 56px rgba(14,20,19,.10);
+      background: linear-gradient(180deg, rgba(78,165,143,.14), rgba(255,255,255,.82));
+      border-color: rgba(78,165,143,.50);
+      box-shadow: 0 20px 70px rgba(26,35,33,.14);
     }
-    [data-theme="dark"] details.acc[open]{ background: linear-gradient(180deg, rgba(73,181,155,.10), rgba(255,255,255,.05)); box-shadow: 0 18px 56px rgba(0,0,0,.35); }
+    [data-theme="dark"] details.acc[open]{ background: linear-gradient(180deg, rgba(78,165,143,.12), rgba(255,255,255,.05)); box-shadow: 0 18px 56px rgba(0,0,0,.35); }
     details.acc[open]::before{
       content:"";
       position:absolute; left: 0; top: 0; right: 0;
-      height: 4px;
-      background: rgba(73,181,155,.55);
-      opacity:.70;
+      height: 5px;
+      background: rgba(78,165,143,.58);
+      opacity:.75;
     }
-
     summary.accSum{
       cursor:pointer;
       list-style:none;
@@ -598,8 +692,8 @@
     .accMeta .pill{
       font-size: 12px;
       color: var(--muted);
-      border: 1px solid var(--line2);
-      background: rgba(255,255,255,.72);
+      border: 1px solid var(--sandLine2);
+      background: rgba(255,255,255,.62);
       padding: 7px 10px;
       border-radius: 999px;
       white-space:nowrap;
@@ -617,9 +711,9 @@
 
     .svcList{ display:grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; margin-top: 12px; }
     .svcItem{
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       border-radius: 16px;
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.62);
       padding: 10px 10px;
       display:flex;
       align-items:flex-start;
@@ -629,13 +723,13 @@
     .svcMark{
       width: 20px; height: 20px;
       border-radius: 10px;
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       display:grid; place-items:center;
       font-weight: 900;
       color: var(--muted);
       flex: 0 0 auto;
       margin-top: 2px;
-      background: rgba(255,255,255,.86);
+      background: rgba(255,255,255,.74);
     }
     [data-theme="dark"] .svcMark{ background: rgba(255,255,255,.05); }
     .svcTxt{ min-width:0; }
@@ -661,14 +755,14 @@
       font-family: var(--fontSerif);
       font-size: 20px;
       letter-spacing: -0.35px;
-      font-variation-settings: "opsz" 52, "wght" 760;
+      font-variation-settings: "opsz" 52, "wght" 820;
       font-weight: 900;
     }
     .tag{
       font-size: 12px;
       color: var(--muted);
-      border: 1px solid var(--line2);
-      background: rgba(255,255,255,.78);
+      border: 1px solid var(--sandLine2);
+      background: rgba(255,255,255,.62);
       padding: 7px 10px;
       border-radius: 999px;
       white-space:nowrap;
@@ -681,9 +775,9 @@
       justify-content:space-between;
       gap: 12px;
       padding: 12px 12px;
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       border-radius: 16px;
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.62);
     }
     [data-theme="dark"] .specItem{ background: rgba(255,255,255,.03); }
     .specItem .name{ font-weight: 900; letter-spacing:.2px; font-size: 13px; line-height:1.2; }
@@ -692,22 +786,22 @@
     /* prepagas */
     .prepagas{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 12px; }
     .pp{
-      border: 1px solid var(--line2);
-      background: rgba(255,255,255,.72);
+      border: 1px solid var(--sandLine2);
+      background: rgba(255,255,255,.62);
       border-radius: 999px;
       padding: 10px 12px;
       font-weight: 900;
       font-size: 13px;
-      color: var(--text);
+      color: var(--ink);
     }
     [data-theme="dark"] .pp{ background: rgba(255,255,255,.03); }
 
     /* FAQ */
     .faq{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     details.fq{
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       border-radius: 22px;
-      background: rgba(255,255,255,.92);
+      background: rgba(255,255,255,.82);
       overflow:hidden;
       box-shadow: var(--shadow2);
     }
@@ -739,9 +833,9 @@
       justify-content:space-between;
       gap: 12px;
       padding: 12px 12px;
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       border-radius: 16px;
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.62);
     }
     [data-theme="dark"] .li{ background: rgba(255,255,255,.03); }
     .li .k{ color: var(--muted); font-size: 13px; min-width: 92px; padding-top: 2px; }
@@ -749,10 +843,10 @@
     .li .v a{ text-decoration: underline; text-underline-offset: 3px; }
 
     .mapCard{
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       border-radius: 22px;
       overflow:hidden;
-      background: rgba(255,255,255,.92);
+      background: rgba(255,255,255,.82);
       box-shadow: var(--shadow2);
       display:flex;
       flex-direction:column;
@@ -763,13 +857,13 @@
     .mapImg{ width:100%; height: 320px; object-fit: cover; display:block; }
     .mapBar{
       padding: 12px;
-      border-top: 1px solid var(--line2);
+      border-top: 1px solid var(--sandLine2);
       display:flex;
       gap: 10px;
       align-items:center;
       justify-content:space-between;
       flex-wrap:wrap;
-      background: rgba(255,255,255,.60);
+      background: rgba(255,255,255,.55);
     }
     [data-theme="dark"] .mapBar{ background: rgba(255,255,255,.03); }
     .mapBar .hint{ color: var(--muted); font-size: 12.5px; line-height:1.45; }
@@ -779,7 +873,7 @@
       padding: 18px 0 26px;
       color: var(--muted);
       font-size: 13px;
-      border-top: 1px solid var(--line2);
+      border-top: 1px solid var(--sandLine2);
     }
     .footRow{ display:flex; flex-wrap:wrap; gap: 10px; align-items:center; justify-content:space-between; }
     .footRow a{ text-decoration: underline; text-underline-offset: 3px; }
@@ -789,15 +883,15 @@
       position: fixed;
       right: var(--waGap);
       bottom: var(--waGap);
-      z-index: 60;
+      z-index: 90;
       width: var(--waSize);
       height: var(--waSize);
       border-radius: 999px;
-      border: 1px solid var(--line2);
-      background: rgba(255,255,255,.92);
+      border: 1px solid var(--sandLine2);
+      background: rgba(251,247,240,.92);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 12px 26px rgba(14,20,19,.12);
+      box-shadow: 0 12px 26px rgba(26,35,33,.14);
       display:grid;
       place-items:center;
       overflow:hidden;
@@ -814,17 +908,17 @@
       left: 14px;
       right: 14px;
       bottom: 14px;
-      z-index: 65;
+      z-index: 95;
       display:none;
       gap: 10px;
       align-items:center;
       justify-content:space-between;
-      border: 1px solid var(--line2);
+      border: 1px solid var(--sandLine2);
       border-radius: 18px;
-      background: rgba(255,255,255,.95);
+      background: rgba(251,247,240,.94);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      box-shadow: 0 12px 26px rgba(14,20,19,.12);
+      box-shadow: 0 12px 26px rgba(26,35,33,.14);
       padding: 10px;
     }
     [data-theme="dark"] .stickyCta{ background: rgba(255,255,255,.10); box-shadow: 0 12px 30px rgba(0,0,0,.35); }
@@ -833,6 +927,8 @@
     .stickyCta .act .btn{ padding: 10px 12px; border-radius: 14px; }
 
     @media (max-width: 980px){
+      .layout{ grid-template-columns: 1fr; }
+      .toc{ display:none; }
       .heroGrid{ grid-template-columns: 1fr; }
       .heroImg img{ height: 260px; }
       .catGrid{ grid-template-columns: repeat(2, 1fr); }
@@ -843,7 +939,6 @@
       .stickyCta{ display:flex; }
       .bandInner{ padding: 16px; }
       .waFloat{ display:none; }
-      .spyNav{ display:none; } /* menu de secciones solo desktop para que no moleste */
     }
     @media (max-width: 420px){
       main .btn{ width: 100%; }
@@ -869,17 +964,6 @@
             <div class="t1">KINeST Salud y Bienestar</div>
             <div class="t2">Centro Kinest · Bella Vista</div>
           </div>
-
-          <!-- ScrollSpy nav -->
-          <nav class="spyNav" aria-label="Secciones">
-            <a class="spyLink" href="#inicio" data-spy="inicio"><span class="spyDot"></span>Inicio</a>
-            <a class="spyLink" href="#destacados" data-spy="destacados"><span class="spyDot"></span>Destacados</a>
-            <a class="spyLink" href="#especialidades" data-spy="especialidades"><span class="spyDot"></span>Especialidades</a>
-            <a class="spyLink" href="#profesionales" data-spy="profesionales"><span class="spyDot"></span>Profesionales</a>
-            <a class="spyLink" href="#coberturas" data-spy="coberturas"><span class="spyDot"></span>Coberturas</a>
-            <a class="spyLink" href="#faq" data-spy="faq"><span class="spyDot"></span>FAQ</a>
-            <a class="spyLink" href="#ubicacion" data-spy="ubicacion"><span class="spyDot"></span>Ubicacion</a>
-          </nav>
         </div>
 
         <div class="navRight">
@@ -899,339 +983,403 @@
 
   <main>
     <div class="wrap">
+      <div class="layout">
 
-      <!-- HERO -->
-      <section id="inicio" class="band reveal" data-reveal="up" data-section="inicio">
-        <div class="bandInner">
-          <div class="chap">Capitulo 01</div>
-          <div class="heroGrid">
-            <div class="glass heroCard reveal" data-reveal="left">
-              <div class="badge"><span class="dot" aria-hidden="true"></span>Estética · Kinesiología · Medicina · Terapias holísticas</div>
+        <!-- SIDEBAR (TOC) -->
+        <aside class="toc" aria-label="Indice de secciones">
+          <div class="tocHead">
+            <div class="k">Navegacion</div>
+            <div class="t">Secciones</div>
+          </div>
+          <div class="tocBody">
+            <a class="tocLink" href="#inicio" data-spy="inicio"><span>Inicio</span><span class="tocPill">01</span></a>
+            <a class="tocLink" href="#destacados" data-spy="destacados"><span>Destacados</span><span class="tocPill">02</span></a>
+            <a class="tocLink" href="#especialidades" data-spy="especialidades"><span>Especialidades</span><span class="tocPill">03</span></a>
+            <a class="tocLink" href="#profesionales" data-spy="profesionales"><span>Profesionales</span><span class="tocPill">04</span></a>
+            <a class="tocLink" href="#coberturas" data-spy="coberturas"><span>Coberturas</span><span class="tocPill">05</span></a>
+            <a class="tocLink" href="#faq" data-spy="faq"><span>FAQ</span><span class="tocPill">06</span></a>
+            <a class="tocLink" href="#ubicacion" data-spy="ubicacion"><span>Ubicacion</span><span class="tocPill">07</span></a>
+          </div>
+          <div class="tocProgWrap">
+            <div class="tocProg" aria-hidden="true"><i id="tocProgBar"></i></div>
+          </div>
+        </aside>
 
-              <h1>KINeST Salud y Bienestar</h1>
-              <p class="sub">Bella Vista. Turnos por WhatsApp, teléfono o email.</p>
+        <!-- CONTENT -->
+        <div class="content">
 
-              <div class="ctaRow stagger" data-stagger>
-                <a class="btn btnPrimary" id="btnHeroWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
-                <a class="btn" href="#especialidades">Ver especialidades</a>
-                <a class="btn" href="tel:40075744">Llamar</a>
-              </div>
+          <!-- HERO -->
+          <section id="inicio" class="band reveal" data-reveal="up" data-section="inicio">
+            <span class="secFlag">Seccion activa</span>
+            <div class="bandInner">
+              <div class="chap">Capitulo 01</div>
+              <div class="heroGrid">
+                <div class="glass heroCard reveal" data-reveal="left">
+                  <div class="badge"><span class="dot" aria-hidden="true"></span>Estética · Kinesiología · Medicina · Terapias holísticas</div>
 
-              <div class="quick stagger" data-stagger style="margin-top:14px;">
-                <div class="qi">
-                  <div class="qiLeft">
-                    <span class="iWrap" aria-hidden="true" id="icoQuickWA"><span class="iPh"></span></span>
-                    <div class="k">WhatsApp</div>
+                  <h1>KINeST Salud y Bienestar</h1>
+                  <p class="sub">Bella Vista. Turnos por WhatsApp, teléfono o email.</p>
+
+                  <div class="ctaRow stagger" data-stagger>
+                    <a class="btn btnPrimary" id="btnHeroWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
+                    <a class="btn" href="#especialidades">Ver especialidades</a>
+                    <a class="btn" href="tel:40075744">Llamar</a>
                   </div>
-                  <div class="v"><a id="waTextLink" href="#" rel="noopener">11-6567-1472</a></div>
+
+                  <div class="quick stagger" data-stagger style="margin-top:14px;">
+                    <div class="qi">
+                      <div class="qiLeft">
+                        <span class="iWrap" aria-hidden="true" id="icoQuickWA"><span class="iPh"></span></span>
+                        <div class="k">WhatsApp</div>
+                      </div>
+                      <div class="v"><a id="waTextLink" href="#" rel="noopener">11-6567-1472</a></div>
+                    </div>
+
+                    <div class="qi">
+                      <div class="qiLeft">
+                        <span class="iWrap" aria-hidden="true" id="icoQuickTel"><span class="iPh"></span></span>
+                        <div class="k">Teléfonos</div>
+                      </div>
+                      <div class="v"><a href="tel:40075744">4007-5744</a> · <a href="tel:48964254">4896-4254</a></div>
+                    </div>
+
+                    <div class="qi">
+                      <div class="qiLeft">
+                        <span class="iWrap" aria-hidden="true" id="icoQuickMap"><span class="iPh"></span></span>
+                        <div class="k">Dirección</div>
+                      </div>
+                      <div class="v"><a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Av. San Martín 1392</a></div>
+                    </div>
+
+                    <div class="qi">
+                      <div class="qiLeft">
+                        <span class="iWrap" aria-hidden="true" id="icoQuickMail"><span class="iPh"></span></span>
+                        <div class="k">Email</div>
+                      </div>
+                      <div class="v"><a href="mailto:centrokinest_bellavista@hotmail.com">centrokinest_bellavista@hotmail.com</a></div>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="qi">
-                  <div class="qiLeft">
-                    <span class="iWrap" aria-hidden="true" id="icoQuickTel"><span class="iPh"></span></span>
-                    <div class="k">Teléfonos</div>
+                <div class="glass heroMedia reveal" data-reveal="right">
+                  <div class="heroImg">
+                    <img src="https://iili.io/qfamgEP.png" alt="KINeST Salud y Bienestar" />
                   </div>
-                  <div class="v"><a href="tel:40075744">4007-5744</a> · <a href="tel:48964254">4896-4254</a></div>
-                </div>
-
-                <div class="qi">
-                  <div class="qiLeft">
-                    <span class="iWrap" aria-hidden="true" id="icoQuickMap"><span class="iPh"></span></span>
-                    <div class="k">Dirección</div>
+                  <div class="ctaRow">
+                    <a class="btn btnPrimary" id="btnSideWA" href="#" rel="noopener" style="width:100%;">Pedir turno por WhatsApp</a>
                   </div>
-                  <div class="v"><a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Av. San Martín 1392</a></div>
-                </div>
-
-                <div class="qi">
-                  <div class="qiLeft">
-                    <span class="iWrap" aria-hidden="true" id="icoQuickMail"><span class="iPh"></span></span>
-                    <div class="k">Email</div>
+                  <div class="qi">
+                    <div class="qiLeft">
+                      <span class="iWrap" aria-hidden="true" id="icoQuickIG"><span class="iPh"></span></span>
+                      <div class="k">Instagram</div>
+                    </div>
+                    <div class="v"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div>
                   </div>
-                  <div class="v"><a href="mailto:centrokinest_bellavista@hotmail.com">centrokinest_bellavista@hotmail.com</a></div>
                 </div>
               </div>
             </div>
+          </section>
 
-            <div class="glass heroMedia reveal" data-reveal="right">
-              <div class="heroImg">
-                <img src="https://iili.io/qfamgEP.png" alt="KINeST Salud y Bienestar" />
+          <!-- DESTACADOS -->
+          <section id="destacados" class="band reveal" data-reveal="up" data-section="destacados" style="margin-top:22px;">
+            <span class="secFlag">Seccion activa</span>
+            <div class="bandInner">
+              <div class="chap">Capitulo 02</div>
+              <div class="sectionTitle">
+                <h2>Destacados</h2>
+                <p>Deslizá para ver más</p>
               </div>
-              <div class="ctaRow">
-                <a class="btn btnPrimary" id="btnSideWA" href="#" rel="noopener" style="width:100%;">Pedir turno por WhatsApp</a>
-              </div>
-              <div class="qi">
-                <div class="qiLeft">
-                  <span class="iWrap" aria-hidden="true" id="icoQuickIG"><span class="iPh"></span></span>
-                  <div class="k">Instagram</div>
+
+              <div class="carousel">
+                <div class="carHead">
+                  <div>
+                    <div class="ttl">Tratamientos</div>
+                    <div class="hint">Loop infinito (se pausa al interactuar)</div>
+                  </div>
+                  <a class="btn btnPrimary" id="btnCarWA" href="#" rel="noopener" style="padding:10px 12px;border-radius:14px;">Consultar</a>
                 </div>
-                <div class="v"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div>
+
+                <div class="carTrack" id="carTrack" aria-label="Carrusel de destacados">
+                  <article class="carItem" data-loop-item="1">
+                    <div class="carMedia" aria-hidden="true"><img src="https://iili.io/qfwt41e.jpg" alt="Dermapen" loading="lazy" decoding="async" /></div>
+                    <div class="carBody"><div class="t">Dermapen</div><p class="p">Tratamiento facial.</p></div>
+                  </article>
+
+                  <article class="carItem" data-loop-item="1">
+                    <div class="carMedia" aria-hidden="true"><img src="https://iili.io/qfN3exs.jpg" alt="Peeling" loading="lazy" decoding="async" /></div>
+                    <div class="carBody"><div class="t">Peeling</div><p class="p">Tratamientos faciales.</p></div>
+                  </article>
+
+                  <article class="carItem" data-loop-item="1">
+                    <div class="carMedia" aria-hidden="true"><img src="https://iili.io/qfNFbQs.jpg" alt="Drenaje linfático" loading="lazy" decoding="async" /></div>
+                    <div class="carBody"><div class="t">Drenaje linfático</div><p class="p">Drenaje / circulación.</p></div>
+                  </article>
+
+                  <article class="carItem" data-loop-item="1">
+                    <div class="carMedia" aria-hidden="true"><img src="https://iili.io/qfNfRUl.png" alt="Presoterapia" loading="lazy" decoding="async" /></div>
+                    <div class="carBody"><div class="t">Presoterapia</div><p class="p">Botas de drenaje linfático.</p></div>
+                  </article>
+
+                  <article class="carItem" data-loop-item="1">
+                    <div class="carMedia" aria-hidden="true"><img src="https://iili.io/qfNfDqG.jpg" alt="Criolipólisis" loading="lazy" decoding="async" /></div>
+                    <div class="carBody"><div class="t">Criolipólisis</div><p class="p">Tratamientos corporales.</p></div>
+                  </article>
+
+                  <article class="carItem" data-loop-item="1">
+                    <div class="carMedia" aria-hidden="true"><img src="https://iili.io/qfNqOYl.jpg" alt="Radiofrecuencia" loading="lazy" decoding="async" /></div>
+                    <div class="carBody"><div class="t">Radiofrecuencia</div><p class="p">Tratamientos corporales.</p></div>
+                  </article>
+
+                  <article class="carItem" data-loop-item="1">
+                    <div class="carMedia" aria-hidden="true"><img src="https://iili.io/qfNBfjt.jpg" alt="Ozonoterapia" loading="lazy" decoding="async" /></div>
+                    <div class="carBody"><div class="t">Ozonoterapia</div><p class="p">Medicina biológica.</p></div>
+                  </article>
+
+                  <article class="carItem" data-loop-item="1">
+                    <div class="carMedia" aria-hidden="true"><img src="https://iili.io/qfNnsaf.png" alt="Sueroterapia" loading="lazy" decoding="async" /></div>
+                    <div class="carBody"><div class="t">Sueroterapia</div><p class="p">Medicina biológica.</p></div>
+                  </article>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- DESTACADOS -->
-      <section id="destacados" class="band reveal" data-reveal="up" data-section="destacados" style="margin-top:22px;">
-        <div class="bandInner">
-          <div class="chap">Capitulo 02</div>
-          <div class="sectionTitle">
-            <h2>Destacados</h2>
-            <p>Deslizá para ver más</p>
-          </div>
-
-          <div class="carousel">
-            <div class="carHead">
-              <div>
-                <div class="ttl">Tratamientos</div>
-                <div class="hint">Auto-scroll suave (se pausa al interactuar)</div>
-              </div>
-              <a class="btn btnPrimary" id="btnCarWA" href="#" rel="noopener" style="padding:10px 12px;border-radius:14px;">Consultar</a>
-            </div>
-
-            <div class="carTrack" id="carTrack" aria-label="Carrusel de destacados">
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M18 32c8-12 20-12 28 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M22 42c6 4 14 4 20 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Dermapen</div><p class="p">Tratamiento facial.</p></div></article>
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M20 40c8 6 16 6 24 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M18 24c5-6 23-6 28 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Peeling</div><p class="p">Tratamientos faciales.</p></div></article>
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M16 34c10 10 22 10 32 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M20 24h24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Drenaje linfático</div><p class="p">Drenaje / circulación.</p></div></article>
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M18 30h28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M24 20v24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M40 20v24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Presoterapia</div><p class="p">Botas de drenaje linfático.</p></div></article>
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M22 44c10 4 20 0 20-10 0-8-10-10-20-14" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M22 20c8-4 18-2 22 6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Criolipólisis</div><p class="p">Tratamientos corporales.</p></div></article>
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M20 22c12-8 24 0 24 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M20 42c12 8 24 0 24 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Radiofrecuencia</div><p class="p">Tratamientos corporales.</p></div></article>
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M32 16v32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M18 28h28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M22 40h24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Ozonoterapia</div><p class="p">Medicina biológica.</p></div></article>
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M22 18h20" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M18 28h28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M22 46h20" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Sueroterapia</div><p class="p">Medicina biológica.</p></div></article>
-            </div>
-          </div>
-
-          <div class="ctaRow" style="margin-top:12px;">
-            <a class="btn btnPrimary" id="btnFeaturedWA" href="#" rel="noopener">Consultar por WhatsApp</a>
-            <a class="btn" href="#especialidades">Ver categorías</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ESPECIALIDADES -->
-      <section id="especialidades" class="band reveal" data-reveal="up" data-section="especialidades" style="margin-top:22px;">
-        <div class="bandInner">
-          <div class="chap">Capitulo 03</div>
-          <div class="sectionTitle">
-            <h2>Especialidades</h2>
-            <p>Categorías + búsqueda</p>
-          </div>
-
-          <div class="filters" id="filters">
-            <button class="filterBtn active" data-filter="all">Todas</button>
-            <button class="filterBtn" data-filter="estetica_facial">Estética facial</button>
-            <button class="filterBtn" data-filter="corporal">Corporal</button>
-            <button class="filterBtn" data-filter="pestanas_cejas">Pestañas y cejas</button>
-            <button class="filterBtn" data-filter="drenaje">Drenaje / Presoterapia</button>
-            <button class="filterBtn" data-filter="mesoterapia">Mesoterapia / Enzimas</button>
-            <button class="filterBtn" data-filter="bioestimulacion">Bioestimulación / Exosomas</button>
-            <button class="filterBtn" data-filter="masajes">Masajes</button>
-            <button class="filterBtn" data-filter="aparatologia">Aparatología / Fitness</button>
-            <button class="filterBtn" data-filter="kinesiologia">Kinesiología / Rehab</button>
-            <button class="filterBtn" data-filter="medicina">Medicina / Especialidades</button>
-          </div>
-
-          <div class="searchRow">
-            <input class="search" id="search" type="search" placeholder="Buscar (ej: dermapen, ozonoterapia, criolipólisis...)" />
-            <a class="btn btnPrimary" id="btnServicesWA" href="#" rel="noopener">Consultar por WhatsApp</a>
-          </div>
-
-          <div class="catGrid stagger" id="catGrid" data-stagger></div>
-          <div class="accordionWrap" id="accordionWrap"></div>
-        </div>
-      </section>
-
-      <!-- PROFESIONALES -->
-      <section id="profesionales" class="band reveal" data-reveal="up" data-section="profesionales" style="margin-top:22px;">
-        <div class="bandInner">
-          <div class="chap">Capitulo 04</div>
-          <div class="sectionTitle">
-            <h2>Profesionales</h2>
-            <p>Por especialidad</p>
-          </div>
-
-          <div class="specialists">
-            <div class="glass pane reveal" data-reveal="left">
-              <div class="paneTitle">
-                <h3>Traumatología</h3>
-                <span class="tag">Equipo</span>
-              </div>
-              <div class="specList stagger" data-stagger>
-                <div class="specItem"><div class="name">Dra. Nora Bengochea</div><div class="role">Traumatología</div></div>
-                <div class="specItem"><div class="name">Dr. Roberto Pérez</div><div class="role">Traumatología</div></div>
-                <div class="specItem"><div class="name">Dr. Juan Cabral</div><div class="role">Traumatología</div></div>
-                <div class="specItem"><div class="name">Dr. Guillermo Flynn</div><div class="role">Traumatología</div></div>
-              </div>
               <div class="ctaRow" style="margin-top:12px;">
-                <a class="btn btnPrimary" id="btnSpecWA" href="#" rel="noopener">Consultar turnos</a>
+                <a class="btn btnPrimary" id="btnFeaturedWA" href="#" rel="noopener">Consultar por WhatsApp</a>
+                <a class="btn" href="#especialidades">Ver categorías</a>
               </div>
             </div>
+          </section>
 
-            <div class="glass pane reveal" data-reveal="right">
-              <div class="paneTitle">
-                <h3>Otras especialidades</h3>
-                <span class="tag">Profesionales</span>
+          <!-- ESPECIALIDADES -->
+          <section id="especialidades" class="band reveal" data-reveal="up" data-section="especialidades" style="margin-top:22px;">
+            <span class="secFlag">Seccion activa</span>
+            <div class="bandInner">
+              <div class="chap">Capitulo 03</div>
+              <div class="sectionTitle">
+                <h2>Especialidades</h2>
+                <p>Categorías + búsqueda</p>
               </div>
-              <div class="specList stagger" data-stagger>
-                <div class="specItem"><div class="name">Dra. Roxana González</div><div class="role">Neurología</div></div>
-                <div class="specItem"><div class="name">Dr. Gonzalo Gallarino</div><div class="role">Medicina biológica / Ozonoterapia / Sueroterapia</div></div>
-                <div class="specItem"><div class="name">Dra. Adriana Fiore</div><div class="role">Endocrinología</div></div>
-                <div class="specItem"><div class="name">Lic. Javier Mouzaffar</div><div class="role">Quiropraxia</div></div>
-                <div class="specItem"><div class="name">Dr. Fabio Adlerstein</div><div class="role">Flebología</div></div>
-                <div class="specItem"><div class="name">Lic. María del Cielo Fernández</div><div class="role">Nutrición</div></div>
+
+              <div class="filters" id="filters">
+                <button class="filterBtn active" data-filter="all">Todas</button>
+                <button class="filterBtn" data-filter="estetica_facial">Estética facial</button>
+                <button class="filterBtn" data-filter="corporal">Corporal</button>
+                <button class="filterBtn" data-filter="pestanas_cejas">Pestañas y cejas</button>
+                <button class="filterBtn" data-filter="drenaje">Drenaje / Presoterapia</button>
+                <button class="filterBtn" data-filter="mesoterapia">Mesoterapia / Enzimas</button>
+                <button class="filterBtn" data-filter="bioestimulacion">Bioestimulación / Exosomas</button>
+                <button class="filterBtn" data-filter="masajes">Masajes</button>
+                <button class="filterBtn" data-filter="aparatologia">Aparatología / Fitness</button>
+                <button class="filterBtn" data-filter="kinesiologia">Kinesiología / Rehab</button>
+                <button class="filterBtn" data-filter="medicina">Medicina / Especialidades</button>
               </div>
+
+              <div class="searchRow">
+                <input class="search" id="search" type="search" placeholder="Buscar (ej: dermapen, ozonoterapia, criolipólisis...)" />
+                <a class="btn btnPrimary" id="btnServicesWA" href="#" rel="noopener">Consultar por WhatsApp</a>
+              </div>
+
+              <div class="catGrid stagger" id="catGrid" data-stagger></div>
+              <div class="accordionWrap" id="accordionWrap"></div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      <!-- COBERTURAS -->
-      <section id="coberturas" class="band reveal" data-reveal="up" data-section="coberturas" style="margin-top:22px;">
-        <div class="bandInner">
-          <div class="chap">Capitulo 05</div>
-          <div class="sectionTitle">
-            <h2>Obras sociales / prepagas</h2>
-            <p>Consultar cobertura por WhatsApp</p>
-          </div>
+          <!-- PROFESIONALES -->
+          <section id="profesionales" class="band reveal" data-reveal="up" data-section="profesionales" style="margin-top:22px;">
+            <span class="secFlag">Seccion activa</span>
+            <div class="bandInner">
+              <div class="chap">Capitulo 04</div>
+              <div class="sectionTitle">
+                <h2>Profesionales</h2>
+                <p>Por especialidad</p>
+              </div>
 
-          <div class="glass pane">
-            <div class="paneTitle">
-              <h3>Principales</h3>
-              <span class="tag">Cobertura</span>
-            </div>
-            <div class="prepagas stagger" data-stagger>
-              <span class="pp">Swiss Medical</span>
-              <span class="pp">Medicus</span>
-              <span class="pp">Medifé</span>
-              <span class="pp">OSDE</span>
-              <span class="pp">Galeno</span>
-              <span class="pp">Omint</span>
-            </div>
-            <div class="ctaRow" style="margin-top:12px;">
-              <a class="btn btnPrimary" id="btnCoverageWA" href="#" rel="noopener">Consultar cobertura</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section id="faq" class="band reveal" data-reveal="up" data-section="faq" style="margin-top:22px;">
-        <div class="bandInner">
-          <div class="chap">Capitulo 06</div>
-          <div class="sectionTitle">
-            <h2>Preguntas frecuentes</h2>
-            <p>Respuesta rápida</p>
-          </div>
-
-          <div class="faq">
-            <details class="fq">
-              <summary class="fqSum">¿Cómo saco turno?
-                <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              </summary>
-              <div class="ans">Por WhatsApp (recomendado), por teléfono o por email. Confirmamos disponibilidad según especialidad.</div>
-            </details>
-
-            <details class="fq">
-              <summary class="fqSum">¿Horarios?
-                <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              </summary>
-              <div class="ans">Los horarios se confirman por WhatsApp, ya que varían según especialidad y disponibilidad.</div>
-            </details>
-
-            <details class="fq">
-              <summary class="fqSum">¿Dónde están ubicados?
-                <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              </summary>
-              <div class="ans">Av. San Martín 1392, Bella Vista (1661). Abajo tenés mapa interactivo y botón a Google Maps.</div>
-            </details>
-
-            <details class="fq">
-              <summary class="fqSum">¿Puedo reprogramar un turno?
-                <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              </summary>
-              <div class="ans">Sí. Avisanos por WhatsApp y lo reprogramamos según disponibilidad.</div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <!-- UBICACION -->
-      <section id="ubicacion" class="band reveal" data-reveal="up" data-section="ubicacion" style="margin-top:22px;">
-        <div class="bandInner">
-          <div class="chap">Capitulo 07</div>
-          <div class="sectionTitle">
-            <h2>Ubicación</h2>
-            <p>Mapa interactivo + alternativa</p>
-          </div>
-
-          <div class="contactGrid">
-            <div class="glass pane reveal" data-reveal="left">
-              <div class="badge"><span class="dot" aria-hidden="true"></span>Centro Kinest · Bella Vista</div>
-
-              <div class="list stagger" data-stagger>
-                <div class="li"><div class="k">WhatsApp</div><div class="v"><a id="waContactLink" href="#" rel="noopener">11-6567-1472</a></div></div>
-                <div class="li"><div class="k">Teléfono</div><div class="v"><a href="tel:40075744">4007-5744</a></div></div>
-                <div class="li"><div class="k">Teléfono</div><div class="v"><a href="tel:48964254">4896-4254</a></div></div>
-                <div class="li"><div class="k">Email</div><div class="v"><a href="mailto:centrokinest_bellavista@hotmail.com">centrokinest_bellavista@hotmail.com</a></div></div>
-                <div class="li">
-                  <div class="k">Dirección</div>
-                  <div class="v">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">
-                      Av. San Martín 1392 (1661)
-                    </a>
+              <div class="specialists">
+                <div class="glass pane reveal" data-reveal="left">
+                  <div class="paneTitle">
+                    <h3>Traumatología</h3>
+                    <span class="tag">Equipo</span>
+                  </div>
+                  <div class="specList stagger" data-stagger>
+                    <div class="specItem"><div class="name">Dra. Nora Bengochea</div><div class="role">Traumatología</div></div>
+                    <div class="specItem"><div class="name">Dr. Roberto Pérez</div><div class="role">Traumatología</div></div>
+                    <div class="specItem"><div class="name">Dr. Juan Cabral</div><div class="role">Traumatología</div></div>
+                    <div class="specItem"><div class="name">Dr. Guillermo Flynn</div><div class="role">Traumatología</div></div>
+                  </div>
+                  <div class="ctaRow" style="margin-top:12px;">
+                    <a class="btn btnPrimary" id="btnSpecWA" href="#" rel="noopener">Consultar turnos</a>
                   </div>
                 </div>
-                <div class="li"><div class="k">Instagram</div><div class="v"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div></div>
-              </div>
 
-              <div class="ctaRow" style="margin-top:14px;">
-                <a class="btn btnPrimary" id="btnBottomWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
-                <a class="btn" href="#especialidades">Ver especialidades</a>
-              </div>
-
-              <div class="spacerForFloat" aria-hidden="true"></div>
-            </div>
-
-            <div class="mapCard reveal" data-reveal="right">
-              <iframe
-                class="mapFrame"
-                id="mapFrame"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps?q=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661&output=embed"
-                title="Mapa Centro Kinest"
-              ></iframe>
-
-              <img class="mapImg" id="mapFallback" src="https://iili.io/qf0ljTP.png" alt="Mapa / Ubicación Centro Kinest" loading="lazy" style="display:none;" />
-
-              <div class="mapBar">
-                <div class="hint">Si el mapa interactivo no carga, se muestra una imagen alternativa.</div>
-                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Abrir en Google Maps</a>
+                <div class="glass pane reveal" data-reveal="right">
+                  <div class="paneTitle">
+                    <h3>Otras especialidades</h3>
+                    <span class="tag">Profesionales</span>
+                  </div>
+                  <div class="specList stagger" data-stagger>
+                    <div class="specItem"><div class="name">Dra. Roxana González</div><div class="role">Neurología</div></div>
+                    <div class="specItem"><div class="name">Dr. Gonzalo Gallarino</div><div class="role">Medicina biológica / Ozonoterapia / Sueroterapia</div></div>
+                    <div class="specItem"><div class="name">Dra. Adriana Fiore</div><div class="role">Endocrinología</div></div>
+                    <div class="specItem"><div class="name">Lic. Javier Mouzaffar</div><div class="role">Quiropraxia</div></div>
+                    <div class="specItem"><div class="name">Dr. Fabio Adlerstein</div><div class="role">Flebología</div></div>
+                    <div class="specItem"><div class="name">Lic. María del Cielo Fernández</div><div class="role">Nutrición</div></div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </section>
 
-          <footer class="reveal in" style="margin-top:18px;">
-            <div class="footRow">
-              <div>
-                <strong style="color:var(--text);">KINeST Salud y Bienestar</strong>
-                <span style="margin-left:8px;">· Centro Kinest · Bella Vista</span>
+          <!-- COBERTURAS -->
+          <section id="coberturas" class="band reveal" data-reveal="up" data-section="coberturas" style="margin-top:22px;">
+            <span class="secFlag">Seccion activa</span>
+            <div class="bandInner">
+              <div class="chap">Capitulo 05</div>
+              <div class="sectionTitle">
+                <h2>Obras sociales / prepagas</h2>
+                <p>Consultar cobertura por WhatsApp</p>
               </div>
-              <div>
-                <a href="#especialidades">Especialidades</a>
-                <span style="margin:0 8px;">|</span>
-                <a href="#ubicacion">Ubicación</a>
+
+              <div class="glass pane">
+                <div class="paneTitle">
+                  <h3>Principales</h3>
+                  <span class="tag">Cobertura</span>
+                </div>
+                <div class="prepagas stagger" data-stagger>
+                  <span class="pp">Swiss Medical</span>
+                  <span class="pp">Medicus</span>
+                  <span class="pp">Medifé</span>
+                  <span class="pp">OSDE</span>
+                  <span class="pp">Galeno</span>
+                  <span class="pp">Omint</span>
+                </div>
+                <div class="ctaRow" style="margin-top:12px;">
+                  <a class="btn btnPrimary" id="btnCoverageWA" href="#" rel="noopener">Consultar cobertura</a>
+                </div>
               </div>
             </div>
+          </section>
 
-            <div class="footRow" style="margin-top:10px;">
-              <div>Creado y diseñado por <a href="https://ciborg347.onrender.com" target="_blank" rel="noopener">Ciborg 347</a></div>
-              <div><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">Instagram</a></div>
+          <!-- FAQ -->
+          <section id="faq" class="band reveal" data-reveal="up" data-section="faq" style="margin-top:22px;">
+            <span class="secFlag">Seccion activa</span>
+            <div class="bandInner">
+              <div class="chap">Capitulo 06</div>
+              <div class="sectionTitle">
+                <h2>Preguntas frecuentes</h2>
+                <p>Respuesta rápida</p>
+              </div>
+
+              <div class="faq">
+                <details class="fq">
+                  <summary class="fqSum">¿Cómo saco turno?
+                    <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  </summary>
+                  <div class="ans">Por WhatsApp (recomendado), por teléfono o por email. Confirmamos disponibilidad según especialidad.</div>
+                </details>
+
+                <details class="fq">
+                  <summary class="fqSum">¿Horarios?
+                    <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  </summary>
+                  <div class="ans">Los horarios se confirman por WhatsApp, ya que varían según especialidad y disponibilidad.</div>
+                </details>
+
+                <details class="fq">
+                  <summary class="fqSum">¿Dónde están ubicados?
+                    <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  </summary>
+                  <div class="ans">Av. San Martín 1392, Bella Vista (1661). Abajo tenés mapa interactivo y botón a Google Maps.</div>
+                </details>
+
+                <details class="fq">
+                  <summary class="fqSum">¿Puedo reprogramar un turno?
+                    <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  </summary>
+                  <div class="ans">Sí. Avisanos por WhatsApp y lo reprogramamos según disponibilidad.</div>
+                </details>
+              </div>
             </div>
-          </footer>
+          </section>
+
+          <!-- UBICACION -->
+          <section id="ubicacion" class="band reveal" data-reveal="up" data-section="ubicacion" style="margin-top:22px;">
+            <span class="secFlag">Seccion activa</span>
+            <div class="bandInner">
+              <div class="chap">Capitulo 07</div>
+              <div class="sectionTitle">
+                <h2>Ubicación</h2>
+                <p>Mapa interactivo + alternativa</p>
+              </div>
+
+              <div class="contactGrid">
+                <div class="glass pane reveal" data-reveal="left">
+                  <div class="badge"><span class="dot" aria-hidden="true"></span>Centro Kinest · Bella Vista</div>
+
+                  <div class="list stagger" data-stagger>
+                    <div class="li"><div class="k">WhatsApp</div><div class="v"><a id="waContactLink" href="#" rel="noopener">11-6567-1472</a></div></div>
+                    <div class="li"><div class="k">Teléfono</div><div class="v"><a href="tel:40075744">4007-5744</a></div></div>
+                    <div class="li"><div class="k">Teléfono</div><div class="v"><a href="tel:48964254">4896-4254</a></div></div>
+                    <div class="li"><div class="k">Email</div><div class="v"><a href="mailto:centrokinest_bellavista@hotmail.com">centrokinest_bellavista@hotmail.com</a></div></div>
+                    <div class="li">
+                      <div class="k">Dirección</div>
+                      <div class="v">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">
+                          Av. San Martín 1392 (1661)
+                        </a>
+                      </div>
+                    </div>
+                    <div class="li"><div class="k">Instagram</div><div class="v"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div></div>
+                  </div>
+
+                  <div class="ctaRow" style="margin-top:14px;">
+                    <a class="btn btnPrimary" id="btnBottomWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
+                    <a class="btn" href="#especialidades">Ver especialidades</a>
+                  </div>
+
+                  <div class="spacerForFloat" aria-hidden="true"></div>
+                </div>
+
+                <div class="mapCard reveal" data-reveal="right">
+                  <iframe
+                    class="mapFrame"
+                    id="mapFrame"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps?q=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661&output=embed"
+                    title="Mapa Centro Kinest"
+                  ></iframe>
+
+                  <img class="mapImg" id="mapFallback" src="https://iili.io/qf0ljTP.png" alt="Mapa / Ubicación Centro Kinest" loading="lazy" style="display:none;" />
+
+                  <div class="mapBar">
+                    <div class="hint">Si el mapa interactivo no carga, se muestra una imagen alternativa.</div>
+                    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Abrir en Google Maps</a>
+                  </div>
+                </div>
+              </div>
+
+              <footer class="reveal in" style="margin-top:18px;">
+                <div class="footRow">
+                  <div>
+                    <strong style="color:var(--ink);">KINeST Salud y Bienestar</strong>
+                    <span style="margin-left:8px;">· Centro Kinest · Bella Vista</span>
+                  </div>
+                  <div>
+                    <a href="#especialidades">Especialidades</a>
+                    <span style="margin:0 8px;">|</span>
+                    <a href="#ubicacion">Ubicación</a>
+                  </div>
+                </div>
+
+                <div class="footRow" style="margin-top:10px;">
+                  <div>Creado y diseñado por <a href="https://ciborg347.onrender.com" target="_blank" rel="noopener">Ciborg 347</a></div>
+                  <div><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">Instagram</a></div>
+                </div>
+              </footer>
+            </div>
+          </section>
+
         </div>
-      </section>
-
+      </div>
     </div>
   </main>
 
@@ -1268,7 +1416,9 @@
         if(el) el.setAttribute("href", waHref);
       });
 
+      // ICONOS (PNG) - los links que me pasaste
       const ICONS_IMG = {
+        // categorias
         aparatologia: "https://iili.io/qfXlmLQ.png",
         bioestimulacion: "https://iili.io/qfXlbhx.png",
         estetica_facial: "https://iili.io/qfXEIbs.png",
@@ -1280,6 +1430,7 @@
         kinesiologia: "https://iili.io/qfXG7ja.png",
         medicina: "https://iili.io/qfXGNnf.png",
 
+        // quick
         quick_wa: "https://iili.io/qfXMCAX.png",
         quick_tel: "https://iili.io/qfXMEVj.png",
         quick_map: "https://iili.io/qfXMNOF.png",
@@ -1293,6 +1444,7 @@
         return `<img class="${cls}" src="${url}" alt="${a}" loading="lazy" decoding="async" />`;
       }
 
+      // quick icons
       const quickMap = {
         icoQuickWA: ["quick_wa","WhatsApp"],
         icoQuickTel: ["quick_tel","Teléfono"],
@@ -1359,51 +1511,6 @@
         document.querySelectorAll(".reveal, [data-stagger]").forEach(el => el.classList.add("in"));
       }
 
-      // carrusel
-      const track = document.getElementById("carTrack");
-      let isDown=false, startX=0, scrollLeft=0, userInteracted=false;
-      let autoTimer=null;
-
-      function startAuto(){
-        stopAuto();
-        autoTimer = setInterval(() => {
-          if(!track || userInteracted) return;
-          const max = track.scrollWidth - track.clientWidth;
-          if(max <= 0) return;
-          const next = Math.min(track.scrollLeft + 260, max);
-          if(next >= max - 2) track.scrollTo({ left: 0, behavior: "smooth" });
-          else track.scrollTo({ left: next, behavior: "smooth" });
-        }, 2600);
-      }
-      function stopAuto(){
-        if(autoTimer) clearInterval(autoTimer);
-        autoTimer = null;
-      }
-
-      if(track){
-        track.addEventListener("pointerdown", (e) => {
-          isDown = true;
-          userInteracted = true;
-          track.setPointerCapture(e.pointerId);
-          startX = e.clientX;
-          scrollLeft = track.scrollLeft;
-        });
-        track.addEventListener("pointermove", (e) => {
-          if(!isDown) return;
-          const dx = (e.clientX - startX);
-          track.scrollLeft = scrollLeft - dx;
-        });
-        track.addEventListener("pointerup", () => { isDown = false; });
-        track.addEventListener("pointercancel", () => { isDown = false; });
-        track.addEventListener("wheel", () => { userInteracted = true; }, { passive:true });
-        track.addEventListener("touchstart", () => { userInteracted = true; }, { passive:true });
-
-        setTimeout(() => { userInteracted = false; startAuto(); }, 900);
-        document.addEventListener("visibilitychange", () => {
-          if(document.hidden) stopAuto(); else startAuto();
-        });
-      }
-
       // mapa fallback (no cross-origin trap)
       const mapFrame = document.getElementById("mapFrame");
       const mapFallback = document.getElementById("mapFallback");
@@ -1424,18 +1531,18 @@
         setTimeout(() => { if(!loaded) showFallback(); }, 3800);
       }
 
-      // ====== SCROLLSPY (SECCION ACTIVA) ======
-      const spyLinks = Array.from(document.querySelectorAll(".spyLink[data-spy]"));
+      // ====== SCROLLSPY + HIGHLIGHT SECCION ======
+      const tocLinks = Array.from(document.querySelectorAll(".tocLink[data-spy]"));
       const sections = Array.from(document.querySelectorAll("section[data-section]"));
+      const progBar = document.getElementById("tocProgBar");
 
       function setActive(id){
-        spyLinks.forEach(a => a.classList.toggle("active", a.getAttribute("data-spy") === id));
+        tocLinks.forEach(a => a.classList.toggle("active", a.getAttribute("data-spy") === id));
         sections.forEach(s => s.classList.toggle("activeSection", s.getAttribute("data-section") === id));
       }
 
       if(sections.length){
         const ioSpy = new IntersectionObserver((entries) => {
-          // elegir la mas visible
           const vis = entries
             .filter(e => e.isIntersecting)
             .sort((a,b) => (b.intersectionRatio - a.intersectionRatio));
@@ -1450,12 +1557,87 @@
         });
 
         sections.forEach(s => ioSpy.observe(s));
-
-        // default
         setActive(sections[0].getAttribute("data-section"));
       }
 
-      // DATA (categorias/servicios) - igual que tu base
+      // progreso sidebar
+      function updateProgress(){
+        const doc = document.documentElement;
+        const scrollTop = doc.scrollTop || document.body.scrollTop;
+        const scrollHeight = doc.scrollHeight - doc.clientHeight;
+        const p = scrollHeight > 0 ? (scrollTop / scrollHeight) : 0;
+        if(progBar) progBar.style.width = Math.max(0, Math.min(1, p)) * 100 + "%";
+      }
+      updateProgress();
+      window.addEventListener("scroll", updateProgress, { passive:true });
+
+      // ====== CARRUSEL LOOP L1 (duplicado + wrap invisible) ======
+      const track = document.getElementById("carTrack");
+      let raf = null;
+      let speed = 0.55;          // px por frame aprox (ajusta si queres mas rapido)
+      let paused = false;
+      let userInteracted = false;
+      let originalWidth = 0;
+
+      function computeOriginalWidth(){
+        const originals = Array.from(track.querySelectorAll('[data-loop-item="1"]'));
+        originalWidth = originals.reduce((acc, el) => acc + el.getBoundingClientRect().width, 0);
+        const styles = getComputedStyle(track);
+        const gap = parseFloat(styles.columnGap || styles.gap || "0") || 0;
+        originalWidth += gap * Math.max(0, originals.length - 1);
+      }
+
+      function duplicateForLoop(){
+        if(!track) return;
+        const originals = Array.from(track.children);
+        const frag = document.createDocumentFragment();
+        originals.forEach(n => frag.appendChild(n.cloneNode(true)));
+        track.appendChild(frag);
+      }
+
+      function tick(){
+        if(!track){ raf = null; return; }
+        if(!paused && !userInteracted){
+          track.scrollLeft += speed;
+          if(originalWidth > 0 && track.scrollLeft >= originalWidth){
+            track.scrollLeft -= originalWidth; // wrap sin salto visible
+          }
+        }
+        raf = requestAnimationFrame(tick);
+      }
+
+      function startLoop(){
+        if(!track) return;
+        if(raf) cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(tick);
+      }
+
+      function stopLoop(){
+        if(raf) cancelAnimationFrame(raf);
+        raf = null;
+      }
+
+      if(track){
+        duplicateForLoop();
+        setTimeout(() => { computeOriginalWidth(); startLoop(); }, 50);
+
+        track.addEventListener("pointerdown", (e) => { userInteracted = true; paused = true; }, { passive:true });
+        track.addEventListener("pointerup", () => { paused = false; }, { passive:true });
+        track.addEventListener("pointercancel", () => { paused = false; }, { passive:true });
+        track.addEventListener("mouseenter", () => { paused = true; }, { passive:true });
+        track.addEventListener("mouseleave", () => { paused = false; }, { passive:true });
+        track.addEventListener("wheel", () => { userInteracted = true; paused = true; setTimeout(() => { paused = false; }, 800); }, { passive:true });
+        track.addEventListener("touchstart", () => { userInteracted = true; paused = true; }, { passive:true });
+        track.addEventListener("touchend", () => { paused = false; }, { passive:true });
+
+        window.addEventListener("resize", () => { computeOriginalWidth(); }, { passive:true });
+        document.addEventListener("visibilitychange", () => {
+          if(document.hidden) stopLoop();
+          else startLoop();
+        });
+      }
+
+      // ====== DATA (categorias/servicios) ======
       const CATS = [
         { id:"estetica_facial", name:"Estética facial", desc:"Limpieza, peeling, dermapen, lip boost y más." },
         { id:"corporal", name:"Corporal", desc:"Tratamientos corporales y cuidado de la piel." },
@@ -1577,6 +1759,11 @@
       let activeFilter = "all";
       let q = "";
 
+      function iconForCat(catId, cls){
+        const url = ICONS_IMG[catId];
+        return iconImg(url, cls, catId);
+      }
+
       function renderCategories(){
         catGrid.innerHTML = "";
         const visibleCats = CATS.filter(c => (activeFilter === "all" ? true : c.id === activeFilter));
@@ -1587,7 +1774,7 @@
           el.innerHTML = `
             <div class="h">
               <div class="nameRow">
-                <span class="iWrap" aria-hidden="true"><img class="iImg" src="${ICONS_IMG[c.id]}" alt="${c.id}" loading="lazy" decoding="async" /></span>
+                <span class="iWrap" aria-hidden="true">${iconForCat(c.id, "iImg")}</span>
                 <div class="name">${c.name}</div>
               </div>
               <div class="count">${countByCat(c.id)}</div>
@@ -1630,7 +1817,7 @@
           sum.innerHTML = `
             <div class="accMeta">
               <span class="lead">
-                <span class="iWrap" aria-hidden="true"><img class="iImgMini" src="${ICONS_IMG[c.id]}" alt="${c.id}" loading="lazy" decoding="async" /></span>
+                <span class="iWrap" aria-hidden="true">${iconForCat(c.id, "iImgMini")}</span>
                 <span>${c.name}</span>
               </span>
               <span class="pill">${list.length} items</span>
@@ -1710,4 +1897,4 @@
     })();
   </script>
 </body>
-  </html>
+</html>
