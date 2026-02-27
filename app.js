@@ -1,0 +1,279 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="es" style="scroll-behavior:smooth;">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KINeST Salud y Bienestar | Centro Kinest - Bella Vista</title>
+  <meta name="description" content="Centro de Estética, Kinesiología, Medicina y Terapias Holísticas en Bella Vista. Turnos por WhatsApp, llamada o email." />
+
+  <meta property="og:title" content="KINeST Salud y Bienestar | Centro Kinest - Bella Vista" />
+  <meta property="og:description" content="Centro de Estética, Kinesiología, Medicina y Terapias Holísticas en Bella Vista. Turnos por WhatsApp, llamada o email." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:image" content="https://iili.io/qfamgEP.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="KINeST Salud y Bienestar | Centro Kinest - Bella Vista" />
+  <meta name="twitter:description" content="Centro de Estética, Kinesiología, Medicina y Terapias Holísticas en Bella Vista. Turnos por WhatsApp, llamada o email." />
+  <meta name="twitter:image" content="https://iili.io/qfamgEP.png" />
+
+  <link rel="stylesheet" href="./styles.css?v=1" />
+</head>
+
+<body>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="siteHeader">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <div class="logoMark" aria-hidden="true">
+            <img src="https://iili.io/qfamgEP.png" alt="KINeST" />
+          </div>
+          <div class="brandText">
+            <div class="t1">KINeST Salud y Bienestar</div>
+            <div class="t2">Centro Kinest · Bella Vista</div>
+          </div>
+        </div>
+
+        <div class="navRight">
+          <button class="toggle" id="themeToggle" aria-label="Cambiar tema">
+            <svg id="themeIcon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3v2.2M12 18.8V21M4.2 12H3M21 12h-1.2M6 6l-1.6-1.6M19.6 19.6 18 18M18 6l1.6-1.6M4.4 19.6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </button>
+
+          <a class="btn" href="#ubicacion" data-nav="ubicacion">Ubicación</a>
+          <a class="btn" href="#especialidades" data-nav="especialidades">Especialidades</a>
+          <a class="btn btnPrimary" id="btnNavWA" href="#" rel="noopener">Pedir turno</a>
+        </div>
+      </div>
+
+      <div class="whereBar" id="whereBar" aria-live="polite">
+        <span class="whereLabel">Estás en:</span>
+        <strong class="whereValue" id="whereValue">Inicio</strong>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+
+      <!-- HERO -->
+      <section class="band bandA reveal" data-reveal="up" data-section="Inicio" id="inicio">
+        <div class="bandInner">
+          <div class="heroGrid">
+            <div class="glass heroCard reveal" data-reveal="left">
+              <div class="badge"><span class="dot" aria-hidden="true"></span>Estética · Kinesiología · Medicina · Terapias holísticas</div>
+
+              <h1>KINeST Salud y Bienestar</h1>
+              <p class="sub">Bella Vista. Turnos por WhatsApp, teléfono o email.</p>
+
+              <div class="ctaRow stagger" data-stagger>
+                <a class="btn btnPrimary" id="btnHeroWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
+                <a class="btn" href="#especialidades">Ver especialidades</a>
+                <a class="btn" href="tel:40075744">Llamar</a>
+              </div>
+
+              <div class="quick stagger" data-stagger style="margin-top:14px;">
+                <div class="qi">
+                  <div class="qiLeft">
+                    <span class="iWrap" aria-hidden="true" id="icoQuickWA"><img class="iImgMini" src="https://iili.io/qfXMCAX.png" alt="WhatsApp" loading="lazy" decoding="async"/></span>
+                    <div class="k">WhatsApp</div>
+                  </div>
+                  <div class="v"><a id="waTextLink" href="#" rel="noopener">11-6567-1472</a></div>
+                </div>
+
+                <div class="qi">
+                  <div class="qiLeft">
+                    <span class="iWrap" aria-hidden="true" id="icoQuickTel"><img class="iImgMini" src="https://iili.io/qfXMEVj.png" alt="Teléfono" loading="lazy" decoding="async"/></span>
+                    <div class="k">Teléfonos</div>
+                  </div>
+                  <div class="v"><a href="tel:40075744">4007-5744</a> · <a href="tel:48964254">4896-4254</a></div>
+                </div>
+
+                <div class="qi">
+                  <div class="qiLeft">
+                    <span class="iWrap" aria-hidden="true" id="icoQuickMap"><img class="iImgMini" src="https://iili.io/qfXMNOF.png" alt="Ubicación" loading="lazy" decoding="async"/></span>
+                    <div class="k">Dirección</div>
+                  </div>
+                  <div class="v"><a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Av. San Martín 1392</a></div>
+                </div>
+
+                <div class="qi">
+                  <div class="qiLeft">
+                    <span class="iWrap" aria-hidden="true" id="icoQuickMail"><img class="iImgMini" src="https://iili.io/qfXMiOX.png" alt="Email" loading="lazy" decoding="async"/></span>
+                    <div class="k">Email</div>
+                  </div>
+                  <div class="v"><a href="mailto:centrokinest_bellavista@hotmail.com">centrokinest_bellavista@hotmail.com</a></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass heroMedia reveal" data-reveal="right">
+              <div class="heroImg">
+                <img src="https://iili.io/qfamgEP.png" alt="KINeST Salud y Bienestar" />
+              </div>
+              <div class="ctaRow">
+                <a class="btn btnPrimary" id="btnSideWA" href="#" rel="noopener" style="width:100%;">Pedir turno por WhatsApp</a>
+              </div>
+              <div class="qi">
+                <div class="qiLeft">
+                  <span class="iWrap" aria-hidden="true" id="icoQuickIG"><img class="iImgMini" src="https://iili.io/qfXMtsf.png" alt="Instagram" loading="lazy" decoding="async"/></span>
+                  <div class="k">Instagram</div>
+                </div>
+                <div class="v"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DESTACADOS -->
+      <section class="band bandB reveal" data-reveal="up" data-section="Destacados" id="destacados" style="margin-top:22px;">
+        <div class="bandInner">
+          <div class="sectionTitle">
+            <h2>Destacados</h2>
+            <p>Deslizá para ver más</p>
+          </div>
+
+          <div class="carousel">
+            <div class="carHead">
+              <div>
+                <div class="ttl">Tratamientos</div>
+                <div class="hint">Auto-scroll suave (se pausa al interactuar)</div>
+              </div>
+              <a class="btn btnPrimary" id="btnCarWA" href="#" rel="noopener" style="padding:10px 12px;border-radius:14px;">Consultar</a>
+            </div>
+
+            <div class="carTrack" id="carTrack" aria-label="Carrusel de destacados">
+              <article class="carItem"><div class="carMedia" aria-hidden="true"></div><div class="carBody"><div class="t">Dermapen</div><p class="p">Tratamiento facial.</p></div></article>
+              <article class="carItem"><div class="carMedia" aria-hidden="true"></div><div class="carBody"><div class="t">Peeling</div><p class="p">Tratamientos faciales.</p></div></article>
+              <article class="carItem"><div class="carMedia" aria-hidden="true"></div><div class="carBody"><div class="t">Drenaje linfático</div><p class="p">Drenaje / circulación.</p></div></article>
+              <article class="carItem"><div class="carMedia" aria-hidden="true"></div><div class="carBody"><div class="t">Presoterapia</div><p class="p">Botas de drenaje linfático.</p></div></article>
+            </div>
+          </div>
+
+          <div class="ctaRow" style="margin-top:12px;">
+            <a class="btn btnPrimary" id="btnFeaturedWA" href="#" rel="noopener">Consultar por WhatsApp</a>
+            <a class="btn" href="#especialidades">Ver categorías</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ESPECIALIDADES -->
+      <section id="especialidades" class="band bandC reveal" data-reveal="up" data-section="Especialidades" style="margin-top:22px;">
+        <div class="bandInner">
+          <div class="sectionTitle">
+            <h2>Especialidades</h2>
+            <p>Categorías + búsqueda</p>
+          </div>
+
+          <div class="filters" id="filters">
+            <button class="filterBtn active" data-filter="all">Todas</button>
+            <button class="filterBtn" data-filter="estetica_facial">Estética facial</button>
+            <button class="filterBtn" data-filter="corporal">Corporal</button>
+            <button class="filterBtn" data-filter="pestanas_cejas">Pestañas y cejas</button>
+            <button class="filterBtn" data-filter="drenaje">Drenaje / Presoterapia</button>
+            <button class="filterBtn" data-filter="mesoterapia">Mesoterapia / Enzimas</button>
+            <button class="filterBtn" data-filter="bioestimulacion">Bioestimulación / Exosomas</button>
+            <button class="filterBtn" data-filter="masajes">Masajes</button>
+            <button class="filterBtn" data-filter="aparatologia">Aparatología / Fitness</button>
+            <button class="filterBtn" data-filter="kinesiologia">Kinesiología / Rehab</button>
+            <button class="filterBtn" data-filter="medicina">Medicina / Especialidades</button>
+          </div>
+
+          <div class="searchRow">
+            <input class="search" id="search" type="search" placeholder="Buscar (ej: dermapen, ozonoterapia, criolipólisis...)" />
+            <a class="btn btnPrimary" id="btnServicesWA" href="#" rel="noopener">Consultar por WhatsApp</a>
+          </div>
+
+          <div class="catGrid stagger" id="catGrid" data-stagger></div>
+          <div class="accordionWrap" id="accordionWrap"></div>
+        </div>
+      </section>
+
+      <!-- UBICACION -->
+      <section id="ubicacion" class="band bandA reveal" data-reveal="up" data-section="Ubicación" style="margin-top:22px;">
+        <div class="bandInner">
+          <div class="sectionTitle">
+            <h2>Ubicación</h2>
+            <p>Mapa interactivo + alternativa</p>
+          </div>
+
+          <div class="contactGrid">
+            <div class="glass pane reveal" data-reveal="left">
+              <div class="badge"><span class="dot" aria-hidden="true"></span>Centro Kinest · Bella Vista</div>
+
+              <div class="list stagger" data-stagger>
+                <div class="li"><div class="k">WhatsApp</div><div class="v"><a id="waContactLink" href="#" rel="noopener">11-6567-1472</a></div></div>
+                <div class="li"><div class="k">Teléfono</div><div class="v"><a href="tel:40075744">4007-5744</a></div></div>
+                <div class="li"><div class="k">Teléfono</div><div class="v"><a href="tel:48964254">4896-4254</a></div></div>
+                <div class="li"><div class="k">Email</div><div class="v"><a href="mailto:centrokinest_bellavista@hotmail.com">centrokinest_bellavista@hotmail.com</a></div></div>
+                <div class="li"><div class="k">Dirección</div><div class="v"><a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Av. San Martín 1392</a></div></div>
+                <div class="li"><div class="k">Instagram</div><div class="v"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div></div>
+              </div>
+
+              <div class="ctaRow" style="margin-top:14px;">
+                <a class="btn btnPrimary" id="btnBottomWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
+                <a class="btn" href="#especialidades">Ver especialidades</a>
+              </div>
+            </div>
+
+            <div class="mapCard reveal" data-reveal="right">
+              <iframe class="mapFrame" id="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661&output=embed"
+                title="Mapa Centro Kinest"></iframe>
+
+              <img class="mapImg" id="mapFallback" src="https://iili.io/qf0ljTP.png" alt="Mapa / Ubicación Centro Kinest" loading="lazy" style="display:none;" />
+
+              <div class="mapBar">
+                <div class="hint">Si el mapa interactivo no carga, se muestra una imagen alternativa.</div>
+                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Abrir en Google Maps</a>
+              </div>
+            </div>
+          </div>
+
+          <footer style="margin-top:18px;">
+            <div class="footRow">
+              <div>
+                <strong style="color:var(--text);">KINeST Salud y Bienestar</strong>
+                <span style="margin-left:8px;">· Centro Kinest · Bella Vista</span>
+              </div>
+              <div>
+                <a href="#especialidades">Especialidades</a>
+                <span style="margin:0 8px;">|</span>
+                <a href="#ubicacion">Ubicación</a>
+              </div>
+            </div>
+            <div class="footRow" style="margin-top:10px;">
+              <div>Creado y diseñado por <a href="https://ciborg347.onrender.com" target="_blank" rel="noopener">Ciborg 347</a></div>
+              <div><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">Instagram</a></div>
+            </div>
+          </footer>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <a class="waFloat" id="waFloat" href="#" rel="noopener" aria-label="Pedir turno por WhatsApp">
+    <svg class="waSvg" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="#25D366" d="M20.52 3.48A11.86 11.86 0 0 0 12.06 0C5.47 0 .12 5.35.12 11.94c0 2.11.55 4.17 1.6 5.99L0 24l6.2-1.62a11.9 11.9 0 0 0 5.86 1.49h.01c6.59 0 11.94-5.35 11.94-11.94 0-3.19-1.24-6.19-3.49-8.45Z"/>
+      <path fill="#fff" d="M12.07 21.35h-.01a9.94 9.94 0 0 1-5.07-1.39l-.36-.22-3.68.96.98-3.58-.24-.37a9.9 9.9 0 1 1 8.38 4.6Zm5.77-7.44c-.31-.16-1.86-.92-2.15-1.02-.29-.1-.5-.16-.71.16-.21.31-.82 1.02-1 1.23-.18.21-.37.24-.68.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.54-1.84-1.72-2.15-.18-.31-.02-.48.14-.64.14-.14.31-.37.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.71-1.71-.97-2.34-.26-.62-.52-.54-.71-.55h-.6c-.21 0-.55.08-.84.39-.29.31-1.1 1.07-1.1 2.61 0 1.54 1.13 3.03 1.29 3.24.16.21 2.23 3.41 5.4 4.79.75.32 1.33.51 1.79.65.75.24 1.43.2 1.97.12.6-.09 1.86-.76 2.12-1.49.26-.73.26-1.36.18-1.49-.08-.13-.29-.21-.6-.37Z"/>
+    </svg>
+  </a>
+
+  <div class="stickyCta" aria-label="Acción rápida">
+    <div class="mini">Turnos por WhatsApp<br/>Confirmación por especialidad</div>
+    <div class="act">
+      <a class="btn btnPrimary" id="btnStickyWA" href="#" rel="noopener">WhatsApp</a>
+      <a class="btn" href="tel:40075744">Llamar</a>
+    </div>
+  </div>
+
+  <script src="./app.js?v=1" defer></script>
+</body>
+</html>
