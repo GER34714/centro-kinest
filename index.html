@@ -121,9 +121,8 @@
       overflow-x:hidden;
       position: relative;
       z-index: 1;
-      isolation: isolate; /* ayuda a evitar compositing raro con blur */
+      isolation: isolate;
     }
-
     a{ color:inherit; text-decoration:none; }
     .wrap{ width:100%; max-width: var(--max); margin:0 auto; padding: 0 var(--pad); }
 
@@ -139,7 +138,7 @@
     header{
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 70;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       background: rgba(251,252,255,.78);
@@ -153,9 +152,8 @@
       justify-content:space-between;
       gap: 12px;
       padding: 14px 0;
-      flex-wrap: wrap; /* FIX: no rompe en mobile */
     }
-    .brand{ display:flex; align-items:center; gap: 12px; min-width: 0; flex: 1 1 280px; }
+    .brand{ display:flex; align-items:center; gap: 12px; min-width: 0; }
     .logoMark{
       width: 44px; height: 44px;
       border-radius: 14px;
@@ -172,14 +170,7 @@
     .brandText .t1{ font-weight: 900; letter-spacing: .2px; font-size: 14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     .brandText .t2{ font-size: 12px; color: var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 
-    .navRight{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      flex: 0 1 auto;
-      flex-wrap: wrap; /* FIX */
-      justify-content:flex-end;
-    }
+    .navRight{ display:flex; align-items:center; gap: 10px; flex: 0 0 auto; }
 
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap: 10px;
@@ -225,11 +216,94 @@
       transition: transform .15s ease;
       box-shadow: var(--shadow2);
       outline: none;
-      flex: 0 0 auto;
     }
     [data-theme="dark"] .toggle{ background: rgba(255,255,255,.06); }
     .toggle:hover{ transform: translateY(-1px); }
     .toggle svg{ width: 18px; height: 18px; opacity:.9; }
+
+    /* HAMBURGER (mobile) */
+    .burger{
+      width: 46px; height: 42px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.66);
+      display:none;
+      place-items:center;
+      cursor:pointer;
+      transition: transform .15s ease;
+      box-shadow: var(--shadow2);
+      outline: none;
+    }
+    [data-theme="dark"] .burger{ background: rgba(255,255,255,.06); }
+    .burger:hover{ transform: translateY(-1px); }
+    .burger svg{ width: 20px; height: 20px; opacity:.9; }
+
+    .drawerOverlay{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.36);
+      z-index: 90;
+      display:none;
+    }
+    .drawer{
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: min(360px, 92vw);
+      background: rgba(251,252,255,.92);
+      border-left: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 95;
+      transform: translateX(105%);
+      transition: transform .22s var(--ease);
+      box-shadow: 0 20px 80px rgba(0,0,0,.25);
+      display:flex;
+      flex-direction:column;
+      padding: 14px;
+      gap: 12px;
+    }
+    [data-theme="dark"] .drawer{ background: rgba(11,18,32,.82); }
+    .drawer.open{ transform: translateX(0); }
+    .drawerOverlay.open{ display:block; }
+    .drawerTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    .drawerTitle{
+      font-weight: 900;
+      letter-spacing: .2px;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .drawerNav{
+      display:grid;
+      gap: 10px;
+      padding-top: 4px;
+    }
+    .drawerLink{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow2);
+      padding: 12px 12px;
+      font-weight: 900;
+      cursor:pointer;
+    }
+    [data-theme="dark"] .drawerLink{ background: rgba(255,255,255,.08); }
+    .drawerLink span{ color: var(--muted); font-weight: 800; font-size: 12px; }
+    .drawerActions{
+      margin-top: auto;
+      display:grid;
+      gap: 10px;
+    }
 
     main{ padding: 18px 0 80px; position:relative; z-index: 2; }
 
@@ -241,7 +315,7 @@
       backdrop-filter: blur(var(--blur));
       -webkit-backdrop-filter: blur(var(--blur));
       overflow:hidden;
-      contain: paint; /* ayuda a evitar artefactos de compositing */
+      contain: paint;
     }
 
     /* bands */
@@ -261,7 +335,7 @@
     [data-theme="dark"] .bandB{ background: linear-gradient(180deg, var(--bandB), rgba(0,0,0,0)); }
     [data-theme="dark"] .bandC{ background: linear-gradient(180deg, var(--bandC), rgba(0,0,0,0)); }
 
-    /* reveal (SIN BLUR para evitar "fantasmitas") */
+    /* REVEALS */
     .reveal{ opacity: 0; transform: translate3d(0, 14px, 0); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease); will-change: transform, opacity; }
     .reveal[data-reveal="left"]{ transform: translate3d(-18px, 10px, 0); }
     .reveal[data-reveal="right"]{ transform: translate3d(18px, 10px, 0); }
@@ -433,6 +507,7 @@
       overflow:hidden;
       background: var(--glass2);
       box-shadow: var(--shadow2);
+      cursor: pointer;
     }
     .carMedia{
       height: 190px;
@@ -589,7 +664,7 @@
       display:flex;
       align-items:flex-start;
       gap: 10px;
-      cursor: pointer; /* NUEVO: click = WhatsApp con contexto */
+      cursor: pointer;
       transition: transform .12s ease;
     }
     .svcItem:hover{ transform: translateY(-1px); }
@@ -780,7 +855,6 @@
     [data-theme="dark"] .waFloat{ background: rgba(255,255,255,.08); }
     .waFloat:hover{ transform: translateY(-2px); }
     .waSvg{ width: 34px; height: 34px; display:block; }
-    .spacerForFloat{ height: calc(var(--waSize) + (var(--waGap) * 2)); }
 
     /* sticky CTA (mobile) */
     .stickyCta{
@@ -806,6 +880,34 @@
     .stickyCta .act{ display:flex; gap:10px; }
     .stickyCta .act .btn{ padding: 10px 12px; border-radius: 14px; }
 
+    /* PANTALLAS (desktop) */
+    .panels{ position: relative; z-index: 2; }
+    .panel{
+      padding: 14px 0;
+    }
+    @media (min-width: 981px){
+      body:not(.allMode) .panels{
+        scroll-snap-type: y mandatory;
+      }
+      body:not(.allMode) .panel{
+        min-height: calc(100vh - 86px);
+        display:flex;
+        align-items:center;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+      }
+      body:not(.allMode) .panel .band{
+        width:100%;
+      }
+    }
+
+    /* MODO TODO JUNTO */
+    body.allMode .panel{
+      min-height: auto !important;
+      display:block !important;
+    }
+
+    /* mobile */
     @media (max-width: 980px){
       .heroGrid{ grid-template-columns: 1fr; }
       .heroImg img{ height: 260px; }
@@ -815,9 +917,8 @@
       .faq{ grid-template-columns: 1fr; }
       .contactGrid{ grid-template-columns: 1fr; }
       .stickyCta{ display:flex; }
-      .bandInner{ padding: 16px; }
 
-      /* FIX MOBILE: profesionales NO se cortan, se apilan */
+      /* FIX MOBILE: profesionales NO se cortan */
       .specItem{
         flex-direction: column;
         align-items: flex-start;
@@ -838,21 +939,20 @@
       .waFloat{ display:none; }
 
       /* FIX: reducir blur en mobile para evitar tiles/artefactos */
-      header, .glass, .band, .stickyCta, .waFloat{
+      header, .glass, .band, .stickyCta, .drawer{
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
       }
-    }
 
-    @media (max-width: 520px){
-      /* si aprieta el header, oculto Ubicación en mobile chico */
-      .navRight a[href="#ubicacion"]{ display:none; }
-      .btn{ padding: 11px 12px; }
+      /* HAMBURGER visible, botones nav hidden */
+      .navRight a{ display:none; }
+      .burger{ display:grid; }
     }
 
     @media (max-width: 420px){
       .btn{ width: 100%; }
       .toggle{ width: 44px; }
+      .burger{ width: 44px; }
       .catGrid{ grid-template-columns: 1fr; }
       .logoMark{ width: 40px; height: 40px; }
     }
@@ -883,333 +983,411 @@
             </svg>
           </button>
 
-          <a class="btn" href="#ubicacion">Ubicación</a>
+          <!-- desktop nav -->
+          <a class="btn" href="#p6">Ubicación</a>
+          <a class="btn" href="#p3">Especialidades</a>
           <a class="btn btnPrimary" id="btnNavWA" href="#" rel="noopener">Pedir turno</a>
+
+          <!-- mobile -->
+          <button class="burger" id="burger" aria-label="Abrir menú">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
         </div>
       </div>
     </div>
   </header>
 
+  <!-- Drawer -->
+  <div class="drawerOverlay" id="drawerOverlay" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" aria-label="Menú">
+    <div class="drawerTop">
+      <div class="drawerTitle">Menú</div>
+      <button class="btn" id="drawerClose" style="padding:10px 12px;border-radius:14px;">Cerrar</button>
+    </div>
+
+    <div class="drawerNav">
+      <div class="drawerLink" data-go="#p1">Inicio <span>Hero</span></div>
+      <div class="drawerLink" data-go="#p2">Destacados <span>Tratamientos</span></div>
+      <div class="drawerLink" data-go="#p3">Especialidades <span>Buscar</span></div>
+      <div class="drawerLink" data-go="#p4">Profesionales <span>Equipo</span></div>
+      <div class="drawerLink" data-go="#p5">Coberturas <span>OS/Prepagas</span></div>
+      <div class="drawerLink" data-go="#p6">Ubicación <span>Mapa</span></div>
+      <div class="drawerLink" data-go="#p7">Ver todo <span>Modo</span></div>
+    </div>
+
+    <div class="drawerActions">
+      <a class="btn btnPrimary" id="btnDrawerWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
+      <a class="btn" href="tel:40075744">Llamar</a>
+      <a class="btn" href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </aside>
+
   <main>
     <div class="wrap">
+      <div class="panels">
 
-      <!-- HERO -->
-      <section class="band bandA reveal" data-reveal="up">
-        <div class="bandInner">
-          <div class="heroGrid">
-            <div class="glass heroCard reveal" data-reveal="left">
-              <div class="badge"><span class="dot" aria-hidden="true"></span>Estética · Kinesiología · Medicina · Terapias holísticas</div>
+        <!-- PANTALLA 1: HERO -->
+        <section id="p1" class="panel">
+          <div class="band bandA reveal" data-reveal="up" style="width:100%;">
+            <div class="bandInner">
+              <div class="heroGrid">
+                <div class="glass heroCard reveal" data-reveal="left">
+                  <div class="badge"><span class="dot" aria-hidden="true"></span>Estética · Kinesiología · Medicina · Terapias holísticas</div>
 
-              <h1>KINeST Salud y Bienestar</h1>
-              <p class="sub">Bella Vista. Turnos por WhatsApp, teléfono o email.</p>
+                  <h1>KINeST Salud y Bienestar</h1>
+                  <p class="sub">Bella Vista. Turnos por WhatsApp, teléfono o email.</p>
 
-              <div class="ctaRow stagger" data-stagger>
-                <a class="btn btnPrimary" id="btnHeroWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
-                <a class="btn" href="#especialidades">Ver especialidades</a>
-                <a class="btn" href="tel:40075744">Llamar</a>
-              </div>
-
-              <div class="quick stagger" data-stagger style="margin-top:14px;">
-                <div class="qi">
-                  <div class="qiLeft">
-                    <span class="iWrap" aria-hidden="true" id="icoQuickWA"><span class="iPh"></span></span>
-                    <div class="k">WhatsApp</div>
+                  <div class="ctaRow stagger" data-stagger>
+                    <a class="btn btnPrimary" id="btnHeroWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
+                    <a class="btn" href="#p3">Ver especialidades</a>
+                    <a class="btn" href="tel:40075744">Llamar</a>
                   </div>
-                  <div class="v"><a id="waTextLink" href="#" rel="noopener">11-6567-1472</a></div>
+
+                  <div class="quick stagger" data-stagger style="margin-top:14px;">
+                    <div class="qi">
+                      <div class="qiLeft">
+                        <span class="iWrap" aria-hidden="true" id="icoQuickWA"><span class="iPh"></span></span>
+                        <div class="k">WhatsApp</div>
+                      </div>
+                      <div class="v"><a id="waTextLink" href="#" rel="noopener">11-6567-1472</a></div>
+                    </div>
+
+                    <div class="qi">
+                      <div class="qiLeft">
+                        <span class="iWrap" aria-hidden="true" id="icoQuickTel"><span class="iPh"></span></span>
+                        <div class="k">Teléfonos</div>
+                      </div>
+                      <div class="v"><a href="tel:40075744">4007-5744</a> · <a href="tel:48964254">4896-4254</a></div>
+                    </div>
+
+                    <div class="qi">
+                      <div class="qiLeft">
+                        <span class="iWrap" aria-hidden="true" id="icoQuickMap"><span class="iPh"></span></span>
+                        <div class="k">Dirección</div>
+                      </div>
+                      <div class="v"><a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Av. San Martín 1392</a></div>
+                    </div>
+
+                    <div class="qi">
+                      <div class="qiLeft">
+                        <span class="iWrap" aria-hidden="true" id="icoQuickMail"><span class="iPh"></span></span>
+                        <div class="k">Email</div>
+                      </div>
+                      <div class="v"><a href="mailto:centrokinest_bellavista@hotmail.com">centrokinest_bellavista@hotmail.com</a></div>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="qi">
-                  <div class="qiLeft">
-                    <span class="iWrap" aria-hidden="true" id="icoQuickTel"><span class="iPh"></span></span>
-                    <div class="k">Teléfonos</div>
+                <div class="glass heroMedia reveal" data-reveal="right">
+                  <div class="heroImg">
+                    <img src="https://iili.io/qfamgEP.png" alt="KINeST Salud y Bienestar" />
                   </div>
-                  <div class="v"><a href="tel:40075744">4007-5744</a> · <a href="tel:48964254">4896-4254</a></div>
-                </div>
-
-                <div class="qi">
-                  <div class="qiLeft">
-                    <span class="iWrap" aria-hidden="true" id="icoQuickMap"><span class="iPh"></span></span>
-                    <div class="k">Dirección</div>
+                  <div class="ctaRow">
+                    <a class="btn btnPrimary" id="btnSideWA" href="#" rel="noopener" style="width:100%;">Pedir turno por WhatsApp</a>
                   </div>
-                  <div class="v"><a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Av. San Martín 1392</a></div>
-                </div>
-
-                <div class="qi">
-                  <div class="qiLeft">
-                    <span class="iWrap" aria-hidden="true" id="icoQuickMail"><span class="iPh"></span></span>
-                    <div class="k">Email</div>
+                  <div class="qi">
+                    <div class="qiLeft">
+                      <span class="iWrap" aria-hidden="true" id="icoQuickIG"><span class="iPh"></span></span>
+                      <div class="k">Instagram</div>
+                    </div>
+                    <div class="v"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div>
                   </div>
-                  <div class="v"><a href="mailto:centrokinest_bellavista@hotmail.com">centrokinest_bellavista@hotmail.com</a></div>
                 </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            <div class="glass heroMedia reveal" data-reveal="right">
-              <div class="heroImg">
-                <img src="https://iili.io/qfamgEP.png" alt="KINeST Salud y Bienestar" />
+        <!-- PANTALLA 2: DESTACADOS -->
+        <section id="p2" class="panel">
+          <div class="band bandB reveal" data-reveal="up" style="width:100%;">
+            <div class="bandInner">
+              <div class="sectionTitle">
+                <h2>Destacados</h2>
+                <p>Carrusel infinito (con imágenes)</p>
               </div>
-              <div class="ctaRow">
-                <a class="btn btnPrimary" id="btnSideWA" href="#" rel="noopener" style="width:100%;">Pedir turno por WhatsApp</a>
-              </div>
-              <div class="qi">
-                <div class="qiLeft">
-                  <span class="iWrap" aria-hidden="true" id="icoQuickIG"><span class="iPh"></span></span>
-                  <div class="k">Instagram</div>
+
+              <div class="carousel">
+                <div class="carHead">
+                  <div>
+                    <div class="ttl">Tratamientos</div>
+                    <div class="hint">Loop infinito (se pausa al interactuar)</div>
+                  </div>
+                  <a class="btn btnPrimary" id="btnCarWA" href="#" rel="noopener" style="padding:10px 12px;border-radius:14px;">Consultar</a>
                 </div>
-                <div class="v"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div>
+
+                <div class="carViewport" id="carViewport" aria-label="Carrusel de destacados">
+                  <div class="carMarquee" id="carMarquee"></div>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <!-- DESTACADOS -->
-      <section class="band bandB reveal" data-reveal="up" style="margin-top:22px;">
-        <div class="bandInner">
-          <div class="sectionTitle">
-            <h2>Destacados</h2>
-            <p>Carrusel infinito (con imágenes)</p>
-          </div>
-
-          <div class="carousel">
-            <div class="carHead">
-              <div>
-                <div class="ttl">Tratamientos</div>
-                <div class="hint">Loop infinito (se pausa al interactuar)</div>
-              </div>
-              <a class="btn btnPrimary" id="btnCarWA" href="#" rel="noopener" style="padding:10px 12px;border-radius:14px;">Consultar</a>
-            </div>
-
-            <div class="carViewport" id="carViewport" aria-label="Carrusel de destacados">
-              <div class="carMarquee" id="carMarquee"></div>
-            </div>
-          </div>
-
-          <div class="ctaRow" style="margin-top:12px;">
-            <a class="btn btnPrimary" id="btnFeaturedWA" href="#" rel="noopener">Consultar por WhatsApp</a>
-            <a class="btn" href="#especialidades">Ver categorías</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ESPECIALIDADES -->
-      <section id="especialidades" class="band bandC reveal" data-reveal="up" style="margin-top:22px;">
-        <div class="bandInner">
-          <div class="sectionTitle">
-            <h2>Especialidades</h2>
-            <p>Categorías + búsqueda</p>
-          </div>
-
-          <div class="filters" id="filters">
-            <button class="filterBtn active" data-filter="all">Todas</button>
-            <button class="filterBtn" data-filter="estetica_facial">Estética facial</button>
-            <button class="filterBtn" data-filter="corporal">Corporal</button>
-            <button class="filterBtn" data-filter="pestanas_cejas">Pestañas y cejas</button>
-            <button class="filterBtn" data-filter="drenaje">Drenaje / Presoterapia</button>
-            <button class="filterBtn" data-filter="mesoterapia">Mesoterapia / Enzimas</button>
-            <button class="filterBtn" data-filter="bioestimulacion">Bioestimulación / Exosomas</button>
-            <button class="filterBtn" data-filter="masajes">Masajes</button>
-            <button class="filterBtn" data-filter="aparatologia">Aparatología / Fitness</button>
-            <button class="filterBtn" data-filter="kinesiologia">Kinesiología / Rehab</button>
-            <button class="filterBtn" data-filter="medicina">Medicina / Especialidades</button>
-          </div>
-
-          <div class="searchRow">
-            <input class="search" id="search" type="search" placeholder="Buscar (ej: dermapen, ozonoterapia, criolipólisis...)" />
-            <a class="btn btnPrimary" id="btnServicesWA" href="#" rel="noopener">Consultar por WhatsApp</a>
-          </div>
-
-          <div class="catGrid stagger" id="catGrid" data-stagger></div>
-          <div class="accordionWrap" id="accordionWrap"></div>
-        </div>
-      </section>
-
-      <!-- PROFESIONALES -->
-      <section class="band bandA reveal" data-reveal="up" style="margin-top:22px;">
-        <div class="bandInner">
-          <div class="sectionTitle">
-            <h2>Profesionales</h2>
-            <p>Por especialidad</p>
-          </div>
-
-          <div class="specialists">
-            <div class="glass pane reveal" data-reveal="left">
-              <div class="paneTitle">
-                <h3>Traumatología</h3>
-                <span class="tag">Equipo</span>
-              </div>
-              <div class="specList stagger" data-stagger>
-                <div class="specItem"><div class="name">Dra. Nora Bengochea</div><div class="role">Traumatología</div></div>
-                <div class="specItem"><div class="name">Dr. Roberto Pérez</div><div class="role">Traumatología</div></div>
-                <div class="specItem"><div class="name">Dr. Juan Cabral</div><div class="role">Traumatología</div></div>
-                <div class="specItem"><div class="name">Dr. Guillermo Flynn</div><div class="role">Traumatología</div></div>
-              </div>
               <div class="ctaRow" style="margin-top:12px;">
-                <a class="btn btnPrimary" id="btnSpecWA" href="#" rel="noopener">Consultar turnos</a>
-              </div>
-            </div>
-
-            <div class="glass pane reveal" data-reveal="right">
-              <div class="paneTitle">
-                <h3>Otras especialidades</h3>
-                <span class="tag">Profesionales</span>
-              </div>
-              <div class="specList stagger" data-stagger>
-                <div class="specItem"><div class="name">Dra. Roxana González</div><div class="role">Neurología</div></div>
-                <div class="specItem"><div class="name">Dr. Gonzalo Gallarino</div><div class="role">Medicina biológica / Ozonoterapia / Sueroterapia</div></div>
-                <div class="specItem"><div class="name">Dra. Adriana Fiore</div><div class="role">Endocrinología</div></div>
-                <div class="specItem"><div class="name">Lic. Javier Mouzaffar</div><div class="role">Quiropraxia</div></div>
-                <div class="specItem"><div class="name">Dr. Fabio Adlerstein</div><div class="role">Flebología</div></div>
-                <div class="specItem"><div class="name">Lic. María del Cielo Fernández</div><div class="role">Nutrición</div></div>
+                <a class="btn btnPrimary" id="btnFeaturedWA" href="#" rel="noopener">Consultar por WhatsApp</a>
+                <a class="btn" href="#p3">Ver categorías</a>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- COBERTURAS -->
-      <section class="band bandB reveal" data-reveal="up" style="margin-top:22px;">
-        <div class="bandInner">
-          <div class="sectionTitle">
-            <h2>Obras sociales / prepagas</h2>
-            <p>Consultar cobertura por WhatsApp</p>
-          </div>
+        <!-- PANTALLA 3: ESPECIALIDADES -->
+        <section id="p3" class="panel">
+          <div class="band bandC reveal" data-reveal="up" style="width:100%;">
+            <div class="bandInner">
+              <div class="sectionTitle">
+                <h2>Especialidades</h2>
+                <p>Categorías + búsqueda</p>
+              </div>
 
-          <div class="glass pane">
-            <div class="paneTitle">
-              <h3>Principales</h3>
-              <span class="tag">Cobertura</span>
+              <div class="filters" id="filters">
+                <button class="filterBtn active" data-filter="all">Todas</button>
+                <button class="filterBtn" data-filter="estetica_facial">Estética facial</button>
+                <button class="filterBtn" data-filter="corporal">Corporal</button>
+                <button class="filterBtn" data-filter="pestanas_cejas">Pestañas y cejas</button>
+                <button class="filterBtn" data-filter="drenaje">Drenaje / Presoterapia</button>
+                <button class="filterBtn" data-filter="mesoterapia">Mesoterapia / Enzimas</button>
+                <button class="filterBtn" data-filter="bioestimulacion">Bioestimulación / Exosomas</button>
+                <button class="filterBtn" data-filter="masajes">Masajes</button>
+                <button class="filterBtn" data-filter="aparatologia">Aparatología / Fitness</button>
+                <button class="filterBtn" data-filter="kinesiologia">Kinesiología / Rehab</button>
+                <button class="filterBtn" data-filter="medicina">Medicina / Especialidades</button>
+              </div>
+
+              <div class="searchRow">
+                <input class="search" id="search" type="search" placeholder="Buscar (ej: dermapen, ozonoterapia, criolipólisis...)" />
+                <a class="btn btnPrimary" id="btnServicesWA" href="#" rel="noopener">Consultar por WhatsApp</a>
+              </div>
+
+              <div class="catGrid stagger" id="catGrid" data-stagger></div>
+              <div class="accordionWrap" id="accordionWrap"></div>
             </div>
-            <div class="prepagas stagger" data-stagger>
-              <span class="pp">Swiss Medical</span>
-              <span class="pp">Medicus</span>
-              <span class="pp">Medifé</span>
-              <span class="pp">OSDE</span>
-              <span class="pp">Galeno</span>
-              <span class="pp">Omint</span>
-            </div>
-            <div class="ctaRow" style="margin-top:12px;">
-              <a class="btn btnPrimary" id="btnCoverageWA" href="#" rel="noopener">Consultar cobertura</a>
-            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- FAQ -->
-      <section class="band bandC reveal" data-reveal="up" style="margin-top:22px;">
-        <div class="bandInner">
-          <div class="sectionTitle">
-            <h2>Preguntas frecuentes</h2>
-            <p>Respuesta rápida</p>
-          </div>
+        <!-- PANTALLA 4: PROFESIONALES -->
+        <section id="p4" class="panel">
+          <div class="band bandA reveal" data-reveal="up" style="width:100%;">
+            <div class="bandInner">
+              <div class="sectionTitle">
+                <h2>Profesionales</h2>
+                <p>Por especialidad</p>
+              </div>
 
-          <div class="faq">
-            <details class="fq">
-              <summary class="fqSum">¿Cómo saco turno?
-                <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              </summary>
-              <div class="ans">Por WhatsApp (recomendado), por teléfono o por email. Confirmamos disponibilidad según especialidad.</div>
-            </details>
-
-            <details class="fq">
-              <summary class="fqSum">¿Horarios?
-                <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              </summary>
-              <div class="ans">Los horarios se confirman por WhatsApp, ya que varían según especialidad y disponibilidad.</div>
-            </details>
-
-            <details class="fq">
-              <summary class="fqSum">¿Dónde están ubicados?
-                <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              </summary>
-              <div class="ans">Av. San Martín 1392, Bella Vista (1661). Abajo tenés mapa interactivo y botón a Google Maps.</div>
-            </details>
-
-            <details class="fq">
-              <summary class="fqSum">¿Puedo reprogramar un turno?
-                <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-              </summary>
-              <div class="ans">Sí. Avisanos por WhatsApp y lo reprogramamos según disponibilidad.</div>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <!-- UBICACION -->
-      <section id="ubicacion" class="band bandA reveal" data-reveal="up" style="margin-top:22px;">
-        <div class="bandInner">
-          <div class="sectionTitle">
-            <h2>Ubicación</h2>
-            <p>Mapa interactivo + alternativa</p>
-          </div>
-
-          <div class="contactGrid">
-            <div class="glass pane reveal" data-reveal="left">
-              <div class="badge"><span class="dot" aria-hidden="true"></span>Centro Kinest · Bella Vista</div>
-
-              <div class="list stagger" data-stagger>
-                <div class="li"><div class="k">WhatsApp</div><div class="v"><a id="waContactLink" href="#" rel="noopener">11-6567-1472</a></div></div>
-                <div class="li"><div class="k">Teléfono</div><div class="v"><a href="tel:40075744">4007-5744</a></div></div>
-                <div class="li"><div class="k">Teléfono</div><div class="v"><a href="tel:48964254">4896-4254</a></div></div>
-                <div class="li"><div class="k">Email</div><div class="v"><a href="mailto:centrokinest_bellavista@hotmail.com">centrokinest_bellavista@hotmail.com</a></div></div>
-                <div class="li">
-                  <div class="k">Dirección</div>
-                  <div class="v">
-                    <a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">
-                      Av. San Martín 1392 (1661)
-                    </a>
+              <div class="specialists">
+                <div class="glass pane reveal" data-reveal="left">
+                  <div class="paneTitle">
+                    <h3>Traumatología</h3>
+                    <span class="tag">Equipo</span>
+                  </div>
+                  <div class="specList stagger" data-stagger>
+                    <div class="specItem"><div class="name">Dra. Nora Bengochea</div><div class="role">Traumatología</div></div>
+                    <div class="specItem"><div class="name">Dr. Roberto Pérez</div><div class="role">Traumatología</div></div>
+                    <div class="specItem"><div class="name">Dr. Juan Cabral</div><div class="role">Traumatología</div></div>
+                    <div class="specItem"><div class="name">Dr. Guillermo Flynn</div><div class="role">Traumatología</div></div>
+                  </div>
+                  <div class="ctaRow" style="margin-top:12px;">
+                    <a class="btn btnPrimary" id="btnSpecWA" href="#" rel="noopener">Consultar turnos</a>
                   </div>
                 </div>
-                <div class="li"><div class="k">Instagram</div><div class="v"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div></div>
-              </div>
 
-              <div class="ctaRow" style="margin-top:14px;">
-                <a class="btn btnPrimary" id="btnBottomWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
-                <a class="btn" href="#especialidades">Ver especialidades</a>
-              </div>
-
-              <div class="spacerForFloat" aria-hidden="true"></div>
-            </div>
-
-            <div class="mapCard reveal" data-reveal="right">
-              <iframe
-                class="mapFrame"
-                id="mapFrame"
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps?q=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661&output=embed"
-                title="Mapa Centro Kinest"
-              ></iframe>
-
-              <img class="mapImg" id="mapFallback" src="https://iili.io/qf0ljTP.png" alt="Mapa / Ubicación Centro Kinest" loading="lazy" style="display:none;" />
-
-              <div class="mapBar">
-                <div class="hint">Si el mapa interactivo no carga, se muestra una imagen alternativa.</div>
-                <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Abrir en Google Maps</a>
+                <div class="glass pane reveal" data-reveal="right">
+                  <div class="paneTitle">
+                    <h3>Otras especialidades</h3>
+                    <span class="tag">Profesionales</span>
+                  </div>
+                  <div class="specList stagger" data-stagger>
+                    <div class="specItem"><div class="name">Dra. Roxana González</div><div class="role">Neurología</div></div>
+                    <div class="specItem"><div class="name">Dr. Gonzalo Gallarino</div><div class="role">Medicina biológica / Ozonoterapia / Sueroterapia</div></div>
+                    <div class="specItem"><div class="name">Dra. Adriana Fiore</div><div class="role">Endocrinología</div></div>
+                    <div class="specItem"><div class="name">Lic. Javier Mouzaffar</div><div class="role">Quiropraxia</div></div>
+                    <div class="specItem"><div class="name">Dr. Fabio Adlerstein</div><div class="role">Flebología</div></div>
+                    <div class="specItem"><div class="name">Lic. María del Cielo Fernández</div><div class="role">Nutrición</div></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+        </section>
 
-          <footer class="reveal in" style="margin-top:18px;">
-            <div class="footRow">
-              <div>
-                <strong style="color:var(--text);">KINeST Salud y Bienestar</strong>
-                <span style="margin-left:8px;">· Centro Kinest · Bella Vista</span>
+        <!-- PANTALLA 5: COBERTURAS -->
+        <section id="p5" class="panel">
+          <div class="band bandB reveal" data-reveal="up" style="width:100%;">
+            <div class="bandInner">
+              <div class="sectionTitle">
+                <h2>Obras sociales / prepagas</h2>
+                <p>Consultar cobertura por WhatsApp</p>
               </div>
-              <div>
-                <a href="#especialidades">Especialidades</a>
-                <span style="margin:0 8px;">|</span>
-                <a href="#ubicacion">Ubicación</a>
-              </div>
-            </div>
 
-            <div class="footRow" style="margin-top:10px;">
-              <div>Creado y diseñado por <a href="https://ciborg347.onrender.com" target="_blank" rel="noopener">Ciborg 347</a></div>
-              <div><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">Instagram</a></div>
+              <div class="glass pane">
+                <div class="paneTitle">
+                  <h3>Principales</h3>
+                  <span class="tag">Cobertura</span>
+                </div>
+                <div class="prepagas stagger" data-stagger>
+                  <span class="pp">Swiss Medical</span>
+                  <span class="pp">Medicus</span>
+                  <span class="pp">Medifé</span>
+                  <span class="pp">OSDE</span>
+                  <span class="pp">Galeno</span>
+                  <span class="pp">Omint</span>
+                </div>
+                <div class="ctaRow" style="margin-top:12px;">
+                  <a class="btn btnPrimary" id="btnCoverageWA" href="#" rel="noopener">Consultar cobertura</a>
+                </div>
+              </div>
+
+              <div class="band bandC" style="margin-top:12px;">
+                <div class="bandInner">
+                  <div class="sectionTitle">
+                    <h2>Preguntas frecuentes</h2>
+                    <p>Respuesta rápida</p>
+                  </div>
+
+                  <div class="faq">
+                    <details class="fq">
+                      <summary class="fqSum">¿Cómo saco turno?
+                        <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                      </summary>
+                      <div class="ans">Por WhatsApp (recomendado), por teléfono o por email. Confirmamos disponibilidad según especialidad.</div>
+                    </details>
+
+                    <details class="fq">
+                      <summary class="fqSum">¿Horarios?
+                        <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                      </summary>
+                      <div class="ans">Los horarios se confirman por WhatsApp, ya que varían según especialidad y disponibilidad.</div>
+                    </details>
+
+                    <details class="fq">
+                      <summary class="fqSum">¿Dónde están ubicados?
+                        <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                      </summary>
+                      <div class="ans">Av. San Martín 1392, Bella Vista (1661). Abajo tenés mapa interactivo y botón a Google Maps.</div>
+                    </details>
+
+                    <details class="fq">
+                      <summary class="fqSum">¿Puedo reprogramar un turno?
+                        <svg class="chev" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                      </summary>
+                      <div class="ans">Sí. Avisanos por WhatsApp y lo reprogramamos según disponibilidad.</div>
+                    </details>
+                  </div>
+                </div>
+              </div>
+
             </div>
-          </footer>
-        </div>
-      </section>
+          </div>
+        </section>
+
+        <!-- PANTALLA 6: UBICACION -->
+        <section id="p6" class="panel">
+          <div class="band bandA reveal" data-reveal="up" style="width:100%;">
+            <div class="bandInner">
+              <div class="sectionTitle">
+                <h2>Ubicación</h2>
+                <p>Mapa interactivo + alternativa</p>
+              </div>
+
+              <div class="contactGrid">
+                <div class="glass pane reveal" data-reveal="left">
+                  <div class="badge"><span class="dot" aria-hidden="true"></span>Centro Kinest · Bella Vista</div>
+
+                  <div class="list stagger" data-stagger>
+                    <div class="li"><div class="k">WhatsApp</div><div class="v"><a id="waContactLink" href="#" rel="noopener">11-6567-1472</a></div></div>
+                    <div class="li"><div class="k">Teléfono</div><div class="v"><a href="tel:40075744">4007-5744</a></div></div>
+                    <div class="li"><div class="k">Teléfono</div><div class="v"><a href="tel:48964254">4896-4254</a></div></div>
+                    <div class="li"><div class="k">Email</div><div class="v"><a href="mailto:centrokinest_bellavista@hotmail.com">centrokinest_bellavista@hotmail.com</a></div></div>
+                    <div class="li">
+                      <div class="k">Dirección</div>
+                      <div class="v">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">
+                          Av. San Martín 1392 (1661)
+                        </a>
+                      </div>
+                    </div>
+                    <div class="li"><div class="k">Instagram</div><div class="v"><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">@centrokinest_bellavista</a></div></div>
+                  </div>
+
+                  <div class="ctaRow" style="margin-top:14px;">
+                    <a class="btn btnPrimary" id="btnBottomWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
+                    <a class="btn" href="#p3">Ver especialidades</a>
+                  </div>
+                </div>
+
+                <div class="mapCard reveal" data-reveal="right">
+                  <iframe
+                    class="mapFrame"
+                    id="mapFrame"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    src="https://www.google.com/maps?q=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661&output=embed"
+                    title="Mapa Centro Kinest"
+                  ></iframe>
+
+                  <img class="mapImg" id="mapFallback" src="https://iili.io/qf0ljTP.png" alt="Mapa / Ubicación Centro Kinest" loading="lazy" style="display:none;" />
+
+                  <div class="mapBar">
+                    <div class="hint">Si el mapa interactivo no carga, se muestra una imagen alternativa.</div>
+                    <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Av.%20San%20Martin%201392%2C%20Bella%20Vista%2C%20Buenos%20Aires%201661" target="_blank" rel="noopener">Abrir en Google Maps</a>
+                  </div>
+                </div>
+              </div>
+
+              <footer class="reveal in" style="margin-top:18px;">
+                <div class="footRow">
+                  <div>
+                    <strong style="color:var(--text);">KINeST Salud y Bienestar</strong>
+                    <span style="margin-left:8px;">· Centro Kinest · Bella Vista</span>
+                  </div>
+                  <div>
+                    <a href="#p3">Especialidades</a>
+                    <span style="margin:0 8px;">|</span>
+                    <a href="#p6">Ubicación</a>
+                  </div>
+                </div>
+
+                <div class="footRow" style="margin-top:10px;">
+                  <div>Creado y diseñado por <a href="https://ciborg347.onrender.com" target="_blank" rel="noopener">Ciborg 347</a></div>
+                  <div><a href="https://www.instagram.com/centrokinest_bellavista/" target="_blank" rel="noopener">Instagram</a></div>
+                </div>
+              </footer>
+            </div>
+          </div>
+        </section>
+
+        <!-- PANTALLA 7: MODO TODO JUNTO -->
+        <section id="p7" class="panel">
+          <div class="band bandC reveal" data-reveal="up" style="width:100%;">
+            <div class="bandInner">
+              <div class="sectionTitle">
+                <h2>Modo de navegación</h2>
+                <p>Pantallas o todo junto</p>
+              </div>
+
+              <div class="glass pane" style="padding:18px;">
+                <div class="badge"><span class="dot" aria-hidden="true"></span>Elegí cómo querés ver el sitio</div>
+                <h1 style="margin:12px 0 8px;font-size: clamp(22px, 3vw, 34px);">Ver por pantallas o todo junto</h1>
+                <p class="sub" style="margin-bottom:0;">En desktop podés activar el modo "todo junto" para scrollear sin cortes. En mobile el sitio ya funciona en scroll normal.</p>
+
+                <div class="ctaRow" style="margin-top:14px;">
+                  <button class="btn btnPrimary" id="btnAllMode">Activar modo todo junto</button>
+                  <button class="btn" id="btnPanelsMode">Volver a modo pantallas</button>
+                  <a class="btn" href="#p1">Ir al inicio</a>
+                </div>
+
+                <div class="ctaRow" style="margin-top:12px;">
+                  <a class="btn btnPrimary" id="btnModeWA" href="#" rel="noopener">Pedir turno por WhatsApp</a>
+                  <a class="btn" href="#p3">Ir a especialidades</a>
+                  <a class="btn" href="#p6">Ir a ubicación</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+      </div>
     </div>
   </main>
 
@@ -1246,7 +1424,7 @@
       const waIds = [
         "btnNavWA","btnHeroWA","btnSideWA","btnFeaturedWA","btnServicesWA","btnSpecWA",
         "btnCoverageWA","btnBottomWA","btnStickyWA","waFloat","waTextLink",
-        "waContactLink","btnCarWA"
+        "waContactLink","btnCarWA","btnDrawerWA","btnModeWA"
       ];
       waIds.forEach(id => {
         const el = document.getElementById(id);
@@ -1318,6 +1496,73 @@
         const current = root.getAttribute("data-theme") === "dark" ? "dark" : "light";
         setTheme(current === "dark" ? "light" : "dark");
       });
+
+      // Drawer
+      const burger = document.getElementById("burger");
+      const drawer = document.getElementById("drawer");
+      const drawerOverlay = document.getElementById("drawerOverlay");
+      const drawerClose = document.getElementById("drawerClose");
+
+      function openDrawer(){
+        if(!drawer || !drawerOverlay) return;
+        drawer.classList.add("open");
+        drawerOverlay.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeDrawer(){
+        if(!drawer || !drawerOverlay) return;
+        drawer.classList.remove("open");
+        drawerOverlay.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      if(burger) burger.addEventListener("click", openDrawer);
+      if(drawerOverlay) drawerOverlay.addEventListener("click", closeDrawer);
+      if(drawerClose) drawerClose.addEventListener("click", closeDrawer);
+
+      document.querySelectorAll(".drawerLink").forEach(el => {
+        el.addEventListener("click", () => {
+          const go = el.getAttribute("data-go");
+          if(go){
+            closeDrawer();
+            setTimeout(() => {
+              const target = document.querySelector(go);
+              if(target) target.scrollIntoView({behavior:"smooth", block:"start"});
+            }, 80);
+          }
+        });
+      });
+
+      // Modo todo junto / pantallas
+      const btnAllMode = document.getElementById("btnAllMode");
+      const btnPanelsMode = document.getElementById("btnPanelsMode");
+      const ALL_KEY = "kinest_all_mode";
+
+      function setAllMode(on){
+        if(on){
+          document.body.classList.add("allMode");
+          localStorage.setItem(ALL_KEY, "1");
+        } else {
+          document.body.classList.remove("allMode");
+          localStorage.setItem(ALL_KEY, "0");
+        }
+      }
+      const savedMode = localStorage.getItem(ALL_KEY);
+      if(savedMode === "1") setAllMode(true);
+
+      if(btnAllMode){
+        btnAllMode.addEventListener("click", () => {
+          setAllMode(true);
+          const t = document.querySelector("#p1");
+          if(t) t.scrollIntoView({behavior:"smooth", block:"start"});
+        });
+      }
+      if(btnPanelsMode){
+        btnPanelsMode.addEventListener("click", () => {
+          setAllMode(false);
+          const t = document.querySelector("#p1");
+          if(t) t.scrollIntoView({behavior:"smooth", block:"start"});
+        });
+      }
 
       // reveals
       const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1412,7 +1657,6 @@
       if(marquee){
         renderFeatured();
 
-        // click en destacado = WhatsApp con contexto
         marquee.addEventListener("click", (e) => {
           const card = e.target && e.target.closest ? e.target.closest(".carItem") : null;
           if(card){
