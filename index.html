@@ -108,7 +108,7 @@
     a{ color:inherit; text-decoration:none; }
     .wrap{ width:100%; max-width: var(--max); margin:0 auto; padding: 0 var(--pad); }
 
-    /* FULL PAGE OVERLAY (always covers, no gaps) */
+    /* FULL PAGE OVERLAY */
     body::before{
       content:"";
       position: fixed;
@@ -243,7 +243,7 @@
     [data-theme="dark"] .bandB{ background: linear-gradient(180deg, var(--bandB), rgba(0,0,0,0)); }
     [data-theme="dark"] .bandC{ background: linear-gradient(180deg, var(--bandC), rgba(0,0,0,0)); }
 
-    /* reveal (SIN BLUR para que no aparezcan "fantasmitas") */
+    /* reveal (SIN BLUR para evitar "fantasmitas") */
     .reveal{ opacity: 0; transform: translate3d(0, 14px, 0); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease); will-change: transform, opacity; }
     .reveal[data-reveal="left"]{ transform: translate3d(-18px, 10px, 0); }
     .reveal[data-reveal="right"]{ transform: translate3d(18px, 10px, 0); }
@@ -466,7 +466,7 @@
     [data-theme="dark"] .search{ background: rgba(255,255,255,.06); }
     .search::placeholder{ color: var(--muted); }
 
-    /* categorias (SIN decoraciones extra para que solo se vea overlay) */
+    /* categorias */
     .catGrid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
     .catCard{
       border: 1px solid var(--line);
@@ -621,9 +621,25 @@
       border: 1px solid var(--line);
       border-radius: 16px;
       background: var(--glass2);
+      min-width: 0;
     }
-    .specItem .name{ font-weight: 900; letter-spacing:.2px; font-size: 13px; line-height:1.2; }
-    .specItem .role{ color: var(--muted); font-size: 12px; white-space:nowrap; }
+    .specItem .name{
+      font-weight: 900;
+      letter-spacing:.2px;
+      font-size: 13px;
+      line-height:1.2;
+      min-width: 0;
+    }
+    /* desktop: puede ir en una línea */
+    .specItem .role{
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: right;
+    }
 
     /* prepagas */
     .prepagas{ display:flex; flex-wrap:wrap; gap: 10px; margin-top: 12px; }
@@ -775,7 +791,25 @@
       .contactGrid{ grid-template-columns: 1fr; }
       .stickyCta{ display:flex; }
       .bandInner{ padding: 16px; }
+
+      /* FIX MOBILE: profesionales NO se cortan, se apilan */
+      .specItem{
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 6px;
+      }
+      .specItem .role{
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        text-align: left;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+      }
     }
+
     @media (max-width: 420px){
       .btn{ width: 100%; }
       .toggle{ width: 44px; }
@@ -819,7 +853,7 @@
   <main>
     <div class="wrap">
 
-      <!-- HERO (band A) -->
+      <!-- HERO -->
       <section class="band bandA reveal" data-reveal="up">
         <div class="bandInner">
           <div class="heroGrid">
@@ -889,7 +923,7 @@
         </div>
       </section>
 
-      <!-- DESTACADOS (band B) -->
+      <!-- DESTACADOS -->
       <section class="band bandB reveal" data-reveal="up" style="margin-top:22px;">
         <div class="bandInner">
           <div class="sectionTitle">
@@ -918,7 +952,7 @@
         </div>
       </section>
 
-      <!-- ESPECIALIDADES (band C) -->
+      <!-- ESPECIALIDADES -->
       <section id="especialidades" class="band bandC reveal" data-reveal="up" style="margin-top:22px;">
         <div class="bandInner">
           <div class="sectionTitle">
@@ -950,7 +984,7 @@
         </div>
       </section>
 
-      <!-- PROFESIONALES (band A) -->
+      <!-- PROFESIONALES -->
       <section class="band bandA reveal" data-reveal="up" style="margin-top:22px;">
         <div class="bandInner">
           <div class="sectionTitle">
@@ -993,7 +1027,7 @@
         </div>
       </section>
 
-      <!-- COBERTURAS (band B) -->
+      <!-- COBERTURAS -->
       <section class="band bandB reveal" data-reveal="up" style="margin-top:22px;">
         <div class="bandInner">
           <div class="sectionTitle">
@@ -1021,7 +1055,7 @@
         </div>
       </section>
 
-      <!-- FAQ (band C) -->
+      <!-- FAQ -->
       <section class="band bandC reveal" data-reveal="up" style="margin-top:22px;">
         <div class="bandInner">
           <div class="sectionTitle">
@@ -1061,7 +1095,7 @@
         </div>
       </section>
 
-      <!-- UBICACION (band A) -->
+      <!-- UBICACION -->
       <section id="ubicacion" class="band bandA reveal" data-reveal="up" style="margin-top:22px;">
         <div class="bandInner">
           <div class="sectionTitle">
@@ -1338,7 +1372,6 @@
 
       if(marquee){
         renderFeatured(true);
-
         marquee.addEventListener("animationiteration", () => {
           renderFeatured(true);
         });
