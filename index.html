@@ -1,4 +1,3 @@
-```html
 <!doctype html>
 <html lang="es" style="scroll-behavior:smooth;">
 <head>
@@ -58,9 +57,13 @@
       --openBar: rgba(53,199,182,.55);
 
       /* OVERLAY */
-      --overlayLight: url("https://iili.io/qfNkMCl.jpg");
+      --overlayLight: url("https://iili.io/qfOCzCX.jpg");
       --overlayDark: url("https://iili.io/qfN8NXj.jpg");
       --overlayOpacity: .22;
+
+      /* carrusel infinito */
+      --marqueeDur: 28s;
+      --marqueeGap: 12px;
     }
 
     [data-theme="dark"]{
@@ -102,6 +105,8 @@
       overflow-x:hidden;
       position: relative;
     }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ width:100%; max-width: var(--max); margin:0 auto; padding: 0 var(--pad); }
 
     /* FULL PAGE OVERLAY (always covers, no gaps) */
     body::before{
@@ -119,12 +124,7 @@
       z-index: 0;
       transform: translateZ(0);
     }
-    [data-theme="dark"] body::before{
-      background-image: var(--overlayDark);
-    }
-
-    a{ color:inherit; text-decoration:none; }
-    .wrap{ width:100%; max-width: var(--max); margin:0 auto; padding: 0 var(--pad); }
+    [data-theme="dark"] body::before{ background-image: var(--overlayDark); }
 
     .noise{
       pointer-events:none;
@@ -179,6 +179,7 @@
       cursor:pointer;
       transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
       white-space:nowrap;
+      outline: none;
     }
     [data-theme="dark"] .btn{ background: rgba(255,255,255,.08); }
     .btn:hover{ transform: translateY(-1px); }
@@ -208,6 +209,7 @@
       cursor:pointer;
       transition: transform .15s ease;
       box-shadow: var(--shadow2);
+      outline: none;
     }
     [data-theme="dark"] .toggle{ background: rgba(255,255,255,.06); }
     .toggle:hover{ transform: translateY(-1px); }
@@ -241,15 +243,15 @@
     [data-theme="dark"] .bandB{ background: linear-gradient(180deg, var(--bandB), rgba(0,0,0,0)); }
     [data-theme="dark"] .bandC{ background: linear-gradient(180deg, var(--bandC), rgba(0,0,0,0)); }
 
-    /* reveal */
-    .reveal{ opacity: 0; transform: translate3d(0, 14px, 0); filter: blur(2px); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), filter var(--dur) var(--ease); will-change: transform, opacity, filter; }
+    /* reveal (SIN BLUR para que no aparezcan "fantasmitas") */
+    .reveal{ opacity: 0; transform: translate3d(0, 14px, 0); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease); will-change: transform, opacity; }
     .reveal[data-reveal="left"]{ transform: translate3d(-18px, 10px, 0); }
     .reveal[data-reveal="right"]{ transform: translate3d(18px, 10px, 0); }
     .reveal[data-reveal="up"]{ transform: translate3d(0, 18px, 0); }
-    .reveal.in{ opacity: 1; transform: translate3d(0,0,0); filter: blur(0px); }
+    .reveal.in{ opacity: 1; transform: translate3d(0,0,0); }
 
-    .stagger > *{ opacity: 0; transform: translate3d(0, 12px, 0); filter: blur(2px); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), filter var(--dur) var(--ease); }
-    .stagger.in > *{ opacity: 1; transform: translate3d(0,0,0); filter: blur(0px); }
+    .stagger > *{ opacity: 0; transform: translate3d(0, 12px, 0); transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease); }
+    .stagger.in > *{ opacity: 1; transform: translate3d(0,0,0); }
     .stagger.in > *:nth-child(1){ transition-delay: 0ms; }
     .stagger.in > *:nth-child(2){ transition-delay: 70ms; }
     .stagger.in > *:nth-child(3){ transition-delay: 140ms; }
@@ -260,14 +262,13 @@
     .stagger.in > *:nth-child(8){ transition-delay: 490ms; }
 
     @media (prefers-reduced-motion: reduce){
-      .reveal, .stagger > *{ transition:none !important; transform:none !important; filter:none !important; opacity:1 !important; }
+      .reveal, .stagger > *{ transition:none !important; transform:none !important; opacity:1 !important; }
     }
 
     /* icons (PNG) */
     .iWrap{ display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; }
     .iImg{ width: 20px; height: 20px; display:block; object-fit: contain; }
     .iImgMini{ width: 18px; height: 18px; display:block; object-fit: contain; }
-    .iImgPill{ width: 16px; height: 16px; display:block; object-fit: contain; }
     .iPh{
       width: 20px; height: 20px;
       border-radius: 10px;
@@ -355,22 +356,59 @@
     .carHead .ttl{ font-weight: 900; letter-spacing:.2px; }
     .carHead .hint{ color: var(--muted); font-size: 12.5px; }
 
-    .carTrack{
-      display:flex; gap: 12px;
+    .carViewport{
+      position: relative;
+      overflow: hidden;
       padding: 14px 14px 16px;
-      overflow:auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      cursor: grab;
+      touch-action: pan-y;
     }
-    .carTrack:active{ cursor: grabbing; }
-    .carTrack::-webkit-scrollbar{ display:none; }
+    .carViewport:before,
+    .carViewport:after{
+      content:"";
+      position:absolute;
+      top:0; bottom:0;
+      width: 56px;
+      pointer-events:none;
+      z-index: 2;
+    }
+    .carViewport:before{
+      left:0;
+      background: linear-gradient(90deg, rgba(251,252,255,.98), rgba(251,252,255,0));
+    }
+    .carViewport:after{
+      right:0;
+      background: linear-gradient(270deg, rgba(251,252,255,.98), rgba(251,252,255,0));
+    }
+    [data-theme="dark"] .carViewport:before{
+      background: linear-gradient(90deg, rgba(11,18,32,.98), rgba(11,18,32,0));
+    }
+    [data-theme="dark"] .carViewport:after{
+      background: linear-gradient(270deg, rgba(11,18,32,.98), rgba(11,18,32,0));
+    }
+
+    .carMarquee{
+      display:flex;
+      gap: var(--marqueeGap);
+      width: max-content;
+      will-change: transform;
+      animation: carMarquee var(--marqueeDur) linear infinite;
+      transform: translate3d(0,0,0);
+    }
+    .carMarquee.paused{ animation-play-state: paused; }
+    @keyframes carMarquee{
+      0%{ transform: translate3d(0,0,0); }
+      100%{ transform: translate3d(-50%,0,0); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .carViewport{ overflow-x:auto; -webkit-overflow-scrolling: touch; scrollbar-width:none; }
+      .carViewport::-webkit-scrollbar{ display:none; }
+      .carMarquee{ animation:none !important; }
+      .carViewport:before, .carViewport:after{ display:none; }
+    }
 
     .carItem{
       flex: 0 0 auto;
       width: min(360px, 86vw);
-      scroll-snap-align: start;
       border: 1px solid var(--line);
       border-radius: 22px;
       overflow:hidden;
@@ -378,20 +416,18 @@
       box-shadow: var(--shadow2);
     }
     .carMedia{
-      height: 170px;
-      background:
-        radial-gradient(800px 240px at 20% 30%, rgba(53,199,182,.16), transparent 55%),
-        radial-gradient(800px 240px at 80% 70%, rgba(47,123,246,.12), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.25), rgba(255,255,255,.06));
-      display:grid; place-items:center;
+      height: 190px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      overflow:hidden;
     }
-    [data-theme="dark"] .carMedia{
-      background:
-        radial-gradient(800px 240px at 20% 30%, rgba(53,199,182,.14), transparent 55%),
-        radial-gradient(800px 240px at 80% 70%, rgba(47,123,246,.10), transparent 55%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    [data-theme="dark"] .carMedia{ background: rgba(255,255,255,.04); }
+    .carMedia img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
     }
-    .carMedia svg{ width: 82px; height: 82px; opacity:.92; }
     .carBody{ padding: 14px 14px 16px; }
     .carBody .t{ font-weight: 900; letter-spacing:.2px; }
     .carBody .p{ margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.7; }
@@ -410,6 +446,7 @@
       transition: transform .15s ease;
       user-select:none;
       white-space:nowrap;
+      outline: none;
     }
     [data-theme="dark"] .filterBtn{ background: rgba(255,255,255,.06); }
     .filterBtn:hover{ transform: translateY(-1px); }
@@ -429,7 +466,7 @@
     [data-theme="dark"] .search{ background: rgba(255,255,255,.06); }
     .search::placeholder{ color: var(--muted); }
 
-    /* categorias */
+    /* categorias (SIN decoraciones extra para que solo se vea overlay) */
     .catGrid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 12px; }
     .catCard{
       border: 1px solid var(--line);
@@ -445,17 +482,6 @@
       position:relative;
       overflow:hidden;
     }
-    .catCard:before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(420px 240px at 18% 10%, rgba(53,199,182,.14), transparent 60%),
-        radial-gradient(420px 240px at 88% 90%, rgba(47,123,246,.10), transparent 60%);
-      opacity:.9;
-      pointer-events:none;
-    }
-    [data-theme="dark"] .catCard:before{ opacity:.55; }
-    .catCard > *{ position:relative; z-index:1; }
     .catCard:hover{ transform: translateY(-2px); }
 
     .catCard .h{ display:flex; align-items:center; justify-content:space-between; gap: 10px; }
@@ -508,6 +534,7 @@
       align-items:center;
       justify-content:space-between;
       gap: 10px;
+      outline: none;
     }
     summary.accSum::-webkit-details-marker{ display:none; }
 
@@ -628,6 +655,7 @@
       align-items:center;
       justify-content:space-between;
       gap: 10px;
+      outline: none;
     }
     summary.fqSum::-webkit-details-marker{ display:none; }
     details.fq .ans{
@@ -866,27 +894,20 @@
         <div class="bandInner">
           <div class="sectionTitle">
             <h2>Destacados</h2>
-            <p>Deslizá para ver más</p>
+            <p>Carrusel infinito (con imágenes)</p>
           </div>
 
           <div class="carousel">
             <div class="carHead">
               <div>
                 <div class="ttl">Tratamientos</div>
-                <div class="hint">Auto-scroll suave (se pausa al interactuar)</div>
+                <div class="hint">Loop infinito (se pausa al interactuar)</div>
               </div>
               <a class="btn btnPrimary" id="btnCarWA" href="#" rel="noopener" style="padding:10px 12px;border-radius:14px;">Consultar</a>
             </div>
 
-            <div class="carTrack" id="carTrack" aria-label="Carrusel de destacados">
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M18 32c8-12 20-12 28 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M22 42c6 4 14 4 20 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Dermapen</div><p class="p">Tratamiento facial.</p></div></article>
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M20 40c8 6 16 6 24 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M18 24c5-6 23-6 28 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Peeling</div><p class="p">Tratamientos faciales.</p></div></article>
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M16 34c10 10 22 10 32 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M20 24h24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Drenaje linfático</div><p class="p">Drenaje / circulación.</p></div></article>
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M18 30h28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M24 20v24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M40 20v24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Presoterapia</div><p class="p">Botas de drenaje linfático.</p></div></article>
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M22 44c10 4 20 0 20-10 0-8-10-10-20-14" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M22 20c8-4 18-2 22 6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Criolipólisis</div><p class="p">Tratamientos corporales.</p></div></article>
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M20 22c12-8 24 0 24 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M20 42c12 8 24 0 24 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Radiofrecuencia</div><p class="p">Tratamientos corporales.</p></div></article>
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M32 16v32" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M18 28h28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M22 40h24" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Ozonoterapia</div><p class="p">Medicina biológica.</p></div></article>
-              <article class="carItem"><div class="carMedia" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none"><path d="M22 18h20" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M18 28h28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M22 46h20" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div><div class="carBody"><div class="t">Sueroterapia</div><p class="p">Medicina biológica.</p></div></article>
+            <div class="carViewport" id="carViewport" aria-label="Carrusel de destacados">
+              <div class="carMarquee" id="carMarquee"></div>
             </div>
           </div>
 
@@ -1151,9 +1172,8 @@
         if(el) el.setAttribute("href", waHref);
       });
 
-      // ICONOS (PNG) - los links que me pasaste
+      // ICONOS (PNG)
       const ICONS_IMG = {
-        // categorias
         aparatologia: "https://iili.io/qfXlmLQ.png",
         bioestimulacion: "https://iili.io/qfXlbhx.png",
         estetica_facial: "https://iili.io/qfXEIbs.png",
@@ -1165,7 +1185,6 @@
         kinesiologia: "https://iili.io/qfXG7ja.png",
         medicina: "https://iili.io/qfXGNnf.png",
 
-        // quick
         quick_wa: "https://iili.io/qfXMCAX.png",
         quick_tel: "https://iili.io/qfXMEVj.png",
         quick_map: "https://iili.io/qfXMNOF.png",
@@ -1179,7 +1198,6 @@
         return `<img class="${cls}" src="${url}" alt="${a}" loading="lazy" decoding="async" />`;
       }
 
-      // quick icons
       const quickMap = {
         icoQuickWA: ["quick_wa","WhatsApp"],
         icoQuickTel: ["quick_tel","Teléfono"],
@@ -1246,48 +1264,97 @@
         document.querySelectorAll(".reveal, [data-stagger]").forEach(el => el.classList.add("in"));
       }
 
-      // carrusel
-      const track = document.getElementById("carTrack");
-      let isDown=false, startX=0, scrollLeft=0, userInteracted=false;
-      let autoTimer=null;
+      // CARRUSEL INFINITO con imágenes
+      const FEATURED = [
+        { t:"Dermapen", p:"Tratamiento facial.", img:"https://iili.io/qfwt41e.jpg" },
+        { t:"Peeling", p:"Tratamientos faciales.", img:"https://iili.io/qfN3exs.jpg" },
+        { t:"Drenaje linfático", p:"Drenaje / circulación.", img:"https://iili.io/qfNFbQs.jpg" },
+        { t:"Presoterapia", p:"Botas de drenaje linfático.", img:"https://iili.io/qfNfRUl.png" },
+        { t:"Criolipólisis", p:"Tratamientos corporales.", img:"https://iili.io/qfNfDqG.jpg" },
+        { t:"Radiofrecuencia", p:"Tratamientos corporales.", img:"https://iili.io/qfNqOYl.jpg" },
+        { t:"Ozonoterapia", p:"Medicina biológica.", img:"https://iili.io/qfNBfjt.jpg" },
+        { t:"Sueroterapia", p:"Medicina biológica.", img:"https://iili.io/qfNnsaf.png" }
+      ];
 
-      function startAuto(){
-        stopAuto();
-        autoTimer = setInterval(() => {
-          if(!track || userInteracted) return;
-          const max = track.scrollWidth - track.clientWidth;
-          if(max <= 0) return;
-          const next = Math.min(track.scrollLeft + 260, max);
-          if(next >= max - 2) track.scrollTo({ left: 0, behavior: "smooth" });
-          else track.scrollTo({ left: next, behavior: "smooth" });
-        }, 2600);
+      const marquee = document.getElementById("carMarquee");
+      const viewport = document.getElementById("carViewport");
+
+      function shuffle(arr){
+        const a = arr.slice();
+        for(let i=a.length-1;i>0;i--){
+          const j = Math.floor(Math.random()*(i+1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
       }
-      function stopAuto(){
-        if(autoTimer) clearInterval(autoTimer);
-        autoTimer = null;
+
+      function esc(s){
+        return String(s || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
       }
 
-      if(track){
-        track.addEventListener("pointerdown", (e) => {
-          isDown = true;
-          userInteracted = true;
-          track.setPointerCapture(e.pointerId);
-          startX = e.clientX;
-          scrollLeft = track.scrollLeft;
-        });
-        track.addEventListener("pointermove", (e) => {
-          if(!isDown) return;
-          const dx = (e.clientX - startX);
-          track.scrollLeft = scrollLeft - dx;
-        });
-        track.addEventListener("pointerup", () => { isDown = false; });
-        track.addEventListener("pointercancel", () => { isDown = false; });
-        track.addEventListener("wheel", () => { userInteracted = true; }, { passive:true });
-        track.addEventListener("touchstart", () => { userInteracted = true; }, { passive:true });
+      function cardHTML(item){
+        const safeT = esc(item.t);
+        const safeP = esc(item.p);
+        const safeImg = esc(item.img);
+        return `
+          <article class="carItem">
+            <div class="carMedia" aria-hidden="true">
+              <img src="${safeImg}" alt="${safeT}" loading="lazy" decoding="async" />
+            </div>
+            <div class="carBody">
+              <div class="t">${safeT}</div>
+              <p class="p">${safeP}</p>
+            </div>
+          </article>
+        `;
+      }
 
-        setTimeout(() => { userInteracted = false; startAuto(); }, 900);
+      function restartAnimation(){
+        if(!marquee || reduceMotion) return;
+        marquee.style.animation = "none";
+        void marquee.offsetWidth;
+        marquee.style.animation = "";
+      }
+
+      function renderFeatured(mix){
+        if(!marquee) return;
+        const base = mix ? shuffle(FEATURED) : FEATURED.slice();
+        const htmlOnce = base.map(cardHTML).join("");
+        marquee.innerHTML = htmlOnce + htmlOnce;
+        restartAnimation();
+      }
+
+      let pauseTimer = null;
+      function pauseMarquee(){
+        if(!marquee || reduceMotion) return;
+        marquee.classList.add("paused");
+        if(pauseTimer) clearTimeout(pauseTimer);
+      }
+      function resumeMarqueeSoon(){
+        if(!marquee || reduceMotion) return;
+        if(pauseTimer) clearTimeout(pauseTimer);
+        pauseTimer = setTimeout(() => marquee.classList.remove("paused"), 900);
+      }
+
+      if(marquee){
+        renderFeatured(true);
+
+        marquee.addEventListener("animationiteration", () => {
+          renderFeatured(true);
+        });
+
+        if(viewport){
+          viewport.addEventListener("pointerdown", pauseMarquee, { passive:true });
+          viewport.addEventListener("pointerenter", pauseMarquee, { passive:true });
+          viewport.addEventListener("pointerleave", resumeMarqueeSoon, { passive:true });
+          viewport.addEventListener("pointerup", resumeMarqueeSoon, { passive:true });
+          viewport.addEventListener("touchstart", pauseMarquee, { passive:true });
+          viewport.addEventListener("wheel", pauseMarquee, { passive:true });
+        }
+
         document.addEventListener("visibilitychange", () => {
-          if(document.hidden) stopAuto(); else startAuto();
+          if(document.hidden) pauseMarquee();
+          else resumeMarqueeSoon();
         });
       }
 
@@ -1576,4 +1643,3 @@
   </script>
 </body>
 </html>
-```
